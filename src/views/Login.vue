@@ -1,11 +1,11 @@
 <template>
-    <div>
-        LOGO
-    </div>
+  <div></div>
 </template>
 
 <script>
 export default {
-    name: "logo"
-}
+  name: "Login"
+};
 </script>
+
+<style scoped></style>
