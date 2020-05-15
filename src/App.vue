@@ -8,4 +8,6 @@
   </div>
 </template>
 
-<style lang="scss"></style>
+<style>
+  body { margin: 0; }
+</style>

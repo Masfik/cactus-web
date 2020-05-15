@@ -1,7 +1,7 @@
 {
-  "name": "gattoninja-web-client",
-  "version": "0.0.1",
-  "description": "Web client of GattoNinja",
+  "name": "cactus-web-client",
+  "version": "0.1.0",
+  "description": "Web client of Cactus",
   "author": {
     "name": "Masfik",
     "url": "https://masfik.net/"
@@ -9,10 +9,10 @@
   "license": "GNU Affero General Public License v3.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Masfik/GattoNinja-web.git"
+    "url": "git+https://github.com/Masfik/cactus-web.git"
   },
   "bugs": {
-    "url": "git+https://github.com/Masfik/GattoNinja-web/issues"
+    "url": "git+https://github.com/Masfik/cactus-web/issues"
   },
   "private": true,
   "scripts": {
@@ -34,7 +34,7 @@
     "@typescript-eslint/parser": "^2.18.0",
     "@vue/cli-plugin-eslint": "~4.2.0",
     "@vue/cli-plugin-router": "~4.2.0",
-    "@vue/cli-plugin-typescript": "~4.2.0",
+    "@vue/cli-plugin-typescript": "^4.3.1",
     "@vue/cli-plugin-unit-jest": "~4.2.0",
     "@vue/cli-plugin-vuex": "~4.2.0",
     "@vue/cli-service": "~4.2.0",
@@ -44,11 +44,10 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^6.1.2",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.2",
     "typescript": "~3.7.5",
-    "vue-cli-plugin-tailwind": "~1.2.0",
     "vue-template-compiler": "^2.6.11"
   }
 }

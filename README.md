@@ -1,5 +1,5 @@
-# GattoNinja Web Client
-Web client of GattoNinja.
+# Cactus Web Client
+Web client of Cactus.
 
 ## Project setup
 ```
