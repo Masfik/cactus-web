@@ -1,13 +1,13 @@
 <template>
   <div id="layout-container">
-    <div id="main">
-      <slot name="main"></slot>
-    </div>
     <div id="sidebar">
       <slot name="sidebar"></slot>
     </div>
     <div id="header">
       <slot name="header"></slot>
+    </div>
+    <div id="main">
+      <slot name="main"></slot>
     </div>
   </div>
 </template>
@@ -25,12 +25,13 @@
     grid-template-areas:
         "sidebar header"
         "sidebar main";
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: minmax(280px, 1fr) 5fr;
     grid-template-rows: 60px calc(100vh - 60px);
   }
 
   #sidebar {
     grid-area: sidebar;
+    z-index: 1;
     background-color: $primary;
     color: white;
     overflow: auto;
@@ -40,6 +41,7 @@
 
   #header {
     grid-area: header;
+    z-index: 2;
     background-color: $background-lighter;
     -webkit-box-shadow: $light-theme-shadow;
     box-shadow: $light-theme-shadow;

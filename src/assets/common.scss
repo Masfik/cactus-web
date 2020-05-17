@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost&family=Montserrat&family=Noto+Sans+JP&display=swap');
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+input {
+  font-size: 11pt;
+}
+
+.container {
+  padding: 15px;
+}
+
+input.text-field {
+  box-sizing: border-box;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+input.text-field:focus {
+  outline: none;
+}
