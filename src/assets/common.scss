@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost&family=Montserrat&family=Noto+Sans+JP&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost&family=Montserrat&family=Noto+Sans+JP&display=swap");
 
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  color: $text-on-bg;
 }
 
 input {
@@ -14,20 +16,42 @@ input {
 
 a {
   text-decoration: none;
+
+  &:visited {
+    color: inherit;
+  }
 }
 
 .container {
   padding: $container-spacing;
 }
 
+.container-x {
+  padding: 0 $container-spacing;
+}
+
+.container-y {
+  padding: $container-spacing 0;
+}
+
+label {
+  width: 100%;
+}
+
 input.text-field {
-  box-sizing: border-box;
   width: 100%;
   border: none;
   border-radius: 10px;
   padding: 10px;
+
+  &:focus {
+    outline: none;
+  }
 }
 
-input.text-field:focus {
-  outline: none;
+.card {
+  margin: 20px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  @include shadow();
 }

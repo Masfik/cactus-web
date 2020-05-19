@@ -3,29 +3,41 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 $container-spacing: 15px;
+$navbar-height: 65px;
 
 //----------------------------------------------------------------------------------------------------------------------
 // Light theme
 //----------------------------------------------------------------------------------------------------------------------
 
 $primary: #00c49aff;
-$secondary: #FFF;
+$secondary: #fff;
 $color3: #80ff72ff;
 $color6: #ff3366ff;
 $color2: #dadff7ff;
 $color4: #fed766ff;
 $color5: #343e3dff;
 
-$background: #F5F7FB;
+$background: #f5f7fb;
 $background-lighter: white;
 
 // Typography
 $text-on-primary: white;
-$text-on-bg: black;
+$text-on-bg: #625f71;
 
-// include box-shadow property (optional parameter $showRight parameter)
+//----------------------------------------------------------------------------------------------------------------------
+// Mixins
+//----------------------------------------------------------------------------------------------------------------------
+
+// include box-shadow property (optional $showRight parameter)
 @mixin shadow($showRight: false) {
   $shadow: if($showRight, 15px, 0) 2px 15px -1px #00000015;
   -webkit-box-shadow: $shadow;
   box-shadow: $shadow;
+}
+
+// Circular avatar properties with default size of 45px
+@mixin circular-avatar($size: 45px) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
 }

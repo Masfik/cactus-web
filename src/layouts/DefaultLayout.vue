@@ -13,44 +13,39 @@
 </template>
 
 <script>
-  export default {
-    name: "DefaultLayout"
-  };
+export default {
+  name: "DefaultLayout"
+};
 </script>
 
 <style lang="scss" scoped>
-  #layout-container {
-    display: grid;
-    justify-content: stretch;
-    grid-template-areas:
-        "sidebar header"
-        "sidebar main";
-    grid-template-columns: minmax(280px, 1fr) 5fr;
-    grid-template-rows: 60px calc(100vh - 60px);
-  }
+#layout-container {
+  display: grid;
+  justify-content: stretch;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  grid-template-columns: minmax(280px, 1fr) 5fr;
+  grid-template-rows: $navbar-height calc(100vh - #{$navbar-height});
+}
 
-  #sidebar {
-    grid-area: sidebar;
-    z-index: 1;
-    background-color: $primary;
-    color: white;
-    overflow: auto;
-    overflow-x: hidden;
-    @include shadow(true);
-  }
+#sidebar {
+  grid-area: sidebar;
+  z-index: 1;
+  background-color: $primary;
+  color: white;
+  @include shadow(true);
+}
 
-  #header {
-    grid-area: header;
-    z-index: 2;
-    background-color: $background-lighter;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    @include shadow()
-  }
+#header {
+  grid-area: header;
+  z-index: 2;
+  background-color: $background-lighter;
+  @include shadow();
+}
 
-  #main {
-    grid-area: main;
-    background-color: $background;
-  }
+#main {
+  grid-area: main;
+  background-color: $background;
+}
 </style>
