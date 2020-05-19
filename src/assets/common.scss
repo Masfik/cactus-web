@@ -12,8 +12,12 @@ input {
   font-size: 11pt;
 }
 
+a {
+  text-decoration: none;
+}
+
 .container {
-  padding: 15px;
+  padding: $container-spacing;
 }
 
 input.text-field {

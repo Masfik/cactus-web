@@ -20,8 +20,8 @@
 
 <style lang="scss" scoped>
   #layout-container {
-    justify-content: stretch;
     display: grid;
+    justify-content: stretch;
     grid-template-areas:
         "sidebar header"
         "sidebar main";
@@ -35,16 +35,18 @@
     background-color: $primary;
     color: white;
     overflow: auto;
-    -webkit-box-shadow: $light-theme-shadow;
-    box-shadow: $light-theme-shadow;
+    overflow-x: hidden;
+    @include shadow(true);
   }
 
   #header {
     grid-area: header;
     z-index: 2;
     background-color: $background-lighter;
-    -webkit-box-shadow: $light-theme-shadow;
-    box-shadow: $light-theme-shadow;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    @include shadow()
   }
 
   #main {

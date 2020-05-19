@@ -18,18 +18,32 @@
   export default {
     name: "ChatTile",
     props: {
-      name: String,
+      name: {
+        type: String,
+        required: true
+      },
       activityName: String
     }
   };
 </script>
 
 <style lang="scss" scoped>
+  $avatarSize: 45px;
+  $statusBall: 10px;
+
   .chat-tile {
+    width: 100%;
+    padding: 8px 15px;
     display: inline-flex;
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+    user-select: none;
+
+    &:hover {
+      background-color: lighten($primary, 2);
+      cursor: pointer;
+    }
   }
 
   .avatar {
@@ -38,14 +52,14 @@
     margin-right: 10px;
 
     img {
-      height: 50px;
-      width: 50px;
+      height: $avatarSize;
+      width: $avatarSize;
       border-radius: 50%;
     }
 
     span.online-status {
-      height: 12px;
-      width: 12px;
+      height: $statusBall;
+      width: $statusBall;
       background-color: #a5a5a5;
       border: white solid 2px;
       border-radius: 50%;
@@ -58,7 +72,7 @@
   .chat-details {
     .chat-name {
       font-weight: bold;
-      text-overflow: ellipsis;
+      /* TODO: add ellipsis */
     }
 
     .activity {
@@ -69,10 +83,7 @@
       }
 
       .activity-name {
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-        width: 50px;
+        /* TODO: add ellipsis */
       }
     }
   }
