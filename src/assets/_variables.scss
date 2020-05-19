@@ -17,8 +17,10 @@ $color2: #dadff7ff;
 $color4: #fed766ff;
 $color5: #343e3dff;
 
+// Background
 $background: #f5f7fb;
 $background-lighter: white;
+$background-darker: darken($background-lighter, 8);
 
 // Typography
 $text-on-primary: white;
