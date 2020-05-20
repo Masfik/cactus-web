@@ -23,15 +23,17 @@ export default {
 }
 
 #room-content {
+  @include overflow(y);
   flex: 3;
   min-width: 600px;
+  height: calc(100vh - #{$navbar-height});
 }
 
 #room-chat {
+  @include shadow();
   flex: 1;
   min-width: 230px;
   background-color: $background-lighter;
   height: calc(100vh - #{$navbar-height});
-  @include shadow();
 }
 </style>

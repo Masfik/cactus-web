@@ -10,7 +10,7 @@
       </template>
 
       <template v-slot:main>
-        <room></room>
+        <room />
       </template>
     </default-layout>
   </div>

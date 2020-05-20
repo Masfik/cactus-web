@@ -1,6 +1,6 @@
 <template>
   <div id="chat-content">
-    <div id="messages">
+    <div id="messages" class="container">
       Messages
     </div>
     <div id="send-message-container">
@@ -30,7 +30,7 @@ export default {
 }
 
 #messages {
-  overflow-y: auto;
+  @include overflow(y);
   flex-grow: 1;
 }
 
@@ -40,7 +40,6 @@ export default {
   .send-message-bar {
     $spacing: 10px;
 
-    height: 55px;
     padding: $spacing;
     display: flex;
     align-items: center;

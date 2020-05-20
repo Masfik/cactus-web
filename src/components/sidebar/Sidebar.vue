@@ -44,13 +44,8 @@ export default {
 
 <style lang="scss" scoped>
 #sidebar-content {
+  @include overflow(y);
   max-height: 100vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }
 
 #logo {

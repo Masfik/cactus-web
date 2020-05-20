@@ -3,7 +3,8 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 $container-spacing: 15px;
-$navbar-height: 65px;
+$navbar-height: 60px;
+$card-border-radius: 20px;
 
 //----------------------------------------------------------------------------------------------------------------------
 // Light theme
@@ -42,4 +43,18 @@ $text-on-bg: #625f71;
   width: $size;
   height: $size;
   border-radius: 50%;
+}
+
+@mixin overflow($axis) {
+  @if $axis == y {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  } @else {
+    overflow-y: hidden;
+    overflow-x: scroll;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

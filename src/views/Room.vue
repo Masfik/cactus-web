@@ -1,11 +1,7 @@
 <template>
   <room-default-layout>
     <template v-slot:content>
-      <div class="card">
-        <div class="container">
-          <h4>Test</h4>
-        </div>
-      </div>
+      <room-content />
     </template>
 
     <template v-slot:chat>
@@ -17,14 +13,14 @@
 <script>
 import RoomDefaultLayout from "../layouts/RoomDefaultLayout";
 import Chat from "@/components/room/chat/Chat";
+import RoomContent from "@/components/room/RoomContent";
 
 export default {
   name: "Room",
   components: {
+    RoomContent,
     Chat,
     RoomDefaultLayout
   }
 };
 </script>
-
-<style scoped></style>

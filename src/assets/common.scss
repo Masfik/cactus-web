@@ -51,8 +51,7 @@ input.text-field {
 }
 
 .card {
-  margin: 20px;
-  border-radius: 20px;
+  border-radius: $card-border-radius;
   background-color: #ffffff;
   @include shadow();
 }
