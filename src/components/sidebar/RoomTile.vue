@@ -32,7 +32,7 @@ $statusBall: 14px;
 
 .room-tile {
   width: 100%;
-  padding: 8px $container-spacing;
+  padding: $container-spacing;
   display: inline-flex;
   flex-direction: row;
   flex-wrap: nowrap;

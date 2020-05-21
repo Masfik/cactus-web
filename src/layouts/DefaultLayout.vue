@@ -25,23 +25,23 @@ export default {
   grid-template-areas:
     "sidebar header"
     "sidebar main";
-  grid-template-columns: minmax(280px, 1fr) 5fr;
+  grid-template-columns: minmax($sidebar-min-width, 1fr) 5fr;
   grid-template-rows: $navbar-height calc(100vh - #{$navbar-height});
 }
 
 #sidebar {
+  @include shadow(true);
   grid-area: sidebar;
   z-index: 1;
   background-color: $primary;
   color: white;
-  @include shadow(true);
 }
 
 #header {
+  @include shadow();
   grid-area: header;
   z-index: 2;
   background-color: $background-lighter;
-  @include shadow();
 }
 
 #main {

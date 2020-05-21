@@ -23,7 +23,6 @@ export default {
 <style lang="scss" scoped>
 #room-video {
   width: 100%;
-  border-top-left-radius: $card-border-radius;
-  border-top-right-radius: $card-border-radius;
+  border-radius: $card-border-radius;
 }
 </style>

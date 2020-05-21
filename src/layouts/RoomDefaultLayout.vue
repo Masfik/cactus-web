@@ -32,7 +32,7 @@ export default {
 #room-chat {
   @include shadow();
   flex: 1;
-  min-width: 230px;
+  min-width: $sidebar-min-width;
   background-color: $background-lighter;
   height: calc(100vh - #{$navbar-height});
 }

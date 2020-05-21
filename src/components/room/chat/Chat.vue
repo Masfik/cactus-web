@@ -1,7 +1,29 @@
 <template>
   <div id="chat-content">
     <div id="messages" class="container">
-      Messages
+      <div class="recipient">
+        <message-bubble :message="{ data: 'Hello World!' }" />
+      </div>
+      <div class="sender">
+        <message-bubble
+          :message="{
+            data:
+              'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus atque deleniti dolores excepturi, ' +
+              'ipsa modi natus neque officia quaerat, quidem, sed velit vitae voluptate? Dicta doloremque excepturi ' +
+              'minus numquam voluptas!'
+          }"
+        />
+        <message-bubble :message="{ data: 'Prolonged message' }" />
+      </div>
+      <div class="recipient">
+        <message-bubble :message="{ data: 'Hello Spongebob' }" />
+        <message-bubble :message="{ data: 'Testing' }" />
+        <message-bubble :message="{ data: 'How are you?' }" />
+        <message-bubble :message="{ data: 'How was work?' }" />
+        <message-bubble
+          :message="{ data: 'I hope everything is going well for ya.' }"
+        />
+      </div>
     </div>
     <div id="send-message-container">
       <div class="send-message-bar">
@@ -16,9 +38,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import MessageBubble from "@/components/room/chat/MessageBubble.vue";
 export default {
-  name: "Chat"
+  name: "Chat",
+  components: { MessageBubble }
 };
 </script>
 
@@ -30,8 +54,25 @@ export default {
 }
 
 #messages {
-  @include overflow(y);
   flex-grow: 1;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  @include overflow(y);
+
+  .recipient > *.message-bubble {
+    @include bubble-borders(recipient);
+    background: $color5;
+    color: $text-on-primary;
+  }
+
+  .sender > *.message-bubble {
+    @include bubble-borders(sender);
+    margin-left: auto;
+    margin-right: 0;
+    background: $primary;
+    color: $text-on-primary;
+  }
 }
 
 #send-message-container {

@@ -2,9 +2,15 @@
 // Sizes
 //----------------------------------------------------------------------------------------------------------------------
 
+// General components
 $container-spacing: 15px;
 $navbar-height: 60px;
+$sidebar-min-width: 230px;
 $card-border-radius: 20px;
+
+// Message bubbles
+$bubble-first-last-radius: 16px;
+$bubble-radius: 6px;
 
 //----------------------------------------------------------------------------------------------------------------------
 // Light theme
@@ -45,16 +51,40 @@ $text-on-bg: #625f71;
   border-radius: 50%;
 }
 
+// Type of overflow desired with a required $axis parameter
 @mixin overflow($axis) {
   @if $axis == y {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
   } @else {
     overflow-y: hidden;
-    overflow-x: scroll;
+    overflow-x: auto;
   }
 
   &::-webkit-scrollbar {
     display: none;
+  }
+}
+
+// Message bubble border-radius styling
+@mixin bubble-borders($who) {
+  $direction: if($who == sender, right, left);
+
+  // First child if it's NOT the only child present
+  &:first-child:not(:only-child) {
+    border-top-#{$direction}-radius: $bubble-first-last-radius;
+    border-bottom-#{$direction}-radius: $bubble-radius;
+  }
+
+  // Child(ren) between the first and last element (messages in the middle)
+  &:not(:first-child):not(:last-child) {
+    border-top-#{$direction}-radius: $bubble-radius;
+    border-bottom-#{$direction}-radius: $bubble-radius;
+  }
+
+  // Last child if it's NOT the only child present
+  &:last-child:not(:only-child) {
+    border-bottom-#{$direction}-radius: $bubble-first-last-radius;
+    border-top-#{$direction}-radius: $bubble-radius;
   }
 }
