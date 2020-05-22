@@ -91,9 +91,10 @@ $message-spacing: $message-spacing * 4;
     }
 
     .chat-who {
-      margin-left: $bubble-radius;
+      margin-left: 6px;
       font-size: smaller;
       font-weight: bold;
+      /* TODO: add ellipsis */
     }
   }
 

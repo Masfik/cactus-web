@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost&family=Montserrat&family=Noto+Sans+JP&display=swap");
 
+//----------------------------------------------------------------------------------------------------------------------
+// Plain HTML classes
+//----------------------------------------------------------------------------------------------------------------------
+
 * {
   font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
@@ -23,6 +27,18 @@ a {
   }
 }
 
+label {
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $title-on-bg;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// Custom classes
+//----------------------------------------------------------------------------------------------------------------------
+
 .container {
   padding: $container-spacing;
 }
@@ -33,10 +49,6 @@ a {
 
 .container-y {
   padding: $container-spacing 0;
-}
-
-label {
-  width: 100%;
 }
 
 input.text-field {
@@ -54,4 +66,20 @@ input.text-field {
   @include shadow();
   border-radius: $card-border-radius;
   background-color: $background-lighter;
+
+  .container {
+    padding: $card-container-spacing;
+  }
+}
+
+.row {
+  > *:not(:first-of-type) {
+    margin-top: $row-col-spacing;
+  }
+}
+
+.col {
+  > *:not(:last-of-type) {
+    margin-right: $row-col-spacing;
+  }
 }
