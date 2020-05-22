@@ -21,8 +21,8 @@ export default {
 <style lang="scss" scoped>
 .message-bubble {
   display: table;
-  max-width: 75%;
-  margin-top: 2px;
+  max-width: 70%;
+  margin-top: $message-spacing;
   padding: 10px;
   font-size: smaller;
   border-radius: $bubble-first-last-radius;
@@ -30,6 +30,5 @@ export default {
   // Text wrapping
   overflow-wrap: break-word;
   word-wrap: break-word;
-  word-break: break-word;
 }
 </style>

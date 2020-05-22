@@ -11,6 +11,7 @@ $card-border-radius: 20px;
 // Message bubbles
 $bubble-first-last-radius: 16px;
 $bubble-radius: 6px;
+$message-spacing: 2px;
 
 //----------------------------------------------------------------------------------------------------------------------
 // Light theme
@@ -46,6 +47,8 @@ $text-on-bg: #625f71;
 
 // Circular avatar properties with default size of 45px
 @mixin circular-avatar($size: 45px) {
+  min-width: $size;
+  min-height: $size;
   width: $size;
   height: $size;
   border-radius: 50%;
