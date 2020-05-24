@@ -1,5 +1,5 @@
 <template>
-  <div class="row" style="padding: 45px;">
+  <div class="row" id="video-container">
     <video id="room-video">
       <source
         src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
@@ -29,10 +29,8 @@
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="container">
-          <h3>People watching</h3>
-        </div>
+      <div class="card container">
+        Content
       </div>
     </div>
   </div>
@@ -45,6 +43,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$image-size: 120px;
+
+#video-container {
+  padding: 60px;
+}
+
 #room-video {
   width: 100%;
   border-radius: $card-border-radius;
@@ -68,9 +72,10 @@ export default {
   flex-flow: row;
 
   img {
-    max-height: 120px;
+    max-height: $image-size;
     vertical-align: top;
     margin-right: 10px;
+    border-radius: $card-border-radius;
   }
 
   .watching-description {

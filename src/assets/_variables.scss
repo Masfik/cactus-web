@@ -3,12 +3,17 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 // General components
-$container-spacing: 15px;
-$card-container-spacing: 25px;
+$container-spacing: 25px;
 $navbar-height: 60px;
 $sidebar-min-width: 230px;
+$row-col-spacing: 30px;
+
+// Cards
+$card-container-spacing: $container-spacing;
 $card-border-radius: 20px;
-$row-col-spacing: 20px;
+
+// Chat
+$message-list-container-spacing: 15px;
 
 // Message bubbles
 $bubble-first-last-radius: 16px;
@@ -16,7 +21,7 @@ $bubble-radius: 6px;
 $message-spacing: 2px;
 
 //----------------------------------------------------------------------------------------------------------------------
-// Light theme
+// Theming
 //----------------------------------------------------------------------------------------------------------------------
 
 $primary: #00c49aff;
@@ -36,6 +41,11 @@ $background-darker: darken($background-lighter, 8);
 $text-on-primary: white;
 $text-on-bg: #625f71;
 $title-on-bg: darken($text-on-bg, 15);
+%text-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 // Mixins

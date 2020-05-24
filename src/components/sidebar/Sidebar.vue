@@ -13,8 +13,8 @@
     <chat-tile
       v-for="n in 18"
       :key="n"
-      name="MasfikNET"
-      activity-name="Watching Spongebob"
+      name="MasfikNET Long Name"
+      activity-name="Spongebob Squarepants"
     />
   </div>
 </template>

@@ -34,7 +34,7 @@ export default {
   grid-area: sidebar;
   z-index: 1;
   background-color: $primary;
-  color: white;
+  color: $text-on-primary;
 }
 
 #header {
@@ -46,6 +46,5 @@ export default {
 
 #main {
   grid-area: main;
-  background-color: $background;
 }
 </style>

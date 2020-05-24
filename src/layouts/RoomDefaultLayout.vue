@@ -27,6 +27,7 @@ export default {
   flex: 3;
   min-width: 600px;
   height: calc(100vh - #{$navbar-height});
+  border-radius: $card-border-radius;
 }
 
 #room-chat {

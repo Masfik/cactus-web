@@ -1,10 +1,10 @@
 <template>
   <div id="chat-content">
-    <div id="message-list-container" class="container">
+    <div id="message-list-container">
       <div class="recipient">
         <img src="@/assets/user.png" alt="User avatar" />
         <div class="message-container">
-          <span class="chat-who">MimmiMH</span>
+          <div class="chat-who">MimmiMH</div>
           <div class="messages">
             <message-bubble :message="{ data: 'Hello!' }" />
           </div>
@@ -21,7 +21,7 @@
       <div class="recipient">
         <img src="@/assets/user.png" alt="User avatar" />
         <div class="message-container">
-          <span class="chat-who">Giuseppe</span>
+          <div class="chat-who">Giuseppe</div>
           <div class="messages">
             <message-bubble :message="{ data: 'Hello Spongebob' }" />
             <message-bubble :message="{ data: 'Testing' }" />
@@ -36,7 +36,7 @@
       <div class="recipient">
         <img src="@/assets/user.png" alt="User avatar" />
         <div class="message-container">
-          <span class="chat-who">Tommaso</span>
+          <div class="chat-who">Tommaso</div>
           <div class="messages">
             <message-bubble :message="{ data: lorem }" who="recipient" />
           </div>
@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$message-spacing: $message-spacing * 4;
+$message-block-spacing: $message-spacing * 4;
 
 #chat-content {
   display: flex;
@@ -79,10 +79,11 @@ $message-spacing: $message-spacing * 4;
   display: flex;
   flex-flow: column;
   justify-content: flex-end;
+  padding: $message-list-container-spacing;
 
   .recipient {
     display: flex;
-    margin-top: $message-spacing;
+    margin-top: $message-block-spacing;
 
     img {
       @include circular-avatar(36px);
@@ -91,10 +92,11 @@ $message-spacing: $message-spacing * 4;
     }
 
     .chat-who {
+      @extend %text-ellipsis;
+      max-width: 150px;
       margin-left: 6px;
       font-size: smaller;
       font-weight: bold;
-      /* TODO: add ellipsis */
     }
   }
 
@@ -105,7 +107,7 @@ $message-spacing: $message-spacing * 4;
   }
 
   .sender {
-    margin-top: $message-spacing;
+    margin-top: $message-block-spacing;
 
     > div.message-container > div.messages > *.message-bubble {
       @include bubble-borders(sender);

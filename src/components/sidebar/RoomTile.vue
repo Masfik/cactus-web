@@ -5,7 +5,7 @@
       <span class="online-status"></span>
     </div>
     <div class="room-details">
-      <span class="room-name">{{ name }}</span>
+      <div class="room-name">{{ name }}</div>
       <div class="activity">
         <font-awesome-icon icon="tv" class="activity-icon" />
         <span class="activity-name">{{ activityName }}</span>
@@ -34,7 +34,6 @@ $statusBall: 14px;
   width: 100%;
   padding: 12px $container-spacing;
   display: inline-flex;
-  flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   user-select: none;
@@ -67,20 +66,20 @@ $statusBall: 14px;
 }
 
 .room-details {
+  min-width: 0;
+  overflow: hidden;
+
   .room-name {
+    @extend %text-ellipsis;
     font-weight: bold;
-    /* TODO: add ellipsis */
   }
 
   .activity {
+    @extend %text-ellipsis;
     font-size: smaller;
 
     .activity-icon {
       margin-right: 5px;
-    }
-
-    .activity-name {
-      /* TODO: add ellipsis */
     }
   }
 }
