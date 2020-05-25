@@ -98,12 +98,12 @@ $message-block-spacing: $message-spacing * 4;
       font-size: smaller;
       font-weight: bold;
     }
-  }
 
-  .recipient > div.message-container > div.messages > *.message-bubble {
-    @include bubble-borders(recipient);
-    background: $color5;
-    color: $text-on-primary;
+    > div.message-container > div.messages > *.message-bubble {
+      @include bubble-borders(recipient);
+      background: $color5;
+      color: $text-on-primary;
+    }
   }
 
   .sender {

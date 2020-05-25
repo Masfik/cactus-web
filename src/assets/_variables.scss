@@ -1,15 +1,16 @@
 //----------------------------------------------------------------------------------------------------------------------
-// Sizes
+// SIZES
 //----------------------------------------------------------------------------------------------------------------------
 
 // General components
-$container-spacing: 25px;
+$container-spacing: 15px;
 $navbar-height: 60px;
 $sidebar-min-width: 230px;
 $row-col-spacing: 30px;
+$room-video-min-width: 600px;
 
 // Cards
-$card-container-spacing: $container-spacing;
+$card-container-spacing: 25px;
 $card-border-radius: 20px;
 
 // Chat
@@ -21,7 +22,7 @@ $bubble-radius: 6px;
 $message-spacing: 2px;
 
 //----------------------------------------------------------------------------------------------------------------------
-// Theming
+// THEMING
 //----------------------------------------------------------------------------------------------------------------------
 
 $primary: #00c49aff;
@@ -41,15 +42,17 @@ $background-darker: darken($background-lighter, 8);
 $text-on-primary: white;
 $text-on-bg: #625f71;
 $title-on-bg: darken($text-on-bg, 15);
+
+//----------------------------------------------------------------------------------------------------------------------
+// COMMON RULES AND MIXINS
+//----------------------------------------------------------------------------------------------------------------------
+
+// Ellipsis text (suspension points...)
 %text-ellipsis {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
-//----------------------------------------------------------------------------------------------------------------------
-// Mixins
-//----------------------------------------------------------------------------------------------------------------------
 
 // include box-shadow property (optional $showRight parameter)
 @mixin shadow($showRight: false) {
@@ -72,7 +75,7 @@ $title-on-bg: darken($text-on-bg, 15);
   @if $axis == y {
     overflow-y: auto;
     overflow-x: hidden;
-  } @else {
+  } @else if $axis == x {
     overflow-y: hidden;
     overflow-x: auto;
   }

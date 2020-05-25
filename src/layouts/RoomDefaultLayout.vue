@@ -25,7 +25,7 @@ export default {
 #room-content {
   @include overflow(y);
   flex: 3;
-  min-width: 600px;
+  min-width: $room-video-min-width;
   height: calc(100vh - #{$navbar-height});
   border-radius: $card-border-radius;
 }

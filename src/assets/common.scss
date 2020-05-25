@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: $container-spacing 0;
 }
 
-input.text-field {
+input.text-field, textarea.text-field {
   width: 100%;
   padding: 10px;
   border: none;
@@ -60,16 +60,6 @@ input.text-field {
 
   &:focus {
     outline: none;
-  }
-}
-
-.card {
-  @include shadow();
-  border-radius: $card-border-radius;
-  background-color: $background-lighter;
-
-  .container {
-    padding: $card-container-spacing;
   }
 }
 
@@ -82,5 +72,23 @@ input.text-field {
 .col {
   > *:not(:last-of-type) {
     margin-right: $row-col-spacing;
+  }
+}
+
+// "Edit" button next to something
+.editable {
+  display: inline-flex;
+
+  > a.edit-title {
+    margin-left: 10px;
+    text-decoration: underline;
+    font-size: smaller;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+
+  &:hover a.edit-title {
+    opacity: 1;
+    transition: opacity .2s;
   }
 }

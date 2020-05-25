@@ -1,6 +1,6 @@
 interface AuthUser extends User {
   email: string;
-  groups?: Room[];
+  rooms?: Room[];
   invitations: Invitation[];
   blocked?: User[];
   preferences: Preferences;
