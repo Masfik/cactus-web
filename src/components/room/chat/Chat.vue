@@ -1,5 +1,6 @@
 <template>
   <div id="chat-content">
+    <room-name-header />
     <div id="message-list-container">
       <div class="recipient">
         <img src="@/assets/user.png" alt="User avatar" />
@@ -50,9 +51,10 @@
 <script lang="ts">
 import MessageBubble from "@/components/room/chat/MessageBubble.vue";
 import SendMessageBar from "@/components/room/chat/SendMessageBar.vue";
+import RoomNameHeader from "@/components/room/chat/RoomNameHeader.vue";
 export default {
   name: "Chat",
-  components: { SendMessageBar, MessageBubble },
+  components: { RoomNameHeader, SendMessageBar, MessageBubble },
   data() {
     return {
       lorem:

@@ -56,7 +56,7 @@ export default {
 .search-bar {
   display: flex;
   align-items: center;
-  height: $navbar-height;
+  height: $header-height;
   margin: 10px 0;
   position: sticky;
   top: 0;

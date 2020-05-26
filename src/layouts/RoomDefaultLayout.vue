@@ -26,15 +26,16 @@ export default {
   @include overflow(y);
   flex: 3;
   min-width: $room-video-min-width;
-  height: calc(100vh - #{$navbar-height});
+  height: calc(100vh - #{$header-height});
   border-radius: $card-border-radius;
 }
 
 #room-chat {
   @include shadow();
+  overflow: hidden;
   flex: 1;
   min-width: $sidebar-min-width;
   background-color: $background-lighter;
-  height: calc(100vh - #{$navbar-height});
+  height: calc(100vh - #{$header-height});
 }
 </style>

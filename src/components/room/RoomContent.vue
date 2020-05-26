@@ -20,6 +20,8 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
             commodi consequatur consequuntur dolor eos fuga illum in incidunt
             itaque labore minima minus necessitatibus nostrum reiciendis...
+            <span> <b>Year:</b> 2014 </span>
+            <span> <b>Length:</b> 1 hour </span>
           </p>
         </div>
       </div>
@@ -41,6 +43,11 @@ $image-size: 120px;
 
 #video-container {
   padding: 60px;
+}
+
+#room-video {
+  width: 100%;
+  border-radius: $card-border-radius;
 }
 
 #watching-title {
@@ -67,19 +74,20 @@ $image-size: 120px;
 
   p {
     margin-top: 0;
-  }
-
-  .watching-metadata {
     font-size: smaller;
 
-    b {
-      color: $title-on-bg;
+    > :first-child {
+      margin-top: 8px;
+    }
+
+    span {
+      display: block;
+      margin-block-start: 4px;
+
+      b {
+        color: $title-on-bg;
+      }
     }
   }
-}
-
-#room-video {
-  width: 100%;
-  border-radius: $card-border-radius;
 }
 </style>

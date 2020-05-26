@@ -26,7 +26,7 @@ export default {
     "sidebar header"
     "sidebar main";
   grid-template-columns: minmax($sidebar-min-width, 1fr) 5fr;
-  grid-template-rows: $navbar-height calc(100vh - #{$navbar-height});
+  grid-template-rows: $header-height calc(100vh - #{$header-height});
 }
 
 #sidebar {
