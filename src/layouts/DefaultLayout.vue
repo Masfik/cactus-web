@@ -41,7 +41,7 @@ export default {
   @include shadow();
   grid-area: header;
   z-index: 2;
-  background-color: $background-lighter;
+  background-color: $header-colour;
 }
 
 #main {

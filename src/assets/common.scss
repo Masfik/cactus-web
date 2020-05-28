@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost&family=Montserrat&family=Noto+Sans+JP&display=swap");
 
 //----------------------------------------------------------------------------------------------------------------------
-// Plain HTML classes
+// PLAIN HTML
 //----------------------------------------------------------------------------------------------------------------------
 
 * {
@@ -38,7 +38,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 //----------------------------------------------------------------------------------------------------------------------
-// Custom classes
+// CUSTOM CLASSES
 //----------------------------------------------------------------------------------------------------------------------
 
 .container {
@@ -73,23 +73,5 @@ input.text-field, textarea.text-field {
 .col {
   > *:not(:last-of-type) {
     margin-right: $row-col-spacing;
-  }
-}
-
-// "Edit" button next to something
-.editable {
-  display: inline-flex;
-
-  > a.edit-title {
-    margin-left: 10px;
-    text-decoration: underline;
-    font-size: smaller;
-    opacity: 0;
-    transition: opacity .2s;
-  }
-
-  &:hover a.edit-title {
-    opacity: 1;
-    transition: opacity .2s;
   }
 }

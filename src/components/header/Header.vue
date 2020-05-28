@@ -26,6 +26,7 @@ export default {
 
 <style lang="scss" scoped>
 $spacing: 20px;
+$badge-size: 15px;
 
 ul#header-items {
   height: 100%;
@@ -48,8 +49,9 @@ ul#header-items {
 
       .count {
         position: absolute;
-        width: 15px;
-        height: 15px;
+        width: $badge-size;
+        height: $badge-size;
+        line-height: $badge-size;
         border-radius: 50%;
         background-color: $color6;
         color: $text-on-primary;

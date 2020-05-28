@@ -1,5 +1,6 @@
 import Vue from "vue";
 import "./plugins/fontawesome";
+import "./plugins/composition-api";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
