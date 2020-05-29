@@ -63,12 +63,12 @@ export default {
 .search-bar {
   display: flex;
   align-items: center;
-  height: $header-height;
+  height: $s-header-height;
   margin: 10px 0;
   position: sticky;
   top: 0;
   z-index: 1;
-  background-color: $primary;
+  background-color: var(--c-primary);
   transition: box-shadow 0.2s ease;
 
   &.stuck {
@@ -77,7 +77,7 @@ export default {
 
   .text-field {
     color: #ffffff;
-    background-color: lighten($primary, 4);
+    background-color: var(--c-primary-lighter);
 
     &::placeholder {
       color: #ffffff;

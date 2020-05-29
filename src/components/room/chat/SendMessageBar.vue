@@ -15,7 +15,7 @@ export default {
 
 <style lang="scss" scoped>
 #send-message-container {
-  background-color: $background-darker;
+  background-color: var(--c-background-darker);
 
   .send-message-bar {
     $spacing: 10px;

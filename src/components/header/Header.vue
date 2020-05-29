@@ -25,9 +25,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$spacing: 20px;
-$badge-size: 15px;
-
 ul#header-items {
   height: 100%;
   list-style-type: none;
@@ -38,7 +35,7 @@ ul#header-items {
   margin-block-end: 0;
 
   li {
-    margin: 0 $spacing;
+    margin: 0 $s-header-items-spacing;
 
     .notifications {
       position: relative;
@@ -49,12 +46,12 @@ ul#header-items {
 
       .count {
         position: absolute;
-        width: $badge-size;
-        height: $badge-size;
-        line-height: $badge-size;
+        width: $s-badge;
+        height: $s-badge;
+        line-height: $s-badge;
         border-radius: 50%;
-        background-color: $color6;
-        color: $text-on-primary;
+        background-color: var(--c-accent);
+        color: var(--c-text-on-primary);
         text-align: center;
         font-size: x-small;
         font-weight: bold;
@@ -79,7 +76,7 @@ ul#header-items {
   }
 
   &:last-child {
-    margin-right: $spacing;
+    margin-right: $s-header-items-spacing;
   }
 }
 </style>

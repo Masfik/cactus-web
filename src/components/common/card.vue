@@ -13,11 +13,11 @@ export default {
 <style lang="scss" scoped>
 .card {
   @include shadow();
-  border-radius: $card-border-radius;
-  background-color: $background-lighter;
+  border-radius: $s-card-border-radius;
+  background-color: var(--c-background-lighter);
 
   > .container {
-    padding: $card-container-spacing;
+    padding: $s-card-container-spacing;
   }
 }
 </style>

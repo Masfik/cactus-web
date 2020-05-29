@@ -1,0 +1,22 @@
+$primary: #00c49aff;
+$primary-lighter: lighten($primary, 4);
+$secondary: #80ff72ff;
+$accent: #ff3366ff;
+
+$background: #f5f7fb;
+$background-lighter: white;
+$background-darker: darken($background-lighter, 8);
+
+$text-on-primary: white;
+$text-on-bg: #625f71;
+$title-on-bg: darken($text-on-bg, 15);
+
+$success: #fff;
+$info: #fff;
+$warning: #fff;
+$danger: #fff;
+
+$header-color: $background-lighter;
+$room-tile-hover: lighten($primary, 2);
+$bubble-sender-color: $primary;
+$bubble-recipient-color: #343e3dff;

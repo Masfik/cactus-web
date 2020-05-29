@@ -22,10 +22,10 @@ export default {
 .message-bubble {
   display: table;
   max-width: 70%;
-  margin-top: $message-spacing;
+  margin-top: $s-message-spacing;
   padding: 10px;
   font-size: smaller;
-  border-radius: $bubble-first-last-radius;
+  border-radius: $s-bubble-first-last-radius;
 
   // Text wrapping
   overflow-wrap: break-word;

@@ -67,8 +67,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$message-block-spacing: $message-spacing * 4;
-
 #chat-content {
   display: flex;
   flex-flow: column;
@@ -81,11 +79,11 @@ $message-block-spacing: $message-spacing * 4;
   display: flex;
   flex-flow: column;
   justify-content: flex-end;
-  padding: $message-list-container-spacing;
+  padding: $s-message-list-container-spacing;
 
   .recipient {
     display: flex;
-    margin-top: $message-block-spacing;
+    margin-top: $s-message-block-spacing;
 
     img {
       @include circular-avatar(36px);
@@ -103,20 +101,20 @@ $message-block-spacing: $message-spacing * 4;
 
     > div.message-container > div.messages > *.message-bubble {
       @include bubble-borders(recipient);
-      background: $color5;
-      color: $text-on-primary;
+      background: var(--c-bubble-recipient-color);
+      color: var(--c-text-on-primary);
     }
   }
 
   .sender {
-    margin-top: $message-block-spacing;
+    margin-top: $s-message-block-spacing;
 
     > div.message-container > div.messages > *.message-bubble {
       @include bubble-borders(sender);
       margin-left: auto;
       margin-right: 0;
-      background: $primary;
-      color: $text-on-primary;
+      background: var(--c-bubble-sender-color);
+      color: var(--c-text-on-primary);
     }
   }
 }

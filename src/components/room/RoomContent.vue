@@ -1,7 +1,7 @@
 <template>
   <div class="row" id="video-container">
     <card>
-      <video id="room-video">
+      <video controls id="room-video">
         <source
           src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
           type="video/mp4"
@@ -39,24 +39,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$image-size: 120px;
-
 #video-container {
   padding: 60px;
 }
 
 #room-video {
   width: 100%;
-  border-radius: $card-border-radius;
+  border-radius: $s-card-border-radius;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 #watching-title {
   width: 100%;
-  margin-bottom: $container-spacing;
+  margin-bottom: $s-container-spacing;
 
   > *:first-child {
     @extend %text-ellipsis;
-    max-width: $room-video-min-width - $card-container-spacing;
+    max-width: $s-room-video-min-width - $s-card-container-spacing;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -67,9 +69,9 @@ $image-size: 120px;
   flex-flow: row;
 
   img {
-    max-height: $image-size;
+    max-height: $s-poster-image-height;
     margin-right: 10px;
-    border-radius: $card-border-radius;
+    border-radius: $s-card-border-radius;
   }
 
   p {
@@ -85,7 +87,7 @@ $image-size: 120px;
       margin-block-start: 4px;
 
       b {
-        color: $title-on-bg;
+        color: var(--c-text-on-bg);
       }
     }
   }

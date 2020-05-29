@@ -13,8 +13,8 @@ body {
   margin: 0;
   padding: 0;
   max-width: 100vw;
-  background-color: $background;
-  color: $text-on-bg;
+  background-color: var(--c-background);
+  color: var(--c-text-on-bg);
 }
 
 input {
@@ -34,7 +34,7 @@ label {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $title-on-bg;
+  color: var(--c-title-on-bg);
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -42,15 +42,15 @@ h1, h2, h3, h4, h5, h6 {
 //----------------------------------------------------------------------------------------------------------------------
 
 .container {
-  padding: $container-spacing;
+  padding: $s-container-spacing;
 }
 
 .container-x {
-  padding: 0 $container-spacing;
+  padding: 0 $s-container-spacing;
 }
 
 .container-y {
-  padding: $container-spacing 0;
+  padding: $s-container-spacing 0;
 }
 
 input.text-field, textarea.text-field {
@@ -66,12 +66,12 @@ input.text-field, textarea.text-field {
 
 .row {
   > *:not(:first-of-type) {
-    margin-top: $row-col-spacing;
+    margin-top: $s-row-col-spacing;
   }
 }
 
 .col {
   > *:not(:last-of-type) {
-    margin-right: $row-col-spacing;
+    margin-right: $s-row-col-spacing;
   }
 }

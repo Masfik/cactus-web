@@ -25,23 +25,23 @@ export default {
   grid-template-areas:
     "sidebar header"
     "sidebar main";
-  grid-template-columns: minmax($sidebar-min-width, 1fr) 5fr;
-  grid-template-rows: $header-height calc(100vh - #{$header-height});
+  grid-template-columns: minmax($s-sidebar-min-width, 1fr) 5fr;
+  grid-template-rows: $s-header-height calc(100vh - #{$s-header-height});
 }
 
 #sidebar {
   @include shadow(true);
   grid-area: sidebar;
   z-index: 1;
-  background-color: $primary;
-  color: $text-on-primary;
+  background-color: var(--c-primary);
+  color: var(--c-text-on-primary);
 }
 
 #header {
   @include shadow();
   grid-area: header;
   z-index: 2;
-  background-color: $header-colour;
+  background-color: var(--c-header-color);
 }
 
 #main {

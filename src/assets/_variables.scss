@@ -1,50 +1,75 @@
 //----------------------------------------------------------------------------------------------------------------------
-// SIZES
+// SIZES                                                          (s prefix to indicate sizes — autocompletion purposes)
 //----------------------------------------------------------------------------------------------------------------------
 
 // General components
-$container-spacing: 15px;
-$header-height: 60px;
-$sidebar-min-width: 230px;
-$row-col-spacing: 30px;
-$room-video-min-width: 600px;
+$s-container-spacing: 15px;
+$s-header-height: 60px;
+$s-sidebar-min-width: 230px;
+$s-row-col-spacing: 30px;
+$s-room-video-min-width: 600px;
+
+// Header
+$s-header-items-spacing: 20px;
+$s-badge: 15px;
 
 // Cards
-$card-container-spacing: 25px;
-$card-border-radius: 20px;
+$s-card-container-spacing: 25px;
+$s-card-border-radius: 20px;
+
+// Online status ball
+$s-statusBall: 14px;
+
+// RoomContent poster height
+$s-poster-image-height: 120px;
 
 // Chat
-$message-list-container-spacing: 15px;
+$s-message-list-container-spacing: 15px;
 
 // Message bubbles
-$bubble-first-last-radius: 16px;
-$bubble-radius: 6px;
-$message-spacing: 2px;
+$s-bubble-first-last-radius: 16px;
+$s-bubble-radius: 6px;
+$s-message-spacing: 2px;
+$s-message-block-spacing: $s-message-spacing * 4; /* the series of consequent messages from a single sender */
 
 //----------------------------------------------------------------------------------------------------------------------
-// THEMING
+// THEMING                                                      (c prefix to indicate colours — autocompletion purposes)
 //----------------------------------------------------------------------------------------------------------------------
 
-$primary: #00c49aff;
-$secondary: #fff;
-$color3: #80ff72ff;
-$color6: #ff3366ff;
-$color2: #dadff7ff;
-$color4: #fed766ff;
-$color5: #343e3dff;
+@import "themes/light-default";
 
-// Background
-$background: #f5f7fb;
-$background-lighter: white;
-$background-darker: darken($background-lighter, 8);
+:root {
+  // Main colours
+  --c-primary: #{$primary};
+  --c-primary-lighter: #{$primary-lighter};
+  --c-secondary: #{$secondary};
+  --c-accent: #{$accent};
 
-// Typography
-$text-on-primary: white;
-$text-on-bg: #625f71;
-$title-on-bg: darken($text-on-bg, 15);
+  // Background
+  --c-background: #{$background};
+  --c-background-lighter: #{$background-lighter};
+  --c-background-darker: #{$background-darker};
 
-// Specific components
-$header-colour: $background-lighter;
+  // Typography
+  --c-text-on-primary: #{$text-on-primary};
+  --c-text-on-bg: #{$text-on-bg};
+  --c-title-on-bg: #{$title-on-bg};
+
+  // Contextual colours
+  --c-success: #{$success};
+  --c-info: #{$info};
+  --c-warning: #{$warning};
+  --c-danger: #{$danger};
+
+  // Specific components
+  --c-header-color: #{$header-color};
+  --c-room-tile-hover: #{$room-tile-hover};
+  --c-bubble-sender-color: #{$bubble-sender-color};
+  --c-bubble-recipient-color: #{$bubble-recipient-color};
+}
+
+// Importing other themes
+
 
 //----------------------------------------------------------------------------------------------------------------------
 // COMMON RULES AND MIXINS
@@ -73,7 +98,7 @@ $header-colour: $background-lighter;
   border-radius: 50%;
 }
 
-// Type of overflow desired with a required $axis parameter
+// Type of overflow with a required $axis parameter
 @mixin overflow($axis) {
   @if $axis == y {
     overflow-y: auto;
@@ -94,19 +119,19 @@ $header-colour: $background-lighter;
 
   // First child if it's NOT the only child present
   &:first-child:not(:only-child) {
-    border-top-#{$direction}-radius: $bubble-first-last-radius;
-    border-bottom-#{$direction}-radius: $bubble-radius;
+    border-top-#{$direction}-radius: $s-bubble-first-last-radius;
+    border-bottom-#{$direction}-radius: $s-bubble-radius;
   }
 
   // Child(ren) between the first and last element (messages in the middle)
   &:not(:first-child):not(:last-child) {
-    border-top-#{$direction}-radius: $bubble-radius;
-    border-bottom-#{$direction}-radius: $bubble-radius;
+    border-top-#{$direction}-radius: $s-bubble-radius;
+    border-bottom-#{$direction}-radius: $s-bubble-radius;
   }
 
   // Last child if it's NOT the only child present
   &:last-child:not(:only-child) {
-    border-bottom-#{$direction}-radius: $bubble-first-last-radius;
-    border-top-#{$direction}-radius: $bubble-radius;
+    border-bottom-#{$direction}-radius: $s-bubble-first-last-radius;
+    border-top-#{$direction}-radius: $s-bubble-radius;
   }
 }

@@ -21,9 +21,9 @@ export default {
 
 <style lang="scss" scoped>
 #room-name-header {
-  height: $header-height;
-  min-height: $header-height;
-  border-bottom: $background-darker solid 1px;
+  height: $s-header-height;
+  min-height: $s-header-height;
+  border-bottom: var(--c-background-darker) solid 1px;
   cursor: pointer;
   user-select: none;
   text-align: center;
@@ -33,7 +33,7 @@ export default {
   #room-name {
     @extend %text-ellipsis;
     margin: auto;
-    line-height: $header-height;
+    line-height: $s-header-height;
     text-transform: uppercase;
   }
 }

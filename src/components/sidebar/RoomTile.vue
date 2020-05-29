@@ -28,18 +28,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$statusBall: 14px;
-
 .room-tile {
   width: 100%;
-  padding: 12px $container-spacing;
+  padding: 12px $s-container-spacing;
   display: inline-flex;
   flex-wrap: nowrap;
   align-items: center;
   user-select: none;
 
   &:hover {
-    background-color: lighten($primary, 2);
+    background-color: var(--c-room-tile-hover);
     cursor: pointer;
   }
 }
@@ -54,8 +52,8 @@ $statusBall: 14px;
   }
 
   span.online-status {
-    height: $statusBall;
-    width: $statusBall;
+    height: $s-statusBall;
+    width: $s-statusBall;
     background-color: #a5a5a5;
     border: white solid 2px;
     border-radius: 50%;
