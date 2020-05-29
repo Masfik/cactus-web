@@ -58,6 +58,7 @@ input.text-field, textarea.text-field {
   padding: 10px;
   border: none;
   border-radius: 10px;
+  color: var(--c-text-on-bg);
 
   &:focus {
     outline: none;

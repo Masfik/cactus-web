@@ -1,0 +1,34 @@
+@import "node_modules/nord/src/sass/nord";
+
+[theme="nord"] {
+  $nord0-darker: #242932;
+
+  // Main colours
+  --c-primary: #{$nord0-darker};
+  --c-primary-lighter: #{$nord0};
+  --c-secondary: #{$nord7};
+  --c-accent: #{$nord11};
+
+  // Background
+  --c-background: #{$nord0};
+  --c-background-lighter: #{$nord1};
+  --c-background-darker: #{darken($nord1, 4)};
+
+  // Typography
+  --c-text-on-primary: #{$nord4};
+  --c-text-on-bg: #{$nord6};
+  --c-title-on-bg: #{$nord4};
+
+  // Contextual colours
+  --c-success: #{$nord14};
+  --c-info: #{$nord10};
+  --c-warning: #{$nord12};
+  --c-danger: #{$nord11};
+
+  // Specific components
+  --c-header-color: var(--c-primary);
+  --c-room-tile-hover: #{lighten($nord0-darker, 4)};
+  --c-bubble-sender-color: #{$nord10};
+  --c-bubble-recipient-color: #{$nord0};
+  --c-send-message-bg: #{$nord1};
+}

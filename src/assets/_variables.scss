@@ -30,7 +30,7 @@ $s-message-list-container-spacing: 15px;
 $s-bubble-first-last-radius: 16px;
 $s-bubble-radius: 6px;
 $s-message-spacing: 2px;
-$s-message-block-spacing: $s-message-spacing * 4; /* the series of consequent messages from a single sender */
+$s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive messages from a single sender */
 
 //----------------------------------------------------------------------------------------------------------------------
 // THEMING                                                      (c prefix to indicate colours — autocompletion purposes)
@@ -66,10 +66,11 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consequent me
   --c-room-tile-hover: #{$room-tile-hover};
   --c-bubble-sender-color: #{$bubble-sender-color};
   --c-bubble-recipient-color: #{$bubble-recipient-color};
+  --c-send-message-bg: #{$background-lighter};
 }
 
 // Importing other themes
-
+@import "themes/nord";
 
 //----------------------------------------------------------------------------------------------------------------------
 // COMMON RULES AND MIXINS

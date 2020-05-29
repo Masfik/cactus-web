@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import Card from "@/components/common/card";
-import Editable from "@/components/common/editable";
+import Card from "@/components/common/Card";
+import Editable from "@/components/common/Editable";
 export default {
   name: "RoomContent",
   components: { Editable, Card }

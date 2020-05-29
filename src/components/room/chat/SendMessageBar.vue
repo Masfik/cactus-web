@@ -28,6 +28,10 @@ export default {
       font-size: 18pt;
       margin-right: $spacing;
     }
+
+    .text-field {
+      background-color: var(--c-send-message-bg);
+    }
   }
 }
 </style>

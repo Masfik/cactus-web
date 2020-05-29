@@ -1,5 +1,5 @@
 <template>
-  <div id="room-name-header">
+  <div id="room-name-header" @click="switchThemeTest">
     <div id="room-name" class="container-x">
       MasfikNET's Room
     </div>
@@ -7,14 +7,21 @@
 </template>
 
 <script lang="ts">
-import { ref } from "@vue/composition-api";
+import { Ref, ref } from "@vue/composition-api";
 
 export default {
   name: "RoomNameHeader",
   setup() {
-    const test = ref(3);
+    const test = ref(5);
 
-    return { test };
+    function theme() {
+      const de = document.documentElement; // TODO: everything is temporary here
+
+      if (de.getAttribute("theme") !== "nord") de.setAttribute("theme", "nord");
+      else de.setAttribute("theme", "none");
+    }
+
+    return { test, switchThemeTest: theme };
   }
 };
 </script>
