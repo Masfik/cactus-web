@@ -1,5 +1,5 @@
 <template>
-  <div @scroll="onSidebarScroll()" ref="sidebar" id="sidebar-content">
+  <div @scroll="onSidebarScroll" ref="sidebar" id="sidebar-content">
     <img src="../../assets/logo.svg" alt="Logo" id="logo" ref="logo" />
     <div class="container-x search-bar" :class="{ stuck: stickySearch }">
       <input
@@ -21,23 +21,30 @@
 
 <script lang="ts">
 import ChatTile from "@/components/sidebar/RoomTile.vue";
+import { Ref, ref } from "@vue/composition-api";
 
 export default {
   name: "Sidebar",
   components: {
     ChatTile
   },
-  data() {
-    return {
-      stickySearch: false
-    };
-  },
-  methods: {
-    onSidebarScroll() {
-      const { sidebar, logo, search } = this.$refs;
-      const triggerScrollHeight = logo.clientHeight + search.clientHeight;
-      this.stickySearch = sidebar.scrollTop >= triggerScrollHeight;
+  setup() {
+    const stickySearch = ref(false);
+
+    // Template references
+    const [sidebar, logo, search]: Ref<any>[] = [
+      ref(null),
+      ref(null),
+      ref(null)
+    ];
+
+    function onSidebarScroll() {
+      const triggerScrollHeight =
+        logo.value.clientHeight + search.value.clientHeight ?? 0;
+      stickySearch.value = sidebar.value.scrollTop >= triggerScrollHeight;
     }
+
+    return { stickySearch, sidebar, logo, search, onSidebarScroll };
   }
 };
 </script>

@@ -1,20 +1,18 @@
 <template>
   <div id="room-name-header">
     <div id="room-name" class="container-x">
-      MasfikNET's Room {{ test }}
+      MasfikNET's Room
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { ref } from "@vue/composition-api";
 
 export default {
   name: "RoomNameHeader",
   setup() {
     const test = ref(3);
-
-    setTimeout(() => test.value++, 4000);
 
     return { test };
   }
@@ -30,6 +28,7 @@ export default {
   user-select: none;
   text-align: center;
   font-size: smaller;
+  font-weight: bold;
 
   #room-name {
     @extend %text-ellipsis;
