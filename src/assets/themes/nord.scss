@@ -1,4 +1,4 @@
-@import "node_modules/nord/src/sass/nord";
+@import "~nord/src/sass/nord";
 
 [theme="nord"] {
   $nord0-darker: #242932;
@@ -24,6 +24,9 @@
   --c-info: #{$nord10};
   --c-warning: #{$nord12};
   --c-danger: #{$nord11};
+
+  // Shadow colour
+  --c-shadow-color: #00000025;
 
   // Specific components
   --c-header-color: var(--c-primary);

@@ -40,7 +40,7 @@ export default {
 
     function onSidebarScroll() {
       const triggerScrollHeight =
-        logo.value.clientHeight + search.value.clientHeight ?? 0;
+        logo.value.clientHeight + search.value.clientHeight;
       stickySearch.value = sidebar.value.scrollTop >= triggerScrollHeight;
     }
 

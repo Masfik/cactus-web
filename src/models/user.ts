@@ -29,7 +29,7 @@ interface User {
   friends: User[];
 
   /**
-   * Rooms of the user (in common).
+   * Rooms of the user (in common - if not the AuthUser).
    */
   rooms: Room[];
 }

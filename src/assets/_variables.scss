@@ -2,7 +2,7 @@
 // SIZES                                                          (s prefix to indicate sizes — autocompletion purposes)
 //----------------------------------------------------------------------------------------------------------------------
 
-// General components
+// Layout components
 $s-container-spacing: 15px;
 $s-header-height: 60px;
 $s-sidebar-min-width: 230px;
@@ -61,6 +61,9 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
   --c-warning: #{$warning};
   --c-danger: #{$danger};
 
+  // Shadow colour
+  --c-shadow-color: #00000015;
+
   // Specific components
   --c-header-color: #{$header-color};
   --c-room-tile-hover: #{$room-tile-hover};
@@ -85,7 +88,7 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
 
 // include box-shadow property (optional $showRight parameter)
 @mixin shadow($showRight: false) {
-  $shadow: if($showRight, 15px, 0) 2px 15px -1px #00000015;
+  $shadow: if($showRight, 15px, 0) 2px 15px -1px var(--c-shadow-color);
   -webkit-box-shadow: $shadow;
   box-shadow: $shadow;
 }

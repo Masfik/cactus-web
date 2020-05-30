@@ -2,44 +2,46 @@
   <div id="chat-content">
     <room-name-header />
     <div id="message-list-container">
-      <div class="recipient">
-        <img src="@/assets/user.png" alt="User avatar" />
-        <div class="message-container">
-          <div class="chat-who">MimmiMH</div>
-          <div class="messages">
-            <message-bubble :message="{ data: 'Hello!' }" />
+      <div id="msg-list-scrollable">
+        <div class="recipient">
+          <img src="@/assets/user.png" alt="User avatar" />
+          <div class="message-container">
+            <div class="chat-who">MimmiMH</div>
+            <div class="messages">
+              <message-bubble :message="{ data: 'Hello!' }" />
+            </div>
           </div>
         </div>
-      </div>
-      <div class="sender">
-        <div class="message-container">
-          <div class="messages">
-            <message-bubble :message="{ data: 'Aaaaa' }" />
-            <message-bubble :message="{ data: 'Two messages' }" />
+        <div class="sender">
+          <div class="message-container">
+            <div class="messages">
+              <message-bubble :message="{ data: 'Aaaaa' }" />
+              <message-bubble :message="{ data: 'Two messages' }" />
+            </div>
           </div>
         </div>
-      </div>
-      <div class="recipient">
-        <img src="@/assets/user.png" alt="User avatar" />
-        <div class="message-container">
-          <div class="chat-who">Giuseppe</div>
-          <div class="messages">
-            <message-bubble :message="{ data: 'Hello Spongebob' }" />
-            <message-bubble :message="{ data: 'Testing' }" />
-            <message-bubble :message="{ data: 'How are you?' }" />
-            <message-bubble :message="{ data: 'How was work?' }" />
-            <message-bubble
-              :message="{ data: 'I hope everything is going well for ya.' }"
-            />
+        <div class="recipient">
+          <img src="@/assets/user.png" alt="User avatar" />
+          <div class="message-container">
+            <div class="chat-who">Giuseppe</div>
+            <div class="messages">
+              <message-bubble :message="{ data: 'Hello Spongebob' }" />
+              <message-bubble :message="{ data: 'Testing' }" />
+              <message-bubble :message="{ data: 'How are you?' }" />
+              <message-bubble :message="{ data: 'How was work?' }" />
+              <message-bubble
+                :message="{ data: 'I hope everything is going well for ya.' }"
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <div class="recipient">
-        <img src="@/assets/user.png" alt="User avatar" />
-        <div class="message-container">
-          <div class="chat-who">Tommaso</div>
-          <div class="messages">
-            <message-bubble :message="{ data: lorem }" who="recipient" />
+        <div class="recipient">
+          <img src="@/assets/user.png" alt="User avatar" />
+          <div class="message-container">
+            <div class="chat-who">Tommaso</div>
+            <div class="messages">
+              <message-bubble :message="{ data: lorem }" who="recipient" />
+            </div>
           </div>
         </div>
       </div>
@@ -52,6 +54,7 @@
 import MessageBubble from "@/components/room/chat/MessageBubble.vue";
 import SendMessageBar from "@/components/room/chat/SendMessageBar.vue";
 import RoomNameHeader from "@/components/room/chat/RoomNameHeader.vue";
+
 export default {
   name: "Chat",
   components: { RoomNameHeader, SendMessageBar, MessageBubble },
@@ -78,8 +81,21 @@ export default {
   flex-grow: 1;
   display: flex;
   flex-flow: column;
-  justify-content: flex-end;
+  flex-direction: column-reverse;
   padding: $s-message-list-container-spacing;
+
+  #msg-list-scrollable {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column;
+  }
+
+  .recipient,
+  .sender {
+    &:first-child {
+      margin-top: auto;
+    }
+  }
 
   .recipient {
     display: flex;
