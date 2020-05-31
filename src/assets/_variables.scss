@@ -67,6 +67,7 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
   // Specific components
   --c-header-color: #{$header-color};
   --c-room-tile-hover: #{$room-tile-hover};
+  --c-room-tile-selected: #{$room-tile-selected};
   --c-bubble-sender-color: #{$bubble-sender-color};
   --c-bubble-recipient-color: #{$bubble-recipient-color};
   --c-send-message-bg: #{$background-lighter};

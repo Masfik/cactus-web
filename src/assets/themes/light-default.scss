@@ -1,6 +1,6 @@
 $primary: #00c49aff;
 $primary-lighter: lighten($primary, 4);
-$secondary: #80ff72ff;
+$secondary: darken($primary, 4);
 $accent: #ff3366ff;
 
 $background: #f5f7fb;
@@ -18,6 +18,7 @@ $danger: #fff;
 
 $header-color: $background-lighter;
 $room-tile-hover: lighten($primary, 2);
+$room-tile-selected: $secondary;
 $bubble-sender-color: $primary;
 $bubble-recipient-color: #343e3dff;
 $send-message-bg: $background-lighter;

@@ -6,7 +6,7 @@
   // Main colours
   --c-primary: #{$nord0-darker};
   --c-primary-lighter: #{$nord0};
-  --c-secondary: #{$nord7};
+  --c-secondary: #{$nord10};
   --c-accent: #{$nord11};
 
   // Background
@@ -31,7 +31,8 @@
   // Specific components
   --c-header-color: var(--c-primary);
   --c-room-tile-hover: #{lighten($nord0-darker, 4)};
-  --c-bubble-sender-color: #{$nord10};
+  --c-room-tile-selected: var(--c-secondary);
+  --c-bubble-sender-color: var(--c-secondary);
   --c-bubble-recipient-color: #{$nord0};
   --c-send-message-bg: #{$nord1};
 }

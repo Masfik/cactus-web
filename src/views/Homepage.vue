@@ -10,7 +10,7 @@
       </template>
 
       <template v-slot:main>
-        <room />
+        <router-view />
       </template>
     </default-layout>
   </div>
@@ -20,12 +20,10 @@
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
 import Sidebar from "@/components/sidebar/Sidebar.vue";
 import Header from "@/components/header/Header.vue";
-import Room from "@/views/Room.vue";
 
 export default {
   name: "Homepage",
   components: {
-    Room,
     DefaultLayout,
     Sidebar,
     Header

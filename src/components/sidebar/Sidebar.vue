@@ -13,7 +13,11 @@
     <chat-tile
       v-for="n in 18"
       :key="n"
-      name="MasfikNET Long Name"
+      :name="
+        Math.random()
+          .toString(36)
+          .replace(/[^a-z]+/g, '')
+      "
       activity-name="Spongebob Squarepants"
     />
   </div>

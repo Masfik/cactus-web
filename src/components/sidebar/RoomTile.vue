@@ -1,20 +1,22 @@
 <template>
-  <div class="room-tile">
-    <div class="avatar">
-      <img src="../../assets/user.png" alt="User's avatar" />
-      <span class="online-status"></span>
-    </div>
-    <div class="room-details">
-      <div class="room-name">{{ name }}</div>
-      <div class="activity">
-        <font-awesome-icon icon="tv" class="activity-icon" />
-        <span class="activity-name">{{ activityName }}</span>
+  <router-link :to="{ name: 'room', params: { roomId: name } }">
+    <div class="room-tile" @contextmenu.prevent="roomContext">
+      <div class="avatar">
+        <img src="../../assets/user.png" alt="User's avatar" />
+        <span class="online-status"></span>
+      </div>
+      <div class="room-details">
+        <div class="room-name">{{ name }}</div>
+        <div class="activity">
+          <font-awesome-icon icon="tv" class="activity-icon" />
+          <span class="activity-name">{{ activityName }}</span>
+        </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "ChatTile",
   props: {
@@ -23,6 +25,13 @@ export default {
       required: true
     },
     activityName: String
+  },
+  setup() {
+    function roomContext() {
+      // TODO: show different context menu
+    }
+
+    return { roomContext };
   }
 };
 </script>
@@ -40,6 +49,14 @@ export default {
     background-color: var(--c-room-tile-hover);
     cursor: pointer;
   }
+}
+
+a {
+  color: inherit;
+}
+
+.router-link-active > .room-tile {
+  background-color: var(--c-room-tile-selected);
 }
 
 .avatar {

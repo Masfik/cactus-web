@@ -9,7 +9,14 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: "/room/:roomId",
+        name: "room",
+        component: Room
+      }
+    ]
   },
   {
     path: "/login",
@@ -19,6 +26,12 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Login.vue")
+  },
+  {
+    path: "*",
+    name: "404",
+    component: () =>
+      import(/* webpackChunkName: "404" */ "../views/NotFound.vue")
   }
 ];
 
