@@ -1,15 +1,21 @@
+// Main colours
 $primary: #00c49aff;
 $primary-lighter: lighten($primary, 4);
 $secondary: darken($primary, 4);
 $accent: #ff3366ff;
 
+// Background
 $background: #f5f7fb;
 $background-lighter: white;
 $background-darker: darken($background-lighter, 8);
 
+// Typography
 $text-on-primary: white;
 $text-on-bg: #625f71;
 $title-on-bg: darken($text-on-bg, 15);
+
+// Input
+$input-on-bg: white;
 
 $success: #fff;
 $info: #fff;

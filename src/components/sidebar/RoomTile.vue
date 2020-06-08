@@ -56,7 +56,7 @@ a {
 }
 
 .router-link-active > .room-tile {
-  background-color: var(--c-room-tile-selected);
+  background-color: var(--c-selected-item);
 }
 
 .avatar {

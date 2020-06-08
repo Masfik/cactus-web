@@ -10,7 +10,9 @@
       </template>
 
       <template v-slot:main>
-        <router-view />
+        <transition name="fade">
+          <router-view></router-view>
+        </transition>
       </template>
     </default-layout>
   </div>

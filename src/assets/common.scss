@@ -19,13 +19,19 @@ body {
 
 input {
   font-size: 11pt;
+  background: var(--c-input-on-bg);
 }
 
 a {
   text-decoration: none;
+  color: var(--c-primary);
 
   &:visited {
     color: inherit;
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 
@@ -33,8 +39,17 @@ label {
   width: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: var(--c-title-on-bg);
+}
+
+video:focus {
+  outline: none;
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -53,16 +68,29 @@ h1, h2, h3, h4, h5, h6 {
   padding: $s-container-spacing 0;
 }
 
-input.text-field, textarea.text-field {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  color: var(--c-text-on-bg);
+input.text-field,
+textarea.text-field {
+  @extend %text-field;
+}
 
-  &:focus {
-    outline: none;
+form.styled-form {
+  > *:not(:first-of-type),
+  > label,
+  > button {
+    display: block;
+    margin-top: $s-container-spacing;
   }
+
+  > input {
+    @extend %text-field;
+    border: 2px solid var(--c-background-darker);
+
+    &:focus {
+      border-color: var(--c-selected-item);
+    }
+  }
+
+  margin-bottom: $s-container-spacing;
 }
 
 .row {

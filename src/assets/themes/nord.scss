@@ -19,6 +19,10 @@
   --c-text-on-bg: #{$nord6};
   --c-title-on-bg: #{$nord4};
 
+  // Input
+  --c-input-on-bg: var(--c-background-lighter);
+  --c-input-on-primary: var(--c-primary-lighter);
+
   // Contextual colours
   --c-success: #{$nord14};
   --c-info: #{$nord10};
@@ -31,7 +35,7 @@
   // Specific components
   --c-header-color: var(--c-primary);
   --c-room-tile-hover: #{lighten($nord0-darker, 4)};
-  --c-room-tile-selected: var(--c-secondary);
+  --c-selected-item: var(--c-secondary);
   --c-bubble-sender-color: var(--c-secondary);
   --c-bubble-recipient-color: #{$nord0};
   --c-send-message-bg: #{$nord1};

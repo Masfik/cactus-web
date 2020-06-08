@@ -55,6 +55,10 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
   --c-text-on-bg: #{$text-on-bg};
   --c-title-on-bg: #{$title-on-bg};
 
+  // Input
+  --c-input-on-bg: #{$input-on-bg};
+  --c-input-on-primary: var(--c-primary-lighter);
+
   // Contextual colours
   --c-success: #{$success};
   --c-info: #{$info};
@@ -67,7 +71,7 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
   // Specific components
   --c-header-color: #{$header-color};
   --c-room-tile-hover: #{$room-tile-hover};
-  --c-room-tile-selected: #{$room-tile-selected};
+  --c-selected-item: #{$room-tile-selected};
   --c-bubble-sender-color: #{$bubble-sender-color};
   --c-bubble-recipient-color: #{$bubble-recipient-color};
   --c-send-message-bg: #{$background-lighter};
@@ -79,6 +83,18 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
 //----------------------------------------------------------------------------------------------------------------------
 // COMMON RULES AND MIXINS
 //----------------------------------------------------------------------------------------------------------------------
+
+%text-field {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  color: var(--c-text-on-bg);
+
+  &:focus {
+    outline: none;
+  }
+}
 
 // Ellipsis text (suspension points...)
 %text-ellipsis {

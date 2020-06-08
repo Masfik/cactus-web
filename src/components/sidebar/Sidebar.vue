@@ -1,6 +1,6 @@
 <template>
   <div @scroll="onSidebarScroll" ref="sidebar" id="sidebar-content">
-    <img src="../../assets/logo.svg" alt="Logo" id="logo" ref="logo" />
+    <Logo class="logo" ref="logo" />
     <div class="container-x search-bar" :class="{ stuck: stickySearch }">
       <input
         type="text"
@@ -26,10 +26,12 @@
 <script lang="ts">
 import ChatTile from "@/components/sidebar/RoomTile.vue";
 import { Ref, ref } from "@vue/composition-api";
+import Logo from "@/components/common/Logo.vue";
 
 export default {
   name: "Sidebar",
   components: {
+    Logo,
     ChatTile
   },
   setup() {
@@ -59,7 +61,7 @@ export default {
   max-height: 100vh;
 }
 
-#logo {
+.logo {
   padding: 25px 40px 10px;
   width: 100%;
 }
@@ -81,7 +83,7 @@ export default {
 
   .text-field {
     color: #ffffff;
-    background-color: var(--c-primary-lighter);
+    background-color: var(--c-input-on-primary);
 
     &::placeholder {
       color: #ffffff;

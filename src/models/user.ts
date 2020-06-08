@@ -19,11 +19,6 @@ interface User {
   status: UserStatus;
 
   /**
-   * What the user is currently watching.
-   */
-  watching: string;
-
-  /**
    * All friends of the user.
    */
   friends: User[];

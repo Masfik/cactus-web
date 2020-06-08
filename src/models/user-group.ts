@@ -1,4 +1,4 @@
-enum MemberTitle {
+enum UserGroup {
   OWNER,
   ADMIN,
   MODERATOR,
