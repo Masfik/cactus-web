@@ -117,7 +117,7 @@ export default {
 
     > div.message-container > div.messages > *.message-bubble {
       @include bubble-borders(recipient);
-      background: var(--c-bubble-recipient-color);
+      background: var(--c-bubble-recipient);
       color: var(--c-text-on-primary);
     }
   }
@@ -129,7 +129,7 @@ export default {
       @include bubble-borders(sender);
       margin-left: auto;
       margin-right: 0;
-      background: var(--c-bubble-sender-color);
+      background: var(--c-bubble-sender);
       color: var(--c-text-on-primary);
     }
   }

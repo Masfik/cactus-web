@@ -74,7 +74,7 @@ export default {
   position: sticky;
   top: 0;
   z-index: 1;
-  background-color: var(--c-primary);
+  background-color: var(--c-sidebar);
   transition: box-shadow 0.2s ease;
 
   &.stuck {
@@ -83,7 +83,7 @@ export default {
 
   .text-field {
     color: #ffffff;
-    background-color: var(--c-input-on-primary);
+    background-color: var(--c-sidebar-search);
 
     &::placeholder {
       color: #ffffff;

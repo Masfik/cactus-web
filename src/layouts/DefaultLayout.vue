@@ -33,7 +33,7 @@ export default {
   @include shadow(true);
   grid-area: sidebar;
   z-index: 1;
-  background-color: var(--c-primary);
+  background-color: var(--c-sidebar);
   color: var(--c-text-on-primary);
 }
 
@@ -41,7 +41,7 @@ export default {
   @include shadow();
   grid-area: header;
   z-index: 2;
-  background-color: var(--c-header-color);
+  background-color: var(--c-header);
 }
 
 #main {

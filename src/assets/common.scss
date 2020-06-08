@@ -22,6 +22,10 @@ input {
   background: var(--c-input-on-bg);
 }
 
+button {
+  font-size: 11pt;
+}
+
 a {
   text-decoration: none;
   color: var(--c-primary);
@@ -73,7 +77,13 @@ textarea.text-field {
   @extend %text-field;
 }
 
+button.btn {
+  @extend %button;
+}
+
 form.styled-form {
+  margin-bottom: $s-container-spacing;
+
   > *:not(:first-of-type),
   > label,
   > button {
@@ -86,11 +96,20 @@ form.styled-form {
     border: 2px solid var(--c-background-darker);
 
     &:focus {
+      transition: border-color 0.4s;
       border-color: var(--c-selected-item);
     }
   }
 
-  margin-bottom: $s-container-spacing;
+  > button.primary-color {
+    @extend %button;
+    background-color: var(--c-primary);
+    color: var(--c-text-on-primary);
+
+    &:hover {
+      background-color: var(--c-primary-lighter);
+    }
+  }
 }
 
 .row {

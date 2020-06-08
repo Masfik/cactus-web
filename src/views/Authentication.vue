@@ -5,9 +5,9 @@
 
       <h2>Sign Up</h2>
       <form class="styled-form">
-        <input type="text" placeholder="First Name" required />
-        <input type="text" placeholder="Last Name" required />
-        <input type="text" placeholder="Username" required />
+        <input type="text" placeholder="First Name" maxlength="32" required />
+        <input type="text" placeholder="Last Name" maxlength="32" required />
+        <input type="text" placeholder="Username" maxlength="32" required />
         <input type="email" placeholder="Email" required />
         <input type="password" placeholder="Password" required />
         <input type="password" placeholder="Repeat Password" required />
@@ -18,11 +18,12 @@
             value="terms-conditions"
             required
           />
-          I agree to XYZ <a href="">Terms and Conditions</a>.
+          <!-- TODO -->
+          I agree to **placeholder**'s <a href="">Terms and Conditions</a>.
         </label>
-        <button>Sign Up</button>
+        <button class="primary-color" onclick="">Sign Up</button>
       </form>
-      <small>Already have an account? Login here</small>
+      <small><a href="">Already have an account? Login here</a></small>
     </div>
   </div>
 </template>
@@ -46,14 +47,15 @@ export default {
   align-items: center;
   background: repeating-radial-gradient(
     circle at 65vw 50vh,
-    var(--c-primary-lighter),
-    var(--c-primary) 100px
+    var(--c-sidebar-search),
+    var(--c-sidebar) 100px
   );
 
   #login-box {
     @include overflow(y);
     @include shadow(true);
     height: 85vh;
+    min-width: 380px;
     width: 30vw;
     background-color: var(--c-background);
     border-top-right-radius: 50px;

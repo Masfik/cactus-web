@@ -8,6 +8,7 @@ $s-header-height: 60px;
 $s-sidebar-min-width: 230px;
 $s-row-col-spacing: 30px;
 $s-room-video-min-width: 600px;
+$s-input-border-radius: 10px;
 
 // Header
 $s-header-items-spacing: 20px;
@@ -69,11 +70,13 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
   --c-shadow-color: #00000015;
 
   // Specific components
-  --c-header-color: #{$header-color};
+  --c-sidebar: var(--c-primary);
+  --c-sidebar-search: var(--c-primary-lighter);
+  --c-header: #{$header-color};
   --c-room-tile-hover: #{$room-tile-hover};
   --c-selected-item: #{$room-tile-selected};
-  --c-bubble-sender-color: #{$bubble-sender-color};
-  --c-bubble-recipient-color: #{$bubble-recipient-color};
+  --c-bubble-sender: #{$bubble-sender-color};
+  --c-bubble-recipient: #{$bubble-recipient-color};
   --c-send-message-bg: #{$background-lighter};
 }
 
@@ -88,7 +91,19 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
   width: 100%;
   padding: 10px;
   border: none;
-  border-radius: 10px;
+  border-radius: $s-input-border-radius;
+  color: var(--c-text-on-bg);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+%button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: $s-input-border-radius;
   color: var(--c-text-on-bg);
 
   &:focus {

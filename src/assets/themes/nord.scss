@@ -4,9 +4,9 @@
   $nord0-darker: #242932;
 
   // Main colours
-  --c-primary: #{$nord0-darker};
-  --c-primary-lighter: #{$nord0};
-  --c-secondary: #{$nord10};
+  --c-primary: #{$nord10};
+  --c-primary-lighter: #{$nord9};
+  --c-secondary: #{$nord15};
   --c-accent: #{$nord11};
 
   // Background
@@ -33,10 +33,12 @@
   --c-shadow-color: #00000025;
 
   // Specific components
-  --c-header-color: var(--c-primary);
+  --c-sidebar: #{$nord0-darker};
+  --c-sidebar-search: var(--c-background);
+  --c-header: var(--c-sidebar);
   --c-room-tile-hover: #{lighten($nord0-darker, 4)};
-  --c-selected-item: var(--c-secondary);
-  --c-bubble-sender-color: var(--c-secondary);
-  --c-bubble-recipient-color: #{$nord0};
+  --c-selected-item: var(--c-primary);
+  --c-bubble-sender: var(--c-primary);
+  --c-bubble-recipient: #{$nord0};
   --c-send-message-bg: #{$nord1};
 }
