@@ -81,7 +81,7 @@ button.btn {
   @extend %button;
 }
 
-form.styled-form {
+form.default-style-form {
   margin-bottom: $s-container-spacing;
 
   > *:not(:first-of-type),
@@ -101,13 +101,16 @@ form.styled-form {
     }
   }
 
-  > button.primary-color {
+  > button {
     @extend %button;
-    background-color: var(--c-primary);
-    color: var(--c-text-on-primary);
 
-    &:hover {
-      background-color: var(--c-primary-lighter);
+    &.primary-color {
+      background-color: var(--c-primary);
+      color: var(--c-text-on-primary);
+
+      &:hover {
+        background-color: var(--c-primary-lighter);
+      }
     }
   }
 }
