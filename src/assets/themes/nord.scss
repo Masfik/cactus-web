@@ -6,6 +6,7 @@
   // Main colours
   --c-primary: #{$nord10};
   --c-primary-lighter: #{$nord9};
+  --c-primary-darker: var(--c-primary);
   --c-secondary: #{$nord15};
   --c-accent: #{$nord11};
 

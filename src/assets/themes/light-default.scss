@@ -1,7 +1,8 @@
 // Main colours
 $primary: #00c49aff;
 $primary-lighter: lighten($primary, 4);
-$secondary: darken($primary, 4);
+$primary-darker: darken($primary, 4);
+$secondary: $primary-darker;
 $accent: #ff3366ff;
 
 // Background
@@ -17,11 +18,13 @@ $title-on-bg: darken($text-on-bg, 15);
 // Input
 $input-on-bg: white;
 
+// Contextual colours
 $success: #fff;
 $info: #fff;
 $warning: #fff;
 $danger: #fff;
 
+// Specific components
 $sidebar-color: $primary;
 $header-color: $background-lighter;
 $room-tile-hover: lighten($primary, 2);

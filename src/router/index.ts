@@ -3,6 +3,9 @@ import VueRouter from "vue-router";
 import Home from "@/views/Homepage.vue";
 import Room from "@/views/Room.vue";
 import NoRoomSelected from "@/views/NoRoomSelected.vue";
+import LoginForm from "@/components/authentication/LoginForm.vue";
+import RegisterForm from "@/components/authentication/RegisterForm.vue";
+import Authentication from "../views/Authentication.vue";
 
 Vue.use(VueRouter);
 
@@ -25,12 +28,19 @@ const routes = [
   },
   {
     path: "/login",
-    name: "login",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Authentication.vue")
+    component: Authentication,
+    children: [
+      {
+        path: "/",
+        name: "login",
+        component: LoginForm
+      },
+      {
+        path: "/register",
+        name: "register",
+        component: RegisterForm
+      }
+    ]
   },
   {
     path: "*",
