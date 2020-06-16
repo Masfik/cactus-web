@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 
-class FirebaseAuthService {
+export class FirebaseAuthService implements AuthService {
   private auth = firebase.auth();
 
   constructor() {
@@ -16,31 +16,32 @@ class FirebaseAuthService {
   }
 
   async login(email: string, password: string): Promise<AuthUser | null> {
-    return FirebaseAuthService.toAuthUser(
-      await this.auth
-        .signInWithEmailAndPassword(email, password)
-        .then(({ user }) => user)
-        .catch(() => null)
-    );
+    return await this.auth
+      .signInWithEmailAndPassword(email, password)
+      .then(({ user }) => FirebaseAuthService.toAuthUser(user));
   }
 
   async register(email: string, password: string): Promise<AuthUser | null> {
-    return FirebaseAuthService.toAuthUser(
-      await this.auth
-        .createUserWithEmailAndPassword(email, password)
-        .then(({ user }) => user)
-        .catch(() => null)
+    return await this.auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(({ user }) => FirebaseAuthService.toAuthUser(user));
+  }
+
+  logout = async (): Promise<void> => await this.auth.signOut();
+
+  onAuthStateChanged(next: (authUser: AuthUser | null) => void) {
+    this.auth.onAuthStateChanged(firebaseUser =>
+      next(FirebaseAuthService.toAuthUser(firebaseUser))
     );
   }
 
-  async logout(): Promise<void> {
-    await this.auth.signOut();
-  }
-
-  private static toAuthUser(firebaseUser: firebase.User | null): AuthUser {
+  private static toAuthUser(
+    firebaseUser: firebase.User | null
+  ): AuthUser | null {
+    if (firebaseUser === null) return null;
     return <AuthUser>{
-      id: firebaseUser?.uid,
-      email: firebaseUser?.email
+      id: firebaseUser.uid,
+      email: firebaseUser.email
     };
   }
 }
