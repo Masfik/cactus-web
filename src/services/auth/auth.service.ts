@@ -4,4 +4,6 @@ interface AuthService {
   register(email: string, password: string): Promise<AuthUser | null>;
 
   logout(): Promise<void>;
+
+  onAuthStateChanged(next: (authUser: AuthUser | null) => void): void;
 }

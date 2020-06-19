@@ -28,6 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 #room-name-header {
+  @include shadow();
   height: $s-header-height;
   min-height: $s-header-height;
   border-bottom: var(--c-background-darker) solid 1px;

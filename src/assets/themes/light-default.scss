@@ -3,10 +3,10 @@ $primary: #00c49aff;
 $primary-lighter: lighten($primary, 4);
 $primary-darker: darken($primary, 4);
 $secondary: $primary-darker;
-$accent: #ff3366ff;
+$accent: #FB3640;
 
 // Background
-$background: #f5f7fb;
+$background: #f7fcff;
 $background-lighter: white;
 $background-darker: darken($background-lighter, 8);
 
@@ -30,5 +30,5 @@ $header-color: $background-lighter;
 $room-tile-hover: lighten($primary, 2);
 $room-tile-selected: $secondary;
 $bubble-sender-color: $primary;
-$bubble-recipient-color: #343e3dff;
+$bubble-recipient-color: #7D8491;
 $send-message-bg: $background-lighter;

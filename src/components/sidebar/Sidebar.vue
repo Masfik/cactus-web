@@ -70,7 +70,6 @@ export default {
   display: flex;
   align-items: center;
   height: $s-header-height;
-  margin: 10px 0;
   position: sticky;
   top: 0;
   z-index: 1;
