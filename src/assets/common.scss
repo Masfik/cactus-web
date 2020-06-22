@@ -92,7 +92,7 @@ form.default-style-form {
 
   > input {
     @extend %text-field;
-    border: 2px solid var(--c-background-darker);
+    border: 1px solid var(--c-input-borders);
 
     &:focus {
       transition: border-color 0.4s;

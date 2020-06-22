@@ -1,34 +1,20 @@
-// Main colours
-$primary: #00c49aff;
-$primary-lighter: lighten($primary, 4);
-$primary-darker: darken($primary, 4);
-$secondary: $primary-darker;
-$accent: #FB3640;
+// Green shades
+$caribbean-green: #00c49aff;
+$caribbean-green-lighter: lighten($caribbean-green, 4);
+$caribbean-green-darker: darken($caribbean-green, 4);
+$jungle-green: #1BB594;
 
-// Background
-$background: #f7fcff;
-$background-lighter: white;
-$background-darker: darken($background-lighter, 8);
+// Other
+$red-salsa: #FB3640;
+$roman-silver: #7D8491; // Could also use #625f71
 
-// Typography
-$text-on-primary: white;
-$text-on-bg: #625f71;
-$title-on-bg: darken($text-on-bg, 15);
+// Independence shades
+$independence: #625f71;
+$independence-darker: darken($independence, 15);
+$independence-lighter: lighten($independence, 25);
 
-// Input
-$input-on-bg: white;
-
-// Contextual colours
-$success: #fff;
-$info: #fff;
-$warning: #fff;
-$danger: #fff;
-
-// Specific components
-$sidebar-color: $primary;
-$header-color: $background-lighter;
-$room-tile-hover: lighten($primary, 2);
-$room-tile-selected: $secondary;
-$bubble-sender-color: $primary;
-$bubble-recipient-color: #7D8491;
-$send-message-bg: $background-lighter;
+// White and gray shades
+$white: white;
+$alice-blue: #f7fcff;
+$ghost-white: #ebecf1;
+$light-gray: #d8d8da;

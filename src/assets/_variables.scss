@@ -41,31 +41,33 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
 
 :root {
   // Main colours
-  --c-primary: #{$primary};
-  --c-primary-lighter: #{$primary-lighter};
-  --c-primary-darker: #{$primary-darker};
-  --c-secondary: #{$secondary};
-  --c-accent: #{$accent};
+  --c-primary: #{$caribbean-green};
+  --c-primary-lighter: #{$caribbean-green-lighter};
+  --c-primary-darker: #{$caribbean-green-darker};
+  --c-secondary: #{$jungle-green};
+  --c-accent: #{$red-salsa};
 
   // Background
-  --c-background: #{$background};
-  --c-background-lighter: #{$background-lighter};
-  --c-background-darker: #{$background-darker};
+  --c-background: #{$alice-blue};
+  --c-background-lighter: #{$white};
+  --c-background-darker: #{$ghost-white};
 
   // Typography
-  --c-text-on-primary: #{$text-on-primary};
-  --c-text-on-bg: #{$text-on-bg};
-  --c-title-on-bg: #{$title-on-bg};
+  --c-text-on-primary: #{$white};
+  --c-text-on-bg: #{$independence};
+  --c-title-on-bg: #{$independence-darker};
 
   // Input
-  --c-input-on-bg: #{$input-on-bg};
+  --c-input-on-bg: #{$white};
   --c-input-on-primary: var(--c-primary-lighter);
+  --c-input-borders: #{$light-gray};
+  --c-input-placeholder: #{$independence-lighter};
 
   // Contextual colours
-  --c-success: #{$success};
-  --c-info: #{$info};
-  --c-warning: #{$warning};
-  --c-danger: #{$danger};
+  --c-success: #FFF;
+  --c-info: #FFF;
+  --c-warning: #FFF;
+  --c-danger: #FFF;
 
   // Shadow colour
   --c-shadow-color: #00000015;
@@ -73,12 +75,12 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
   // Specific components
   --c-sidebar: var(--c-primary);
   --c-sidebar-search: var(--c-primary-lighter);
-  --c-header: #{$header-color};
-  --c-room-tile-hover: #{$room-tile-hover};
-  --c-selected-item: #{$room-tile-selected};
-  --c-bubble-sender: #{$bubble-sender-color};
-  --c-bubble-recipient: #{$bubble-recipient-color};
-  --c-send-message-bg: #{$background-lighter};
+  --c-header: #{$white};
+  --c-room-tile-hover: #{lighten($caribbean-green, 2)};
+  --c-selected-item: #{$jungle-green};
+  --c-bubble-sender: var(--c-primary);
+  --c-bubble-recipient: #{$roman-silver};
+  --c-send-message-bg: #{$white};
 }
 
 // Importing other themes
@@ -97,6 +99,10 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
 
   &:focus {
     outline: none;
+  }
+
+  &::placeholder {
+    color: var(--c-input-placeholder);
   }
 }
 

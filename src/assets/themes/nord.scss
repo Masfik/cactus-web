@@ -1,6 +1,6 @@
 @import "~nord/src/sass/nord";
 
-[theme="nord"] {
+:root[theme="nord"] {
   $nord0-darker: #242932;
 
   // Main colours
@@ -11,7 +11,7 @@
   --c-accent: #{$nord11};
 
   // Background
-  --c-background: #{$nord0};
+  --c-background: #2d3441;
   --c-background-lighter: #{$nord1};
   --c-background-darker: #{darken($nord1, 4)};
 
@@ -23,6 +23,8 @@
   // Input
   --c-input-on-bg: var(--c-background-lighter);
   --c-input-on-primary: var(--c-primary-lighter);
+  --c-input-borders: rgba(0, 0, 0, 0);
+  --c-input-placeholder: #{lighten($nord1, 30)};
 
   // Contextual colours
   --c-success: #{$nord14};

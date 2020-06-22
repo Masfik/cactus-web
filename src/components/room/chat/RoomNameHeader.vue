@@ -7,13 +7,9 @@
 </template>
 
 <script lang="ts">
-import { Ref, ref } from "@vue/composition-api";
-
 export default {
   name: "RoomNameHeader",
   setup() {
-    const test = ref(5);
-
     function theme() {
       const de = document.documentElement; // TODO: everything is temporary here
 
@@ -21,7 +17,7 @@ export default {
       else de.setAttribute("theme", "none");
     }
 
-    return { test, switchThemeTest: theme };
+    return { switchThemeTest: theme };
   }
 };
 </script>
