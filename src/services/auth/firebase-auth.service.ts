@@ -1,18 +1,19 @@
-import firebase from "firebase/app";
+import * as firebase from "firebase";
 
 export class FirebaseAuthService implements AuthService {
-  private auth = firebase.auth();
+  private auth: firebase.auth.Auth;
 
   constructor() {
-    firebase.initializeApp({
-      apiKey: process.env.FIREBASE_API_KEY,
-      authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-      databaseURL: process.env.FIREBASE_DATABASE_URL,
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-      messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-      appId: process.env.FIREBASE_APP_ID
+    const firebaseApp = firebase.initializeApp({
+      apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+      authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+      databaseURL: process.env.VUE_APP_FIREBASE_DATABASE_URL,
+      projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+      storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+      messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+      appId: process.env.VUE_APP_FIREBASE_APP_ID
     });
+    this.auth = firebaseApp.auth();
   }
 
   async login(email: string, password: string): Promise<AuthUser | null> {
@@ -39,9 +40,9 @@ export class FirebaseAuthService implements AuthService {
     firebaseUser: firebase.User | null
   ): AuthUser | null {
     if (firebaseUser === null) return null;
-    return <AuthUser>{
+    return {
       id: firebaseUser.uid,
       email: firebaseUser.email
-    };
+    } as AuthUser;
   }
 }

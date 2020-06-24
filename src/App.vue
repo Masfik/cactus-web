@@ -1,5 +1,11 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <AuthProvider />
   </div>
 </template>
+<script>
+import AuthProvider from "@/components/authentication/AuthProvider";
+export default {
+  components: { AuthProvider }
+};
+</script>

@@ -15,7 +15,7 @@
           required
         />
         <!-- TODO -->
-        I agree to **placeholder**'s
+        I agree to LogoIpsum's
         <a href="" class="colored-link">Terms and Conditions</a>.
       </label>
       <button class="primary-color" onclick="">Register</button>
