@@ -77,9 +77,9 @@ export default {
     function registerUser() {
       authService
         .register(email.value, password.value)
-        .then(user => {
-          ctx.root.$router.push({ name: "home" });
-          console.log(`User created: ${user}`);
+        .then(async user => {
+          ctx.root.$store.state.isUserAuthenticated = true;
+          await ctx.root.$router.push({ name: "home" });
         })
         .catch(console.error);
     }

@@ -6,29 +6,29 @@
 </template>
 
 <script lang="ts">
-import { onMounted, provide, ref, Ref } from "@vue/composition-api";
+import { onMounted, provide, SetupContext } from "@vue/composition-api";
 import { Service } from "@/services/service";
 import { FirebaseAuthService } from "@/services/auth/firebase-auth.service";
 
 export default {
   name: "AuthProvider",
-  setup() {
+  setup(_: any, ctx: SetupContext) {
     // Authentication service
     const authService: AuthService = new FirebaseAuthService();
-    // isLoggedIn ref
-    const isLoggedIn: Ref<boolean | null> = ref(null);
+    // isAuthenticated from the Store
+    const isAuthenticated = ctx.root.$store.state.isUserAuthenticated;
 
     // Listening to authentication status when the component is created
     onMounted(() =>
       authService.onAuthStateChanged(
-        authUser => (isLoggedIn.value = !!authUser)
+        authUser => (isAuthenticated.value = !!authUser)
       )
     );
 
     // Providing the authService to descendants
     provide(Service.AUTH, authService);
 
-    return { isLoggedIn };
+    return { isLoggedIn: isAuthenticated };
   }
 };
 </script>
