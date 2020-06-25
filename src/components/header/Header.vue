@@ -8,19 +8,32 @@
         </div>
       </a>
     </li>
-    <li id="header-profile">
-      <a href="">
-        <img src="@/assets/user.png" alt="User's avatar" />
-        <span class="username">MasfikNET</span>
-        <font-awesome-icon icon="caret-down" />
-      </a>
+    <li id="header-profile" @click="logout">
+      <img src="@/assets/user.png" alt="User's avatar" />
+      <span class="username">MasfikNET</span>
+      <font-awesome-icon icon="caret-down" />
     </li>
   </ul>
 </template>
 
-<script>
+<script lang="ts">
+import { inject, SetupContext } from "@vue/composition-api";
+import { Service } from "@/services/service";
+
 export default {
-  name: "Header"
+  name: "Header",
+  setup(_: any, ctx: SetupContext) {
+    // Auth service
+    const authService = inject(Service.AUTH) as AuthService;
+
+    async function logout() {
+      await authService.logout();
+      ctx.root.$store.state.isUserAuthenticated = false;
+      await ctx.root.$router.push({ name: "login" });
+    }
+
+    return { logout };
+  }
 };
 </script>
 
@@ -61,6 +74,8 @@ ul#header-items {
     }
 
     &#header-profile {
+      user-select: none;
+      cursor: pointer;
       $spacing: 10px;
 
       img {
