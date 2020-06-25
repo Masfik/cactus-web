@@ -6,8 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    // TODO: temporary
-    isUserAuthenticated: false
+    isUserAuthenticated: null
   },
   mutations: {},
   actions: {},

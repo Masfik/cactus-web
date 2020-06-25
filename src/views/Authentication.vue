@@ -22,12 +22,19 @@
   </div>
 </template>
 
-<script>
-import Logo from "../components/common/Logo";
+<script lang="ts">
+import Logo from "@/components/common/Logo.vue";
+import { onMounted, SetupContext } from "@vue/composition-api";
 
 export default {
   name: "Login",
-  components: { Logo }
+  components: { Logo },
+  setup(_: any, ctx: SetupContext) {
+    onMounted(() => {
+      if (ctx.root.$store.state.isUserAuthenticated)
+        ctx.root.$router.replace({ name: "home" });
+    });
+  }
 };
 </script>
 

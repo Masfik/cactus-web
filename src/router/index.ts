@@ -10,13 +10,20 @@ import store from "@/store";
 
 Vue.use(VueRouter);
 
+const isAuthenticated = store.state.isUserAuthenticated;
+
 const routes = [
   {
     path: "/",
     component: Home,
-    // Navigation guard: only lets the user continue if logged in.
+
+    /*
+     * Navigation Guard: only lets the user continue if authenticated.
+     * If the auth status is still null, the AuthProvider will show a loading
+     * page, so the user should be allowed to proceed regardless.
+     * */
     beforeEnter: (to: Route, from: Route, enter: Function) => {
-      if (store.state.isUserAuthenticated) enter();
+      if (isAuthenticated === null || isAuthenticated) enter();
       else enter({ name: "login" });
     },
     children: [
