@@ -58,6 +58,7 @@
 <script lang="ts">
 import { inject, ref, SetupContext } from "@vue/composition-api";
 import { Service } from "@/services/service";
+import { AuthService } from "@/services/auth/auth.service";
 
 export default {
   name: "RegisterForm",
@@ -77,10 +78,7 @@ export default {
     function registerUser() {
       authService
         .register(email.value, password.value)
-        .then(async user => {
-          ctx.root.$store.state.isUserAuthenticated = true;
-          await ctx.root.$router.push({ name: "home" });
-        })
+        .then(() => ctx.root.$router.push({ name: "home" }))
         .catch(console.error);
     }
 

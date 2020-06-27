@@ -19,6 +19,7 @@
 <script lang="ts">
 import { inject, ref, SetupContext } from "@vue/composition-api";
 import { Service } from "@/services/service";
+import { AuthService } from "@/services/auth/auth.service";
 
 export default {
   name: "LoginForm",
@@ -33,10 +34,7 @@ export default {
     function login() {
       authService
         .login(email.value, password.value)
-        .then(async user => {
-          ctx.root.$store.state.isUserAuthenticated = true;
-          await ctx.root.$router.push({ name: "home" });
-        })
+        .then(() => ctx.root.$router.push({ name: "home" }))
         .catch(console.error);
     }
 

@@ -4,7 +4,7 @@
       <a href="">
         <div class="notifications">
           <font-awesome-icon icon="bell" class="bell-icon" />
-          <span class="count">6</span>
+          <span class="count">8</span>
         </div>
       </a>
     </li>
@@ -19,17 +19,18 @@
 <script lang="ts">
 import { inject, SetupContext } from "@vue/composition-api";
 import { Service } from "@/services/service";
+import { AuthService } from "@/services/auth/auth.service";
 
 export default {
   name: "Header",
   setup(_: any, ctx: SetupContext) {
-    // Auth service
+    // Injected AuthService
     const authService = inject(Service.AUTH) as AuthService;
 
-    async function logout() {
-      await authService.logout();
-      ctx.root.$store.state.isUserAuthenticated = false;
-      await ctx.root.$router.push({ name: "login" });
+    function logout() {
+      authService
+        .logout()
+        .then(() => (ctx.root.$store.state.isUserAuthenticated = false));
     }
 
     return { logout };

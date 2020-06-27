@@ -1,4 +1,5 @@
 import * as firebase from "firebase";
+import { AuthService } from "@/services/auth/auth.service";
 
 export class FirebaseAuthService implements AuthService {
   private auth: firebase.auth.Auth;
@@ -16,22 +17,22 @@ export class FirebaseAuthService implements AuthService {
     this.auth = firebaseApp.auth();
   }
 
-  async login(email: string, password: string): Promise<AuthUser | null> {
-    return await this.auth
+  login(email: string, password: string): Promise<AuthUser | null> {
+    return this.auth
       .signInWithEmailAndPassword(email, password)
       .then(({ user }) => FirebaseAuthService.toAuthUser(user));
   }
 
-  async register(email: string, password: string): Promise<AuthUser | null> {
-    return await this.auth
+  register(email: string, password: string): Promise<AuthUser | null> {
+    return this.auth
       .createUserWithEmailAndPassword(email, password)
       .then(({ user }) => FirebaseAuthService.toAuthUser(user));
   }
 
-  logout = async (): Promise<void> => await this.auth.signOut();
+  logout = (): Promise<void> => this.auth.signOut();
 
   onAuthStateChanged(next: (authUser: AuthUser | null) => void) {
-    this.auth.onAuthStateChanged(firebaseUser =>
+    this.auth.onIdTokenChanged(firebaseUser =>
       next(FirebaseAuthService.toAuthUser(firebaseUser))
     );
   }

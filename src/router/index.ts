@@ -1,31 +1,18 @@
 import Vue from "vue";
-import VueRouter, { Route } from "vue-router";
-import Home from "@/views/Homepage.vue";
+import VueRouter, { RouteConfig } from "vue-router";
 import Room from "@/views/Room.vue";
 import NoRoomSelected from "@/views/NoRoomSelected.vue";
 import LoginForm from "@/components/authentication/LoginForm.vue";
 import RegisterForm from "@/components/authentication/RegisterForm.vue";
 import Authentication from "../views/Authentication.vue";
-import store from "@/store";
+import Homepage from "@/views/Homepage.vue";
 
 Vue.use(VueRouter);
 
-const isAuthenticated = store.state.isUserAuthenticated;
-
-const routes = [
+const routes: RouteConfig[] = [
   {
     path: "/",
-    component: Home,
-
-    /*
-     * Navigation Guard: only lets the user continue if authenticated.
-     * If the auth status is still null, the AuthProvider will show a loading
-     * page, so the user should be allowed to proceed regardless.
-     * */
-    beforeEnter: (to: Route, from: Route, enter: Function) => {
-      if (isAuthenticated === null || isAuthenticated) enter();
-      else enter({ name: "login" });
-    },
+    component: Homepage,
     children: [
       {
         path: "/",

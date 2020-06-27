@@ -1,13 +1,16 @@
 <template>
   <div id="app">
-    <AuthProvider />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import AuthProvider from "@/components/authentication/AuthProvider";
+import { Service } from "@/services/service";
+import { FirebaseAuthService } from "@/services/auth/firebase-auth.service";
 
 export default {
-  components: { AuthProvider }
+  provide: {
+    [Service.AUTH]: new FirebaseAuthService()
+  }
 };
 </script>
