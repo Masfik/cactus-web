@@ -6,11 +6,11 @@
 
 <script>
 import { Service } from "@/services/service";
-import { FirebaseAuthService } from "@/services/auth/firebase-auth.service";
+import { AuthServiceAdapter } from "@/services/auth/auth.service.adapter";
 
 export default {
   provide: {
-    [Service.AUTH]: new FirebaseAuthService()
+    [Service.AUTH]: new AuthServiceAdapter()
   }
 };
 </script>
