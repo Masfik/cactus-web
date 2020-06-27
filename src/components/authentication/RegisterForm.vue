@@ -47,7 +47,10 @@
         I agree to LogoIpsum's
         <a href="" class="colored-link">Terms and Conditions</a>.
       </label>
-      <button class="primary-color" onclick="">Register</button>
+      <button class="primary-color" v-if="!loading">Register</button>
+      <button class="primary-color" v-else disabled>
+        <font-awesome-icon icon="spinner" spin />
+      </button>
     </form>
     <router-link to="/login" class="colored-link">
       <small>Already have an account? Login here</small>
@@ -63,6 +66,9 @@ import { AuthService } from "@/services/auth/auth.service";
 export default {
   name: "RegisterForm",
   setup(_: any, ctx: SetupContext) {
+    // Loading spinner
+    const loading = ref(false);
+
     // Form data
     const firstName = ref(""),
       lastName = ref(""),
@@ -76,10 +82,12 @@ export default {
     const authService = inject(Service.AUTH) as AuthService;
 
     function registerUser() {
+      loading.value = true;
       authService
         .register(email.value, password.value)
         .then(() => ctx.root.$router.push({ name: "home" }))
-        .catch(console.error);
+        .catch(console.error)
+        .finally(() => (loading.value = false));
     }
 
     return {
@@ -90,7 +98,8 @@ export default {
       password,
       repeatPassword,
       acceptedTerms,
-      registerUser
+      registerUser,
+      loading
     };
   }
 };
