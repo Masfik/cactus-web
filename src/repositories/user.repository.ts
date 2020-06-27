@@ -28,8 +28,8 @@ export interface UserRepository {
    * Search users by providing a string.
    * Returns an array of users found by the matching string.
    *
-   * @param string
+   * @param query
    * @return Promise<User[]>
    */
-  search(string: string): Promise<User[]>;
+  search(query: string): Promise<User[]>;
 }
