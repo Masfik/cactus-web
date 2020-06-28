@@ -34,7 +34,7 @@ export interface RoomRepository {
    * @param name
    * @param roomId?
    */
-  updateName(name: string, roomId?: number): Promise<void>;
+  updateName(name: string, roomId?: string): Promise<void>;
 
   /**
    * Update the picture of a room by optionally providing an ID.
@@ -44,17 +44,17 @@ export interface RoomRepository {
    * @param url
    * @param roomId?
    */
-  updatePicture(url: string, roomId?: number): Promise<void>;
+  updatePicture(url: string, roomId?: string): Promise<void>;
 
   /**
    * Update the description of a room by optionally providing an ID.
    * If the ID is not specified, the method will attempt to update the room that
    * the user is currently connected to (if they have the permission to do so).
    *
-   * @param url
+   * @param description
    * @param roomId?
    */
-  updateDescription(url: string, roomId?: number): Promise<void>;
+  updateDescription(description: string, roomId?: string): Promise<void>;
 
   /**
    * Delete a room by optionally providing an ID.
@@ -63,5 +63,5 @@ export interface RoomRepository {
    *
    * @param roomId?
    */
-  delete(roomId?: number): Promise<void>;
+  delete(roomId?: string): Promise<void>;
 }
