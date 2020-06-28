@@ -1,4 +1,8 @@
-interface Room {
+import { Message } from "@/models/message";
+import { User } from "@/models/user";
+import { UserGroup } from "@/models/user-group";
+
+export interface Room {
   /**
    * Name of the room (this can also be the name of the recipient in 1 to 1 rooms).
    */
@@ -39,11 +43,11 @@ interface Room {
   messages: Message[];
 }
 
-enum RoomType {
+export enum RoomType {
   PRIVATE,
   GROUP
 }
 
-interface Member extends User {
+export interface Member extends User {
   userGroup?: UserGroup;
 }

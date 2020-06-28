@@ -1,6 +1,10 @@
+import { AuthUser } from "@/models/auth-user";
+import { User } from "@/models/user";
+
 export interface UserRepository {
   /**
    * Get the full profile of the currently authenticated user.
+   * @return Promise<AuthUser>
    */
   getProfile(): Promise<AuthUser>;
 
@@ -15,8 +19,8 @@ export interface UserRepository {
 
   /**
    * Get the user from an ID.
-   * This method should throw and exception when no user was found because the
-   * user will most likely not want to search by ID — only the script should
+   * This method should throw and exception when no result is found because
+   * the user will likely avoid searching by ID  — only the script should
    * automatically make use of this function and, in most cases, succeed.
    *
    * @param id

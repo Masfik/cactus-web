@@ -1,4 +1,4 @@
-enum InvitationType {
+export enum InvitationType {
   FRIEND,
   GROUP,
   WATCH

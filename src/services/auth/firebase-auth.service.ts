@@ -1,5 +1,6 @@
 import * as firebase from "firebase";
 import { AuthService } from "@/services/auth/auth.service";
+import { AuthUser } from "@/models/auth-user";
 
 export class FirebaseAuthService implements AuthService {
   private auth: firebase.auth.Auth;

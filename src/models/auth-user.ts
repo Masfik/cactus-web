@@ -1,4 +1,8 @@
-interface AuthUser extends User {
+import { Invitation } from "@/models/invitation";
+import { User } from "@/models/user";
+import { Preferences } from "@/models/preferences";
+
+export interface AuthUser extends User {
   email: string;
 
   /**

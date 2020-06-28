@@ -1,4 +1,4 @@
-enum UserGroup {
+export enum UserGroup {
   OWNER,
   ADMIN,
   MODERATOR,

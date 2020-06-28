@@ -1,3 +1,5 @@
+import { AuthUser } from "@/models/auth-user";
+
 export interface AuthService {
   login(email: string, password: string): Promise<AuthUser | null>;
 

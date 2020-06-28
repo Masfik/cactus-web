@@ -1,4 +1,7 @@
-interface User {
+import { Room } from "@/models/room";
+import { UserStatus } from "@/models/user-status";
+
+export interface User {
   id: string;
   name: string;
   surname: string;

@@ -1,12 +1,9 @@
 import { UserRepository } from "@/repositories/user.repository";
-import { AxiosInstance } from "axios";
+import { AuthUser } from "@/models/auth-user";
+import { User } from "@/models/user";
+import { AxiosRepository } from "@/repositories/cactus/axios.repository";
 
-class CactusUserRepository implements UserRepository {
-  constructor(private axios: AxiosInstance) {
-    if (axios.defaults.baseURL == null)
-      axios.defaults.baseURL = process.env.VUE_APP_API_URL;
-  }
-
+class CactusUserRepository extends AxiosRepository implements UserRepository {
   getProfile = (): Promise<AuthUser> =>
     this.axios.get("/user").then(r => r.data as AuthUser);
 
@@ -17,5 +14,5 @@ class CactusUserRepository implements UserRepository {
     this.axios.get(`/user?id=${id}`).then(r => r.data as User);
 
   search = (query: string): Promise<User[]> =>
-    this.axios.get(`/search?query=${query}`);
+    this.axios.get(`/search?query=${query}`).then(r => r.data as User[]);
 }
