@@ -4,15 +4,20 @@ import { User } from "@/models/user";
 import { AxiosRepository } from "@/repositories/cactus/axios.repository";
 
 class CactusUserRepository extends AxiosRepository implements UserRepository {
-  getProfile = (): Promise<AuthUser> =>
-    this.axios.get("/user").then(r => r.data as AuthUser);
+  getProfile = async (): Promise<AuthUser> =>
+    (await this.axios.get("/user")).data;
 
-  getFromUsername = (username: string): Promise<User | null> =>
-    this.axios.get(`/user?username=${username}`).then(r => r.data as User);
+  getFromUsername = async (username: string): Promise<User | null> =>
+    (await this.axios.get(`/user?username=${username}`)).data;
 
-  getFromId = (id: string): Promise<User> =>
-    this.axios.get(`/user?id=${id}`).then(r => r.data as User);
+  getFromId = async (id: string): Promise<User> =>
+    (await this.axios.get(`/user?id=${id}`)).data;
 
-  search = (query: string): Promise<User[]> =>
-    this.axios.get(`/search?query=${query}`).then(r => r.data as User[]);
+  search = async (query: string): Promise<User[]> =>
+    (await this.axios.get(`/user?search=${query}`)).data;
+
+  createUser = async (authUser: AuthUser): Promise<AuthUser> =>
+    (await this.axios.post("/user", authUser)).data;
+
+  register = (authUser: AuthUser) => this.createUser(authUser);
 }

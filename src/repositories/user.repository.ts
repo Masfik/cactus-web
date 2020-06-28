@@ -36,4 +36,20 @@ export interface UserRepository {
    * @return Promise<User[]>
    */
   search(query: string): Promise<User[]>;
+
+  /**
+   * Create a user.
+   *
+   * @param authUser
+   * @return sanitised AuthUser (e.g. lowercase E-Mail) and additional data.
+   */
+  createUser(authUser: AuthUser): Promise<AuthUser>;
+
+  /**
+   * Alias of #createUser().
+   *
+   * @param authUser
+   * @alias createUser
+   */
+  register(authUser: AuthUser): Promise<AuthUser>;
 }

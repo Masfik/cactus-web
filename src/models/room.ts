@@ -4,7 +4,8 @@ import { UserGroup } from "@/models/user-group";
 
 export interface Room {
   /**
-   * Name of the room (this can also be the name of the recipient in 1 to 1 rooms).
+   * Name of the room (this can also be the name of the recipient in 1 to 1
+   * rooms).
    */
   name: string;
 
@@ -16,7 +17,8 @@ export interface Room {
   description: string;
 
   /**
-   * Photo URL of the room (this can also be the photo of the recipient in 1 to 1 rooms).
+   * Photo URL of the room (this can also be the photo of the recipient in
+   * 1 to 1 rooms).
    */
   photo: String;
 
