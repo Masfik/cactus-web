@@ -33,18 +33,19 @@ export class FirebaseAuthService implements AuthService {
   logout = (): Promise<void> => this.auth.signOut();
 
   onAuthStateChanged(next: (authUser: AuthUser | null) => void) {
-    this.auth.onIdTokenChanged(firebaseUser =>
-      next(FirebaseAuthService.toAuthUser(firebaseUser))
+    this.auth.onIdTokenChanged(async firebaseUser =>
+      next(await FirebaseAuthService.toAuthUser(firebaseUser))
     );
   }
 
-  private static toAuthUser(
+  private static async toAuthUser(
     firebaseUser: firebase.User | null
-  ): AuthUser | null {
+  ): Promise<AuthUser | null> {
     if (firebaseUser === null) return null;
     return {
       id: firebaseUser.uid,
-      email: firebaseUser.email
+      email: firebaseUser.email,
+      token: await firebaseUser.getIdToken()
     } as AuthUser;
   }
 }

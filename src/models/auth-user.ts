@@ -4,6 +4,7 @@ import { Preferences } from "@/models/preferences";
 
 export interface AuthUser extends User {
   email: string;
+  token: string;
 
   /**
    * Invitations received (e.g. friend request or room join invitation)

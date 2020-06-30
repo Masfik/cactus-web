@@ -48,7 +48,7 @@ export default {
         isLoading.value = false;
       } else {
         // TODO: clear Store
-        ctx.root.$router.push({ name: "login" });
+        ctx.root.$router.replace({ name: "login" });
       }
     });
 
