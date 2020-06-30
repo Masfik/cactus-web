@@ -6,6 +6,7 @@
 
 <script lang="ts">
 import { PropType } from "vue";
+import { Message } from "@/models/message";
 
 export default {
   name: "MessageBubble",

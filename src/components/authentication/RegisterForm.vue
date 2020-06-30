@@ -62,6 +62,9 @@
 import { inject, ref, SetupContext } from "@vue/composition-api";
 import { Service } from "@/services/service";
 import { AuthService } from "@/services/auth/auth.service";
+import axios from "axios";
+import { CactusUserRepository } from "@/repositories/cactus/cactus-user-repository";
+import { AuthUser } from "@/models/auth-user";
 
 export default {
   name: "RegisterForm",
@@ -81,12 +84,27 @@ export default {
     // Injected authentication service
     const authService = inject(Service.AUTH) as AuthService;
 
+    // TODO: the following blocks of code will be removed
+    const axiosInstance = axios.create();
+
     function registerUser() {
       loading.value = true;
       authService
         .register(email.value, password.value)
-        .then(() => ctx.root.$router.push({ name: "home" }))
+        .then(user => {
+          axiosInstance.interceptors.request.use(config => {
+            config.headers.authorization = `Bearer ${user?.token}`;
+            return config;
+          });
+          return new CactusUserRepository(axiosInstance).createUser({
+            ...(user as AuthUser),
+            name: firstName.value,
+            surname: lastName.value,
+            username: username.value
+          });
+        })
         .catch(console.error)
+        .then(() => ctx.root.$router.push({ name: "home" }))
         .finally(() => (loading.value = false));
     }
 
