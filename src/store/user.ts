@@ -17,10 +17,7 @@ const userRepository: UserRepository = new CactusUserRepository();
  * @param token
  */
 function setInterceptorToken(token: string) {
-  axios.interceptors.request.use(config => {
-    config.headers.authorization = `Bearer ${token}`;
-    return config;
-  });
+  axios.defaults.headers.authorization = `Bearer ${token}`;
 }
 
 export const userStore = {
@@ -30,7 +27,8 @@ export const userStore = {
     loading: true
   },
   getters: {
-    isAuthenticated: (state: any) => state.user.email != null
+    isAuthenticated: (state: any) => state.user.email != null,
+    fullName: (state: any) => state.user.name + " " + state.user.surname
   },
   mutations: {
     setLoading: (state: any, loading: boolean) => (state.loading = loading),
@@ -70,26 +68,26 @@ export const userStore = {
         username: string;
       }
     ) {
-      const authUser = await authService.register(
+      const authUser = (await authService.register(
         payload.email,
         payload.password
-      );
+      )) as AuthUser;
+      setInterceptorToken(authUser.token);
       await userRepository.createUser({
-        ...(authUser as AuthUser),
+        ...authUser,
         name: payload.name,
         surname: payload.surname,
         username: payload.username
       });
     },
 
-    async logout({ dispatch }: any) {
+    async logout() {
       await authService.logout();
-      dispatch("reset");
     },
 
     reset({ commit }: any) {
       commit("setUser", {});
-      commit("setLoading", false);
+      commit("setLoading", true);
     }
   }
 };

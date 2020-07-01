@@ -10,25 +10,28 @@
     </li>
     <li id="header-profile" @click="logout">
       <img src="@/assets/user.png" alt="User's avatar" />
-      <span class="username">MasfikNET</span>
+      <span class="username">{{ fullName }}</span>
       <font-awesome-icon icon="caret-down" />
     </li>
   </ul>
 </template>
 
 <script lang="ts">
-import { SetupContext } from "@vue/composition-api";
+import { computed, SetupContext } from "@vue/composition-api";
 
 export default {
   name: "Header",
   setup(_: any, ctx: SetupContext) {
+    const { $store } = ctx.root;
+
     function logout() {
-      ctx.root.$store
-        .dispatch("userStore/logout")
-        .then(() => (ctx.root.$store.state.isUserAuthenticated = false));
+      $store.dispatch("userStore/logout");
     }
 
-    return { logout };
+    return {
+      logout,
+      fullName: computed(() => $store.getters["userStore/fullName"])
+    };
   }
 };
 </script>

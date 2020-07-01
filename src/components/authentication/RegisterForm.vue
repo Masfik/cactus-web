@@ -79,8 +79,8 @@ export default {
     function registerUser() {
       loading.value = true;
       const payload = {
-        firstName: firstName.value,
-        lastName: lastName.value,
+        name: firstName.value,
+        surname: lastName.value,
         username: username.value,
         email: email.value,
         password: password.value
