@@ -4,6 +4,7 @@ import { User } from "@/models/user";
 export interface UserRepository {
   /**
    * Get the full profile of the currently authenticated user.
+   *
    * @return Promise<AuthUser>
    */
   getProfile(): Promise<AuthUser>;

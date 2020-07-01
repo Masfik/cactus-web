@@ -35,9 +35,9 @@ export default {
   },
   setup(_: any, ctx: SetupContext) {
     const { $store, $router } = ctx.root;
-    const isLoading = computed(() => $store.state["userStore/loading"]);
+    const isLoading = computed(() => $store.state.userStore.loading);
     const isUserAuthenticated = computed(
-      () => $store.getters["userStore/isUserAuthenticated"]
+      () => $store.getters["userStore/isAuthenticated"]
     );
 
     $store.dispatch(
