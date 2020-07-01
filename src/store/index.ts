@@ -14,6 +14,7 @@ export default new Vuex.Store({
     }
   },
   actions: {},
+  // TODO: change this when there is better TypeScript support
   modules: {
     userStore
   }
