@@ -12,22 +12,22 @@ export class CactusRoomRepository extends AxiosRepository
   private optionalId = (id?: string) => (id ? `?id=${id}` : "");
 
   getRoom = async (id: string): Promise<Room> =>
-    (await this.axios.get(`/room/${id}`)).data;
+    (await this.axiosInstance.get(`/room/${id}`)).data;
 
-  obtainRemote = (): Promise<void> => this.axios.put("/room?remote");
+  obtainRemote = (): Promise<void> => this.axiosInstance.put("/room?remote");
 
   updateWatching = (title: string): Promise<void> =>
-    this.axios.put("/room", { title });
+    this.axiosInstance.put("/room", { title });
 
   updateName = (name: string, roomId?: string): Promise<void> =>
-    this.axios.put(`/room${this.optionalId(roomId)}`, { name });
+    this.axiosInstance.put(`/room${this.optionalId(roomId)}`, { name });
 
   updatePicture = (url: string, roomId?: string): Promise<void> =>
-    this.axios.put(`/room${this.optionalId(roomId)}`, { picture: url });
+    this.axiosInstance.put(`/room${this.optionalId(roomId)}`, { picture: url });
 
   updateDescription = (description: string, roomId?: string): Promise<void> =>
-    this.axios.put(`/room${this.optionalId(roomId)}`, { description });
+    this.axiosInstance.put(`/room${this.optionalId(roomId)}`, { description });
 
   delete = (roomId?: string): Promise<void> =>
-    this.axios.delete(`/room${this.optionalId(roomId)}`);
+    this.axiosInstance.delete(`/room${this.optionalId(roomId)}`);
 }

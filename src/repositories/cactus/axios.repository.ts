@@ -1,10 +1,10 @@
-import { AxiosInstance } from "axios";
+import axios, { AxiosInstance } from "axios";
 
 export abstract class AxiosRepository {
-  constructor(protected axios: AxiosInstance) {
-    if (axios.defaults.baseURL == null)
-      axios.defaults.baseURL = process.env.VUE_APP_API_URL;
-    if (axios.defaults.headers["Content-Type"] === null)
-      axios.defaults.headers["Content-Type"] = "application/json";
+  constructor(protected axiosInstance: AxiosInstance = axios) {
+    if (axiosInstance.defaults.baseURL == null)
+      axiosInstance.defaults.baseURL = process.env.VUE_APP_API_URL;
+    if (axiosInstance.defaults.headers["Content-Type"] === null)
+      axiosInstance.defaults.headers["Content-Type"] = "application/json";
   }
 }
