@@ -20,13 +20,11 @@
 </template>
 
 <script lang="ts">
-import { inject, ref, SetupContext } from "@vue/composition-api";
-import { Service } from "@/services/service";
-import { AuthService } from "@/services/auth/auth.service";
+import { ref, SetupContext } from "@vue/composition-api";
 
 export default {
   name: "LoginForm",
-  setup(_: any, ctx: SetupContext) {
+  setup(_: any, { root }: SetupContext) {
     // Loading spinner
     const loading = ref(false);
 
@@ -34,14 +32,13 @@ export default {
     const email = ref(""),
       password = ref("");
 
-    // Injected authentication service
-    const authService = inject(Service.AUTH) as AuthService;
-
     function login() {
       loading.value = true;
-      authService
-        .login(email.value, password.value)
-        .then(() => ctx.root.$router.push({ name: "home" }))
+      const payload = { email: email.value, password: password.value };
+
+      root.$store
+        .dispatch("userStore/login", payload)
+        .then(() => root.$router.push({ name: "home" }))
         .catch(console.error)
         .finally(() => (loading.value = false));
     }

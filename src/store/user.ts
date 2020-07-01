@@ -56,13 +56,35 @@ export const userStore = {
       setInterceptorToken(token);
     },
 
-    async login(context: any, email: string, password: string) {
-      await authService.login(email, password);
+    async login(context: any, payload: { email: string; password: string }) {
+      await authService.login(payload.email, payload.password);
     },
 
-    async register(context: any, email: string, password: string) {
-      const authUser = await authService.register(email, password);
-      await userRepository.createUser(authUser as AuthUser);
+    async register(
+      context: any,
+      payload: {
+        email: string;
+        password: string;
+        name: string;
+        surname: string;
+        username: string;
+      }
+    ) {
+      const authUser = await authService.register(
+        payload.email,
+        payload.password
+      );
+      await userRepository.createUser({
+        ...(authUser as AuthUser),
+        name: payload.name,
+        surname: payload.surname,
+        username: payload.username
+      });
+    },
+
+    async logout({ dispatch }: any) {
+      await authService.logout();
+      dispatch("reset");
     },
 
     reset({ commit }: any) {

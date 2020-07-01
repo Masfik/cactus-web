@@ -17,19 +17,14 @@
 </template>
 
 <script lang="ts">
-import { inject, SetupContext } from "@vue/composition-api";
-import { Service } from "@/services/service";
-import { AuthService } from "@/services/auth/auth.service";
+import { SetupContext } from "@vue/composition-api";
 
 export default {
   name: "Header",
   setup(_: any, ctx: SetupContext) {
-    // Injected AuthService
-    const authService = inject(Service.AUTH) as AuthService;
-
     function logout() {
-      authService
-        .logout()
+      ctx.root.$store
+        .dispatch("userStore/logout")
         .then(() => (ctx.root.$store.state.isUserAuthenticated = false));
     }
 
