@@ -12,7 +12,7 @@ const userRepository: UserRepository = new CactusUserRepository();
 
 /***
  * Set a request interceptor to add a token to all HTTP requests performed by
- * the repositories (e.g. CactusUserRepository).
+ * the repositories (e.g. CactusUserRepository and CactusRoomRepository).
  *
  * @param token
  */
@@ -22,24 +22,25 @@ function setInterceptorToken(token: string) {
 
 export const userStore = {
   namespaced: true,
+
   state: {
     user: {} as AuthUser,
     loading: true
   },
+
   getters: {
     isAuthenticated: (state: any) => state.user.email != null,
     fullName: (state: any) => state.user.name + " " + state.user.surname
   },
+
   mutations: {
     setLoading: (state: any, loading: boolean) => (state.loading = loading),
     setUser: (state: any, authUser: AuthUser) => (state.user = authUser),
     setToken: (state: any, token: string) => (state.user.token = token)
   },
+
   actions: {
-    onAuthStateChanged(
-      { commit }: any,
-      next: (authUser: AuthUser | null) => void
-    ) {
+    onAuthStateChanged(ctx: any, next: (authUser: AuthUser | null) => void) {
       authService.onAuthStateChanged(next);
     },
 
@@ -68,11 +69,16 @@ export const userStore = {
         username: string;
       }
     ) {
+      // Registering the user
       const authUser = (await authService.register(
         payload.email,
         payload.password
       )) as AuthUser;
+
+      // Setting the token for all future HTTP requests
       setInterceptorToken(authUser.token);
+
+      // Creating the user data (e.g. name, surname)
       await userRepository.createUser({
         ...authUser,
         name: payload.name,
