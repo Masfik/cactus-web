@@ -1,5 +1,5 @@
 <template>
-  <p v-if="isUserAuthenticated === false && isLoading">Loading...</p>
+  <p v-if="isUserAuthenticated === false && !isDataLoaded">Loading...</p>
   <div class="home" v-else>
     <default-layout>
       <template v-slot:sidebar>
@@ -23,7 +23,7 @@
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
 import Sidebar from "@/components/sidebar/Sidebar.vue";
 import Header from "@/components/header/Header.vue";
-import { computed, SetupContext } from "@vue/composition-api";
+import { computed, onMounted, SetupContext } from "@vue/composition-api";
 import { AuthUser } from "@/models/auth-user";
 
 export default {
@@ -35,33 +35,35 @@ export default {
   },
   setup(_: any, ctx: SetupContext) {
     const { $store, $router } = ctx.root;
-    const isLoading = computed(() => $store.state.userStore.loading);
+
     const isUserAuthenticated = computed(
-      () => $store.getters["userStore/isAuthenticated"]
+      () => $store.getters["authStore/isAuthenticated"]
+    );
+    const isDataLoaded = computed(
+      () => $store.getters["userStore/isDataLoaded"]
     );
 
+    // TODO: this part needs to be rewritten from scratch
+    // Susceptible to multiple listeners creation when the
+    // component mounts and unmounts
     $store.dispatch(
-      "userStore/onAuthStateChanged",
+      "authStore/onAuthStateChanged",
       async (authUser: AuthUser | null) => {
-        if (authUser !== null) {
-          // If user is already authenticated, only the token will be refreshed
-          if (isUserAuthenticated.value)
-            await $store.dispatch("userStore/updateToken", authUser.token);
-          else
-            await $store
-              .dispatch("userStore/loadUserData", authUser)
-              .catch(console.error);
-        } else {
+        // If the user is authenticated and the data has not been loaded:
+        if (authUser !== null && !isDataLoaded.value)
+          await $store
+            .dispatch("userStore/loadUserData", authUser)
+            .catch(console.error);
+        else
           $store
-            .dispatch("userStore/reset") // <- Resetting user store
-            .then(() => $router.replace({ name: "login" }));
-        }
+            .dispatch("reset") // <- Resetting entire store
+            .then(() => $router.replace("/login"));
       }
     );
 
     return {
       isUserAuthenticated,
-      isLoading
+      isDataLoaded
     };
   }
 };

@@ -25,7 +25,7 @@ export default {
     const { $store } = ctx.root;
 
     function logout() {
-      $store.dispatch("userStore/logout");
+      $store.dispatch("authStore/logout");
     }
 
     return {

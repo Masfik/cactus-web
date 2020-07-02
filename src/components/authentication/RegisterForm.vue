@@ -63,7 +63,9 @@ import { ref, SetupContext } from "@vue/composition-api";
 
 export default {
   name: "RegisterForm",
-  setup(_: any, { root }: SetupContext) {
+  setup(_: any, ctx: SetupContext) {
+    const { $store, $router } = ctx.root;
+
     // Loading spinner
     const loading = ref(false);
 
@@ -86,9 +88,9 @@ export default {
         password: password.value
       };
 
-      root.$store
-        .dispatch("userStore/register", payload)
-        .then(() => root.$router.push({ name: "home" }))
+      $store
+        .dispatch("authStore/register", payload)
+        .then(() => $router.push({ name: "home" }))
         .catch(console.error)
         .finally(() => (loading.value = false));
     }

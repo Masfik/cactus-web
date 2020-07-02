@@ -1,99 +1,38 @@
 import { AuthUser } from "@/models/auth-user";
-import axios from "axios";
-import { AuthService } from "@/services/auth/auth.service";
-import { AuthServiceAdapter } from "@/services/auth/auth.service.adapter";
 import { UserRepository } from "@/repositories/user.repository";
 import { CactusUserRepository } from "@/repositories/cactus/cactus-user.repository";
 
-// Authentication Service
-const authService: AuthService = new AuthServiceAdapter();
 // User Repository
 const userRepository: UserRepository = new CactusUserRepository();
-
-/***
- * Set a request interceptor to add a token to all HTTP requests performed by
- * the repositories (e.g. CactusUserRepository and CactusRoomRepository).
- *
- * @param token
- */
-function setInterceptorToken(token: string) {
-  axios.defaults.headers.authorization = `Bearer ${token}`;
-}
 
 export const userStore = {
   namespaced: true,
 
   state: {
-    user: {} as AuthUser,
-    loading: true
+    user: {} as AuthUser
   },
 
   getters: {
-    isAuthenticated: (state: any) => state.user.email != null,
+    isDataLoaded: (state: any) => state.user.name != null,
     fullName: (state: any) => state.user.name + " " + state.user.surname
   },
 
   mutations: {
-    setLoading: (state: any, loading: boolean) => (state.loading = loading),
-    setUser: (state: any, authUser: AuthUser) => (state.user = authUser),
-    setToken: (state: any, token: string) => (state.user.token = token)
+    setUser: (state: any, authUser: AuthUser) => (state.user = authUser)
   },
 
   actions: {
-    onAuthStateChanged(ctx: any, next: (authUser: AuthUser | null) => void) {
-      authService.onAuthStateChanged(next);
-    },
-
-    async loadUserData({ commit }: any, authUser: AuthUser) {
-      setInterceptorToken(authUser.token);
+    async loadUserData({ commit }: any) {
       commit("setUser", await userRepository.getProfile());
-      commit("setLoading", false);
     },
 
-    updateToken(context: any, token: string) {
-      context.commit("setToken", token);
-      setInterceptorToken(token);
-    },
-
-    async login(context: any, payload: { email: string; password: string }) {
-      await authService.login(payload.email, payload.password);
-    },
-
-    async register(
-      context: any,
-      payload: {
-        email: string;
-        password: string;
-        name: string;
-        surname: string;
-        username: string;
-      }
-    ) {
-      // Registering the user
-      const authUser = (await authService.register(
-        payload.email,
-        payload.password
-      )) as AuthUser;
-
-      // Setting the token for all future HTTP requests
-      setInterceptorToken(authUser.token);
-
-      // Creating the user data (e.g. name, surname)
-      await userRepository.createUser({
-        ...authUser,
-        name: payload.name,
-        surname: payload.surname,
-        username: payload.username
-      });
-    },
-
-    async logout() {
-      await authService.logout();
+    // Creating the user data (e.g. name, surname)
+    async createUser(context: any, authUser: AuthUser) {
+      await userRepository.createUser(authUser);
     },
 
     reset({ commit }: any) {
       commit("setUser", {});
-      commit("setLoading", true);
     }
   }
 };
