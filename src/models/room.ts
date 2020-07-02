@@ -3,6 +3,8 @@ import { User } from "@/models/user";
 import { UserGroup } from "@/models/user-group";
 
 export interface Room {
+  id: string;
+
   /**
    * Name of the room (this can also be the name of the recipient in 1 to 1
    * rooms).

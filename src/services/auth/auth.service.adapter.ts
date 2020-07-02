@@ -10,7 +10,6 @@ export class AuthServiceAdapter implements AuthService {
       case "firebase":
         this.authService = new FirebaseAuthService();
         break;
-      case "default":
       default:
         this.authService = {} as AuthService; // TODO: will create in the future
     }

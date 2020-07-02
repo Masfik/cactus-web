@@ -4,16 +4,16 @@ import { User } from "@/models/user";
 export interface UserRepository {
   /**
    * Get the full profile of the currently authenticated user.
+   *
    * @return Promise<AuthUser>
    */
   getProfile(): Promise<AuthUser>;
 
   /**
    * Get the user from a username.
-   * Returns null if no user was found.
    *
    * @param username
-   * @return Promise<User | null>
+   * @returns User or null if no user was found
    */
   getFromUsername(username: string): Promise<User | null>;
 
@@ -30,10 +30,9 @@ export interface UserRepository {
 
   /**
    * Search users by providing a string.
-   * Returns an array of users found by the matching string.
    *
    * @param query
-   * @return Promise<User[]>
+   * @returns an array of users found by the matching string.
    */
   search(query: string): Promise<User[]>;
 
@@ -41,7 +40,7 @@ export interface UserRepository {
    * Create a user.
    *
    * @param authUser
-   * @return sanitised AuthUser (e.g. lowercase E-Mail) and additional data.
+   * @returns sanitised AuthUser (e.g. lowercase E-Mail) and additional data.
    */
   createUser(authUser: AuthUser): Promise<AuthUser>;
 
