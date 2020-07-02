@@ -23,7 +23,7 @@
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
 import Sidebar from "@/components/sidebar/Sidebar.vue";
 import Header from "@/components/header/Header.vue";
-import { computed, onMounted, SetupContext } from "@vue/composition-api";
+import { computed, SetupContext } from "@vue/composition-api";
 import { AuthUser } from "@/models/auth-user";
 
 export default {
@@ -51,7 +51,7 @@ export default {
       async (authUser: AuthUser | null) => {
         // If the user is authenticated and the data has not been loaded:
         if (authUser !== null && !isDataLoaded.value)
-          await $store
+          $store
             .dispatch("userStore/loadUserData", authUser)
             .catch(console.error);
         else
