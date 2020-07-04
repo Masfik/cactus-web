@@ -2,14 +2,42 @@
   <div id="send-message-container">
     <div class="send-message-bar">
       <font-awesome-icon icon="smile" id="select-emoji" />
-      <input type="text" placeholder="Write a message..." class="text-field" />
+      <input
+        type="text"
+        placeholder="Write a message..."
+        class="text-field"
+        v-model="text"
+        @keyup.enter="sendMessage"
+      />
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { ref, SetupContext } from "@vue/composition-api";
+import { Message } from "@/models/message";
+
 export default {
-  name: "SendMessageBar"
+  name: "SendMessageBar",
+  setup(_: any, ctx: SetupContext) {
+    const { $store } = ctx.root;
+
+    const text = ref("");
+
+    function sendMessage() {
+      if (text.value == "") return;
+
+      $store.dispatch("roomStore/addMessage", {
+        from: $store.state.userStore.user,
+        id: Math.random().toString(),
+        data: text.value
+      } as Message);
+
+      text.value = "";
+    }
+
+    return { text, sendMessage };
+  }
 };
 </script>
 
