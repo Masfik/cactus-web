@@ -106,15 +106,7 @@ form.default-style-form {
 
   > button {
     @extend %button;
-
-    &.primary-color {
-      background-color: var(--c-primary);
-      color: var(--c-text-on-primary);
-
-      &:hover {
-        background-color: var(--c-primary-lighter);
-      }
-    }
+    width: 100%;
   }
 }
 

@@ -32,14 +32,15 @@
 import MessageBubble from "./MessageBubble.vue";
 import { AuthUser } from "@/models/auth-user";
 import { User } from "@/models/user";
-import { computed } from "@vue/composition-api";
+import { computed, PropType } from "@vue/composition-api";
+import { MessageBlock } from "@/models/message-block";
 
 export default {
   name: "MessageBubblesBlock",
   components: { MessageBubble },
   props: {
     block: {
-      type: Object,
+      type: Object as PropType<MessageBlock>,
       required: true
     }
   },

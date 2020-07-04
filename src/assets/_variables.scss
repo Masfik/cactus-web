@@ -28,7 +28,7 @@ $s-poster-image-height: 120px;
 $s-message-list-container-spacing: 15px;
 
 // Message bubbles
-$s-bubble-first-last-radius: 16px;
+$s-bubble-first-last-radius: 20px;
 $s-bubble-radius: 6px;
 $s-message-spacing: 2px;
 $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive messages from a single sender */
@@ -70,7 +70,7 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
   --c-danger: #FFF;
 
   // Shadow colour
-  --c-shadow-color: #00000015;
+  --c-shadow-color: #0000001f;
 
   // Specific components
   --c-sidebar: var(--c-primary);
@@ -84,7 +84,7 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
 }
 
 // Importing other themes
-@import "themes/nord";
+@import "themes/nord";      // Nord Theme
 
 //----------------------------------------------------------------------------------------------------------------------
 // COMMON RULES AND MIXINS
@@ -107,7 +107,6 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
 }
 
 %button {
-  width: 100%;
   padding: 10px;
   border: none;
   border-radius: $s-input-border-radius;
@@ -115,6 +114,15 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
 
   &:focus {
     outline: none;
+  }
+
+  &.primary-color {
+    background-color: var(--c-primary);
+    color: var(--c-text-on-primary);
+
+    &:hover {
+      background-color: var(--c-primary-lighter);
+    }
   }
 }
 

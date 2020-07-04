@@ -1,12 +1,10 @@
 <template>
-  <div class="row" id="video-container">
-    <card>
-      <video controls id="room-video">
-        <source
-          src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
-          type="video/mp4"
-        />
-      </video>
+  <div class="row" id="room-container">
+    <Card>
+      <div id="video-container">
+        <start-broadcasting />
+        <!--<video autoplay playsinline id="room-video"></video>-->
+      </div>
       <div class="container">
         <editable id="watching-title">
           <h3>The Imitation Game</h3>
@@ -25,30 +23,42 @@
           </p>
         </div>
       </div>
-    </card>
+    </Card>
   </div>
 </template>
 
 <script>
-import Card from "@/components/common/Card";
-import Editable from "@/components/common/Editable";
+import Card from "@/components/common/Card.vue";
+import Editable from "@/components/common/Editable.vue";
+import StartBroadcasting from "@/components/room/StartBroadcasting";
+
 export default {
   name: "RoomContent",
-  components: { Editable, Card }
+  components: { StartBroadcasting, Card, Editable }
 };
 </script>
 
 <style lang="scss" scoped>
-#video-container {
+#room-container {
   padding: 60px;
 }
 
-#room-video {
+#video-container {
   width: 100%;
-  border-radius: $s-card-border-radius;
+  padding-top: 56.25%;
+  position: relative;
 
-  &:focus {
-    outline: none;
+  > * {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  video {
+    border-radius: $s-card-border-radius;
   }
 }
 
