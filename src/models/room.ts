@@ -1,13 +1,13 @@
-import { Message } from "@/models/message";
 import { User } from "@/models/user";
 import { UserGroup } from "@/models/user-group";
+import { MessageBlock } from "@/models/message-block";
 
 export interface Room {
   id: string;
 
   /**
-   * Name of the room (this can also be the name of the recipient in 1 to 1
-   * rooms).
+   * Name of the room.
+   * (this can also be the name of the recipient in 1 to 1 rooms).
    */
   name: string;
 
@@ -16,21 +16,26 @@ export interface Room {
    */
   type: RoomType;
 
-  description: string;
+  /**
+   * The description of the room.
+   * This value can be changed by users with appropriate permissions.
+   */
+  description?: string;
 
   /**
-   * Photo URL of the room (this can also be the photo of the recipient in
-   * 1 to 1 rooms).
+   * Photo URL of the room.
+   * (this can also be the photo of the recipient in 1 to 1 rooms).
    */
-  photo: String;
+  photo?: string;
 
   /**
    * What the user is currently watching.
    */
-  watching: string;
+  watching?: string;
 
   /**
-   * A list of members (1 to 1 rooms will have a maximum length of 2).
+   * A list of members
+   * (1 to 1 rooms will have a maximum length of 2).
    */
   members: Member[];
 
@@ -41,10 +46,14 @@ export interface Room {
 
   /**
    * Who is currently holding the remote to control the broadcasted content.
+   * Undefined when no user holds the remote.
    */
   remote?: User;
 
-  messages: Message[];
+  /**
+   * An array that holds MessageGroups.
+   */
+  messageBlocks: MessageBlock[];
 }
 
 export enum RoomType {

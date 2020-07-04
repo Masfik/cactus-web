@@ -12,9 +12,9 @@ export interface User {
   username: string;
 
   /**
-   * URL of the avatar
+   * URL of the avatar.
    */
-  avatar: string;
+  avatar?: string;
 
   /**
    * Status: Online | Offline | Do Not Disturb.
