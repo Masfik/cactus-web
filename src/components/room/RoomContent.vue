@@ -3,7 +3,13 @@
     <Card>
       <div id="video-container">
         <start-broadcasting />
-        <!--<video autoplay playsinline id="room-video"></video>-->
+        <video
+          v-show="isStreaming"
+          autoplay
+          playsinline
+          id="room-video"
+          ref="videoEl"
+        />
       </div>
       <div class="container">
         <editable id="watching-title">
@@ -27,14 +33,30 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Card from "@/components/common/Card.vue";
 import Editable from "@/components/common/Editable.vue";
-import StartBroadcasting from "@/components/room/StartBroadcasting";
+import { ref, SetupContext } from "@vue/composition-api";
+import StartBroadcasting from "@/components/room/StartBroadcasting.vue";
 
 export default {
   name: "RoomContent",
-  components: { StartBroadcasting, Card, Editable }
+  components: { StartBroadcasting, Card, Editable },
+  setup(_: any, ctx: SetupContext) {
+    const videoEl = ref<HTMLVideoElement>(null);
+    const isStreaming = ref(false);
+
+    ctx.root.$on("streamingStarted", (stream: MediaStream) => {
+      stream.oninactive = () => (isStreaming.value = false);
+      videoEl.value!.srcObject = stream;
+      isStreaming.value = true;
+    });
+
+    return {
+      videoEl,
+      isStreaming
+    };
+  }
 };
 </script>
 
@@ -59,6 +81,8 @@ export default {
 
   video {
     border-radius: $s-card-border-radius;
+    height: 100%;
+    background-color: var(--c-background-lighter);
   }
 }
 

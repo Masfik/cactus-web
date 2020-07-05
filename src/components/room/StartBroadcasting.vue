@@ -4,15 +4,30 @@
     <small>
       It's a little too quiet in here...
     </small>
-    <button class="btn primary-color">
-      Start Broadcasting
+    <button class="btn primary-color" @click="startBroadcasting">
+      <font-awesome-icon icon="desktop" /> Start Broadcasting
     </button>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { SetupContext } from "@vue/composition-api";
+
 export default {
-  name: "StartBroadcasting"
+  name: "StartBroadcasting",
+  setup(props: any, { root }: SetupContext) {
+    function startBroadcasting() {
+      navigator.mediaDevices
+        .getDisplayMedia({
+          video: true,
+          audio: true
+        })
+        .then((stream: MediaStream) => root.$emit("streamingStarted", stream))
+        .catch(console.error());
+    }
+
+    return { startBroadcasting };
+  }
 };
 </script>
 
@@ -29,8 +44,12 @@ div.start-broadcasting {
     margin-top: $s-container-spacing;
   }
 
-  img {
+  > img {
     width: 200px;
+  }
+
+  > button > svg {
+    margin-right: 5px;
   }
 }
 </style>

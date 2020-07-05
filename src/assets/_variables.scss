@@ -109,6 +109,7 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
 %button {
   padding: 10px;
   border: none;
+  background: none;
   border-radius: $s-input-border-radius;
   color: var(--c-text-on-bg);
 
@@ -122,6 +123,16 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
 
     &:hover {
       background-color: var(--c-primary-lighter);
+    }
+  }
+
+  &.outline-primary-color {
+    border: 1px solid var(--c-primary);
+    color: var(--c-primary-darker);
+
+    &:hover {
+      color: var(--c-text-on-primary);
+      background-color: var(--c-primary);
     }
   }
 }
