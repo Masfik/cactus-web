@@ -14,7 +14,7 @@ export const roomStore = {
   state: {
     currentRoom: {
       id: "",
-      name: "",
+      name: "Testing's Room",
       type: RoomType.PRIVATE,
       description: "",
       members: [],

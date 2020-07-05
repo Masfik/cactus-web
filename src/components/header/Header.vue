@@ -30,7 +30,10 @@ export default {
 
     return {
       logout,
-      fullName: computed(() => $store.getters["userStore/fullName"])
+      fullName: computed(() => $store.getters["userStore/fullName"]),
+      invitationsCount: computed(
+        () => $store.getters["userStore/invitationsCount"]
+      )
     };
   }
 };

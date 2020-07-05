@@ -14,7 +14,8 @@ export const userStore = {
 
   getters: {
     isDataLoaded: (state: any) => state.user.name != null,
-    fullName: (state: any) => state.user.name + " " + state.user.surname
+    fullName: (state: any) => state.user.name + " " + state.user.surname,
+    invitationsCount: (state: any) => state.user.invitations.length
   },
 
   mutations: {

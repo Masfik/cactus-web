@@ -1,15 +1,21 @@
 <template>
   <div id="room-name-header" @click="switchThemeTest">
     <div id="room-name" class="container-x">
-      MasfikNET's Room
+      {{ roomName }}
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { computed, SetupContext } from "@vue/composition-api";
+
 export default {
   name: "RoomNameHeader",
-  setup() {
+  setup(_: any, ctx: SetupContext) {
+    const roomName = computed(
+      () => ctx.root.$store.state.roomStore.currentRoom.name
+    );
+
     function theme() {
       const de = document.documentElement; // TODO: everything is temporary here
 
@@ -17,7 +23,7 @@ export default {
       else de.setAttribute("theme", "none");
     }
 
-    return { switchThemeTest: theme };
+    return { roomName, switchThemeTest: theme };
   }
 };
 </script>
