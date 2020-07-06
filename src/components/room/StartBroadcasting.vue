@@ -1,10 +1,10 @@
 <template>
   <div class="start-broadcasting">
-    <img src="@/assets/start_video.svg" alt="Start Watching" />
+    <start-video-img />
     <small>
       It's a little too quiet in here...
     </small>
-    <button class="btn primary-color" @click="startBroadcasting">
+    <button class="btn outline-primary-color" @click="startBroadcasting">
       <font-awesome-icon icon="desktop" /> Start Broadcasting
     </button>
   </div>
@@ -12,16 +12,17 @@
 
 <script lang="ts">
 import { SetupContext } from "@vue/composition-api";
+import StartVideoImg from "@/assets/start_video.vue";
 
 export default {
   name: "StartBroadcasting",
+  components: { StartVideoImg },
   setup(props: any, { root }: SetupContext) {
     function startBroadcasting() {
+      const constraints = { video: true, audio: true };
+
       navigator.mediaDevices
-        .getDisplayMedia({
-          video: true,
-          audio: true
-        })
+        .getDisplayMedia(constraints)
         .then((stream: MediaStream) => root.$emit("streamingStarted", stream))
         .catch(console.error());
     }
@@ -44,7 +45,7 @@ div.start-broadcasting {
     margin-top: $s-container-spacing;
   }
 
-  > img {
+  > svg {
     width: 200px;
   }
 

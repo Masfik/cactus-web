@@ -60,13 +60,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.recipient,
-.sender {
-  &:first-child {
-    margin-top: auto;
-  }
-}
-
 .recipient {
   display: flex;
   margin-top: $s-message-block-spacing;
