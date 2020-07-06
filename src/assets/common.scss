@@ -82,6 +82,19 @@ textarea.text-field {
 
 button.btn {
   @extend %button;
+
+  &.with-icon {
+    width: 150px;
+    font-size: smaller;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    > svg {
+      display: block;
+      font-size: x-large;
+      margin: auto auto 10px;
+    }
+  }
 }
 
 form.default-style-form {

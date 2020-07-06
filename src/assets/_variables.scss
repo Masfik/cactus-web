@@ -67,7 +67,7 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
   --c-success: #FFF;
   --c-info: #FFF;
   --c-warning: #FFF;
-  --c-danger: #FFF;
+  --c-danger: #e85c63;
 
   // Shadow colour
   --c-shadow-color: #0000001f;
@@ -107,6 +107,7 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
 }
 
 %button {
+  cursor: pointer;
   padding: 10px;
   border: none;
   background: none;
@@ -114,7 +115,11 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
   color: var(--c-text-on-bg);
 
   &:focus {
-    outline: none;
+    outline: none; // TODO
+  }
+
+  &:hover {
+    background-color: var(--c-background-darker);
   }
 
   &.primary-color {
