@@ -2,7 +2,7 @@
   <div id="chat-content">
     <room-name-header />
     <div id="message-list-container">
-      <div id="msg-list-scrollable">
+      <div>
         <message-bubbles-block
           v-for="block of messageBlocks"
           :key="block.id"
@@ -73,11 +73,5 @@ export default {
   flex-flow: column;
   flex-direction: column-reverse;
   padding: $s-message-list-container-spacing;
-
-  #msg-list-scrollable {
-    flex-grow: 1;
-    display: flex;
-    flex-flow: column;
-  }
 }
 </style>
