@@ -2,13 +2,14 @@
   <div class="row" id="room-container">
     <Card>
       <div id="video-container">
-        <start-broadcasting />
+        <start-streaming />
         <video
           v-show="isStreaming"
-          autoplay
-          playsinline
           id="room-video"
           ref="videoEl"
+          autoplay
+          playsinline
+          oncontextmenu=""
         />
       </div>
       <controls-panel />
@@ -25,33 +26,32 @@ import {
   ref,
   SetupContext
 } from "@vue/composition-api";
-import StartBroadcasting from "@/components/room/StartBroadcasting.vue";
+import StartStreaming from "@/components/room/StartStreaming.vue";
 import ContentWatchingCard from "@/components/room/ContentWatchingCard.vue";
 import ControlsPanel from "@/components/room/ControlsPanel.vue";
 
 export default {
   name: "RoomContent",
-  components: { ControlsPanel, ContentWatchingCard, StartBroadcasting, Card },
+  components: { ControlsPanel, ContentWatchingCard, StartStreaming, Card },
   setup(_: any, ctx: SetupContext) {
     const { $store } = ctx.root;
+
     const videoEl = ref<HTMLVideoElement>(null);
 
     // Watching the changes applied to the Stream from the store
-    const stopStream = $store.watch(
+    const unwatchStream = $store.watch(
       state => state.streamStore.stream,
       value => (videoEl.value!.srcObject = value)
     );
 
     onBeforeUnmount(() => {
       $store.dispatch("streamStore/endStream");
-      stopStream(); // Before mounting, stop listening to the stream changes
+      unwatchStream(); // Before mounting, stop watching stream changes
     });
 
     return {
       videoEl,
-      isStreaming: computed(
-        () => ctx.root.$store.getters["streamStore/isStreaming"]
-      )
+      isStreaming: computed(() => $store.getters["streamStore/isStreaming"])
     };
   }
 };

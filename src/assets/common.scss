@@ -84,14 +84,14 @@ button.btn {
   @extend %button;
 
   &.with-icon {
-    width: 140px;
+    width: 135px;
     font-size: smaller;
     padding-top: 15px;
     padding-bottom: 15px;
 
     > svg {
       display: block;
-      font-size: x-large;
+      font-size: large;
       margin: auto auto 10px;
     }
   }

@@ -5,7 +5,7 @@
       It's a little too quiet in here...
     </small>
     <button class="btn primary-color" @click="startBroadcasting">
-      <font-awesome-icon icon="desktop" /> Start Broadcasting
+      <font-awesome-icon icon="desktop" /> Start Streaming
     </button>
   </div>
 </template>
@@ -15,7 +15,7 @@ import { SetupContext } from "@vue/composition-api";
 import StartVideoImg from "@/assets/start_video.vue";
 
 export default {
-  name: "StartBroadcasting",
+  name: "StartStreaming",
   components: { StartVideoImg },
   setup(props: any, ctx: SetupContext) {
     function startBroadcasting() {

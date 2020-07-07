@@ -1,13 +1,21 @@
 <template>
   <div id="controls">
     <div class="input-controls">
-      <button class="btn with-icon" @click="endStream">
+      <button
+        class="btn with-icon"
+        :class="{ active: isStreaming }"
+        @click="toggleStream"
+      >
         <font-awesome-icon icon="desktop" />
-        Stop Streaming
+        {{ isStreaming ? "Stop Streaming" : "Start Streaming" }}
       </button>
-      <button class="btn with-icon active">
+      <button class="btn with-icon">
         <font-awesome-icon icon="microphone-slash" />
-        Unmute Mic
+        Enable Mic
+      </button>
+      <button class="btn with-icon">
+        <font-awesome-icon icon="video-slash" />
+        Enable Camera
       </button>
     </div>
     <div class="media-controls">
@@ -16,26 +24,30 @@
         Control
       </button>
     </div>
-    <div class="viewers">
-      <button class="btn with-icon">
-        <font-awesome-icon icon="video" />
-        Testing
-      </button>
-    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { SetupContext } from "@vue/composition-api";
+import { computed, SetupContext } from "@vue/composition-api";
 
 export default {
   name: "ControlsPanel",
   setup(_: any, ctx: SetupContext) {
-    function endStream() {
-      ctx.root.$store.dispatch("streamStore/endStream");
+    const { $store } = ctx.root;
+
+    const isStreaming = computed(
+      () => $store.getters["streamStore/isStreaming"]
+    );
+
+    function toggleStream() {
+      if (isStreaming.value) $store.dispatch("streamStore/endStream");
+      else $store.dispatch("streamStore/startStream");
     }
 
-    return { endStream };
+    return {
+      isStreaming,
+      toggleStream
+    };
   }
 };
 </script>
@@ -51,16 +63,13 @@ export default {
     flex-grow: 1;
   }
 
-  > :last-child {
+  > .media-controls {
     text-align: right;
   }
 
-  > .media-controls {
-    text-align: center;
-  }
-
-  .active {
-    color: var(--c-danger);
+  button.active {
+    color: var(--c-primary-darker);
+    font-weight: bold;
   }
 }
 </style>
