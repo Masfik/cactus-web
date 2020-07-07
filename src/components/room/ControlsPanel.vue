@@ -1,7 +1,7 @@
 <template>
   <div id="controls">
     <div class="input-controls">
-      <button class="btn with-icon">
+      <button class="btn with-icon" @click="endStream">
         <font-awesome-icon icon="desktop" />
         Stop Streaming
       </button>
@@ -26,8 +26,17 @@
 </template>
 
 <script lang="ts">
+import { SetupContext } from "@vue/composition-api";
+
 export default {
-  name: "ControlsPanel"
+  name: "ControlsPanel",
+  setup(_: any, ctx: SetupContext) {
+    function endStream() {
+      ctx.root.$store.dispatch("streamStore/endStream");
+    }
+
+    return { endStream };
+  }
 };
 </script>
 
@@ -37,10 +46,9 @@ export default {
   border-top: 1px solid var(--c-background-darker);
   display: flex;
   flex-flow: row;
-  flex-wrap: nowrap;
 
-  > * {
-    flex: 1;
+  > .input-controls {
+    flex-grow: 1;
   }
 
   > :last-child {

@@ -4,7 +4,7 @@
     <small>
       It's a little too quiet in here...
     </small>
-    <button class="btn outline-primary-color" @click="startBroadcasting">
+    <button class="btn primary-color" @click="startBroadcasting">
       <font-awesome-icon icon="desktop" /> Start Broadcasting
     </button>
   </div>
@@ -17,14 +17,9 @@ import StartVideoImg from "@/assets/start_video.vue";
 export default {
   name: "StartBroadcasting",
   components: { StartVideoImg },
-  setup(props: any, { root }: SetupContext) {
+  setup(props: any, ctx: SetupContext) {
     function startBroadcasting() {
-      const constraints = { video: true, audio: true };
-
-      navigator.mediaDevices
-        .getDisplayMedia(constraints)
-        .then((stream: MediaStream) => root.$emit("streamingStarted", stream))
-        .catch(console.error());
+      ctx.root.$store.dispatch("streamStore/startStream").catch(console.error);
     }
 
     return { startBroadcasting };

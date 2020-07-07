@@ -84,10 +84,10 @@ button.btn {
   @extend %button;
 
   &.with-icon {
-    width: 150px;
+    width: 140px;
     font-size: smaller;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 
     > svg {
       display: block;

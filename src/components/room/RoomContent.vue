@@ -11,33 +11,47 @@
           ref="videoEl"
         />
       </div>
+      <controls-panel />
     </Card>
-    <ContentWatchingCard v-if="isStreaming" :content-watching="{}" />
+    <content-watching-card v-show="isStreaming" :content-watching="{}" />
   </div>
 </template>
 
 <script lang="ts">
 import Card from "@/components/common/Card.vue";
-import { ref, SetupContext } from "@vue/composition-api";
+import {
+  computed,
+  onBeforeUnmount,
+  ref,
+  SetupContext
+} from "@vue/composition-api";
 import StartBroadcasting from "@/components/room/StartBroadcasting.vue";
 import ContentWatchingCard from "@/components/room/ContentWatchingCard.vue";
+import ControlsPanel from "@/components/room/ControlsPanel.vue";
 
 export default {
   name: "RoomContent",
-  components: { ContentWatchingCard, StartBroadcasting, Card },
+  components: { ControlsPanel, ContentWatchingCard, StartBroadcasting, Card },
   setup(_: any, ctx: SetupContext) {
+    const { $store } = ctx.root;
     const videoEl = ref<HTMLVideoElement>(null);
-    const isStreaming = ref(false);
 
-    ctx.root.$on("streamingStarted", (stream: MediaStream) => {
-      stream.oninactive = () => (isStreaming.value = false);
-      videoEl.value!.srcObject = stream;
-      isStreaming.value = true;
+    // Watching the changes applied to the Stream from the store
+    const stopStream = $store.watch(
+      state => state.streamStore.stream,
+      value => (videoEl.value!.srcObject = value)
+    );
+
+    onBeforeUnmount(() => {
+      $store.dispatch("streamStore/endStream");
+      stopStream(); // Before mounting, stop listening to the stream changes
     });
 
     return {
       videoEl,
-      isStreaming
+      isStreaming: computed(
+        () => ctx.root.$store.getters["streamStore/isStreaming"]
+      )
     };
   }
 };
@@ -63,7 +77,8 @@ export default {
   }
 
   video {
-    border-radius: $s-card-border-radius;
+    border-top-right-radius: $s-card-border-radius;
+    border-top-left-radius: $s-card-border-radius;
     height: 100%;
     background-color: var(--c-background-lighter);
   }
