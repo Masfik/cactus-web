@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import { authStore } from "@/store/auth";
 import { userStore } from "@/store/user";
 import { roomStore } from "@/store/room";
+import { streamStore } from "@/store/stream";
 
 Vue.use(Vuex);
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
   modules: {
     authStore,
     userStore,
-    roomStore
+    roomStore,
+    streamStore
   }
 });
