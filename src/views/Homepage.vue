@@ -48,7 +48,7 @@ export default {
     // component mounts and unmounts
     $store.dispatch(
       "authStore/onAuthStateChanged",
-      async (authUser: AuthUser | null) => {
+      (authUser: AuthUser | null) => {
         // If the user is authenticated and the data has not been loaded:
         if (authUser !== null && !isDataLoaded.value)
           $store

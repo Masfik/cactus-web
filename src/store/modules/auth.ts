@@ -81,6 +81,7 @@ export const authStore = {
       setInterceptorToken(authUser.token);
     },
 
+    // TODO: create a Vuex plugin to handle this better
     onAuthStateChanged(ctx: any, next: (authUser: AuthUser | null) => void) {
       authService.onAuthStateChanged(authUser => {
         if (authUser != null) ctx.dispatch("setUser", authUser);

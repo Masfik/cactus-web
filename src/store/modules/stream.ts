@@ -1,8 +1,8 @@
-import { StreamScreenService } from "@/services/screensharing/stream-screen.service";
-import { WebRTCService } from "@/services/screensharing/webrtc.service";
+import { StreamScreenService } from "@/services/stream/stream-screen.service";
+import { WebRTCStreamService } from "@/services/stream/webrtc-stream.service";
 
 // Service to stream the screen
-const streamScreenService: StreamScreenService = new WebRTCService();
+const streamScreenService: StreamScreenService = new WebRTCStreamService();
 
 export const streamStore = {
   namespaced: true,

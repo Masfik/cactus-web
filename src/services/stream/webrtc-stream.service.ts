@@ -1,6 +1,6 @@
-import { StreamScreenService } from "@/services/screensharing/stream-screen.service";
+import { StreamScreenService } from "@/services/stream/stream-screen.service";
 
-export class WebRTCService implements StreamScreenService {
+export class WebRTCStreamService implements StreamScreenService {
   private stream: MediaStream | undefined;
 
   constructor(private readonly constraints: MediaStreamConstraints = {}) {
