@@ -1,4 +1,5 @@
-import * as firebase from "firebase";
+import * as firebase from "firebase/app";
+import "firebase/auth";
 import { AuthService } from "@/services/auth/auth.service";
 import { AuthUser } from "@/models/auth-user";
 

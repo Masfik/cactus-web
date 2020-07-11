@@ -15,6 +15,11 @@ export class WebSocketService {
 
   listen() {
     this.instance.addEventListener("open", () => this.emit("open", null));
+    this.instance.addEventListener("close", () => this.emit("close", null));
+    this.instance.addEventListener("message", ev => {
+      const data = JSON.parse(ev.data);
+      if (data.event) this.emit(data.event, data);
+    });
   }
 
   protected emit(event: Event, data: any) {
