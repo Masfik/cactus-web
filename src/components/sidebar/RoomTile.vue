@@ -1,37 +1,41 @@
 <template>
-  <router-link :to="{ name: 'room', params: { roomId: name } }">
-    <div class="room-tile" @contextmenu.prevent="roomContext">
-      <div class="avatar">
-        <img src="../../assets/user.png" alt="User's avatar" />
-        <span class="online-status"></span>
-      </div>
-      <div class="room-details">
-        <div class="room-name">{{ name }}</div>
-        <div class="activity">
-          <font-awesome-icon icon="tv" class="activity-icon" />
-          <span class="activity-name">{{ activityName }}</span>
-        </div>
+  <div class="room-tile" @contextmenu.prevent="roomContext">
+    <div class="avatar">
+      <img src="../../assets/user.png" alt="User's avatar" />
+      <span class="online-status"></span>
+    </div>
+    <div class="room-details">
+      <div class="room-name">{{ room.name }}</div>
+      <div class="activity">
+        <font-awesome-icon icon="tv" class="activity-icon" />
+        <span class="activity-name">{{ activityName }}</span>
       </div>
     </div>
-  </router-link>
+  </div>
 </template>
 
 <script lang="ts">
+import { Room } from "@/models/room";
+import { computed, PropType } from "@vue/composition-api";
+
 export default {
-  name: "ChatTile",
+  name: "RoomTile",
   props: {
-    name: {
-      type: String,
+    room: {
+      type: Object as PropType<Room>,
       required: true
-    },
-    activityName: String
+    }
   },
-  setup() {
+  setup(props: any) {
     function roomContext() {
       // TODO: show different context menu
     }
 
-    return { roomContext };
+    const activityName = computed(
+      () => props.room.watching || "Doing nothing 🤷‍♂️"
+    );
+
+    return { roomContext, activityName };
   }
 };
 </script>
