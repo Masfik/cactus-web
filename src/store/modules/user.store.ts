@@ -29,8 +29,16 @@ export const userStore = {
   },
 
   actions: {
-    async loadUserData({ commit }: any) {
-      commit("setUser", await userRepository.getProfile());
+    async loadUserData({ commit, dispatch }: any) {
+      const profileData = await userRepository.getProfile();
+
+      // Adding rooms to the roomStore
+      dispatch("roomStore/setRooms", profileData.rooms, { root: true });
+
+      // Removing rooms from the data (the roomStore now holds them)
+      delete profileData.rooms;
+
+      commit("setUser", profileData);
     },
 
     // Creating the user data (e.g. name, surname)
@@ -42,12 +50,17 @@ export const userStore = {
       commit("setFoundUsers", await userRepository.search(query));
     },
 
+    resetUsersFound({ commit }: any) {
+      commit("setFoundUsers", []);
+    },
+
     async sendFriendRequest(context: any, user: User) {
       await userRepository.sendFriendRequest(user);
     },
 
-    reset({ commit }: any) {
+    reset({ commit, dispatch }: any) {
       commit("setUser", {});
+      dispatch("resetUsersFound");
     }
   }
 };

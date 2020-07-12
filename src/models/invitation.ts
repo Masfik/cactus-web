@@ -1,10 +1,10 @@
-import { InvitationType } from "@/models/invitation-type";
+import { InvitationCategory } from "@/models/invitation-category";
 import { User } from "@/models/user";
 
 export interface Invitation {
   id: string;
   from: User;
-  type: InvitationType;
+  category: InvitationCategory;
   when: Date;
   dismissed: boolean;
 }

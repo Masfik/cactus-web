@@ -57,8 +57,8 @@ export interface Room {
 }
 
 export enum RoomType {
-  PRIVATE,
-  GROUP
+  PRIVATE = "private",
+  GROUP = "group"
 }
 
 export interface Member extends User {

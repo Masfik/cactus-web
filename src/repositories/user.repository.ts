@@ -37,6 +37,13 @@ export interface UserRepository {
   search(query: string): Promise<User[]>;
 
   /**
+   * Send a friend request to the given user.
+   *
+   * @param user
+   */
+  sendFriendRequest(user: User): Promise<void>;
+
+  /**
    * Create a user.
    *
    * @param authUser

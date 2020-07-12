@@ -6,7 +6,7 @@ let ws: WebSocketService;
 export function dataWebSocketPlugin() {
   return (store: Store<any>) => {
     store.subscribe(mutation => {
-      // Only react to the setUser mutation from the authStore
+      // Only subscribe to the setUser mutation from the authStore
       if (mutation.type !== "authStore/setUser") return;
 
       // A new WebSocketService will be created whenever the mutation executes

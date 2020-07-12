@@ -17,6 +17,9 @@ export class CactusUserRepository extends AxiosRepository
   search = async (query: string): Promise<User[]> =>
     (await this.axiosInstance.get(`/user/search?query=${query}`)).data;
 
+  sendFriendRequest = async (user: User): Promise<void> =>
+    (await this.axiosInstance.post(`/user/${user.id}/friendRequest`)).data;
+
   createUser = async (authUser: AuthUser): Promise<AuthUser> =>
     (await this.axiosInstance.post("/user", authUser)).data;
 

@@ -32,7 +32,7 @@ export default {
     }
 
     const activityName = computed(
-      () => props.room.watching || "Doing nothing 🤷‍♂️"
+      () => props.room.watching || "Spongebob Squarepants 🤷‍🧽"
     );
 
     return { roomContext, activityName };

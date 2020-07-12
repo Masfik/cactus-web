@@ -28,25 +28,18 @@
           v-for="user of usersFound"
           :key="user.id"
           :room="user"
+          @click.native="sendFriendRequest(user)"
         />
       </div>
     </div>
 
     <div v-show="!isSearching">
       <router-link
-        v-for="n in 18"
-        :key="n"
-        :to="{ name: 'room', params: { roomId: n } }"
+        v-for="room of rooms"
+        :key="room.id"
+        :to="{ name: 'room', params: { roomId: room.id } }"
       >
-        <room-tile
-          :room="{
-            name: Math.random()
-              .toString(36)
-              .replace(/[^a-z]+/g, ''),
-            id: n,
-            watching: 'Spongebob Squarepants'
-          }"
-        />
+        <room-tile :room="room" />
       </router-link>
     </div>
     <!--<room-tile v-for="(room, i) of rooms" :key="i" :room="room" />-->
@@ -63,6 +56,7 @@ import {
   watch
 } from "@vue/composition-api";
 import Logo from "@/components/common/Logo.vue";
+import { User } from "@/models/user";
 
 export default {
   name: "Sidebar",
@@ -91,13 +85,24 @@ export default {
         .finally(() => (searchQuery.isLoading = false));
     }
 
+    // Watch the search input query: automatically runs the searchUser function
     watch(
       () => searchQuery.query,
       (query: string) => {
-        if (query !== "" && query.length >= 5) searchUser(query);
-        else $store.dispatch("userStore/resetUsersFound");
+        if (query.length >= 5) searchUser(query);
+        else if (query == "") $store.dispatch("userStore/resetUsersFound");
       }
     );
+
+    function sendFriendRequest(user: User) {
+      $store
+        .dispatch("userStore/sendFriendRequest", user)
+        .then(() => {
+          // TODO: this section is unpolished. It will be heavily changed later.
+          alert("Friend added!");
+        })
+        .catch(console.error);
+    }
 
     //--------------------------------------------------------------------------
     // STICKY SEARCH BAR SHADOW
@@ -111,6 +116,7 @@ export default {
     // If the search input is stuck (initial value of false)
     const stickySearch = ref(false);
 
+    // TODO: this method re-renders the Sidebar every time the user scrolls down
     function onSidebarScroll() {
       const triggerScrollHeight =
         logoEl.value!.clientHeight + searchEl.value!.clientHeight;
@@ -118,15 +124,21 @@ export default {
     }
 
     return {
+      // Search handling
       searchQuery,
       isSearching: computed(() => searchQuery.query !== ""),
       usersFound,
+      sendFriendRequest,
+
+      // Rooms
+      rooms: computed(() => $store.state.roomStore.rooms),
+
+      // Sticky searchbar
       stickySearch,
       sidebarEl,
       logoEl,
       searchEl,
-      onSidebarScroll,
-      rooms: computed(() => $store.state.roomStore.rooms)
+      onSidebarScroll
     };
   }
 };
