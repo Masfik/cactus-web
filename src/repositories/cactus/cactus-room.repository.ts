@@ -14,8 +14,8 @@ export class CactusRoomRepository extends AxiosRepository
   getRoom = async (id: string): Promise<Room> =>
     (await this.axiosInstance.get(`/room/${id}`)).data;
 
-  joinRoom = async (id: string): Promise<void> =>
-    (await this.axiosInstance.post(`/room/${id}/join`)).data;
+  joinRoom = async (room: Room): Promise<void> =>
+    (await this.axiosInstance.post(`/room/${room.id}/join`)).data;
 
   obtainRemote = (): Promise<void> => this.axiosInstance.put("/room?remote");
 

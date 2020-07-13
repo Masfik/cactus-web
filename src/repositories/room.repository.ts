@@ -13,11 +13,11 @@ export interface RoomRepository {
   getRoom(id: string): Promise<Room>;
 
   /**
-   * Join a room by ID.
+   * Join a room.
    *
-   * @param id
+   * @param room
    */
-  joinRoom(id: string): Promise<void>;
+  joinRoom(room: Room): Promise<void>;
 
   /**
    * Provides the user with the remote to control the content being watched.

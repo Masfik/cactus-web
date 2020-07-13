@@ -1,6 +1,6 @@
 <template>
   <p v-if="isUserAuthenticated === false && !isDataLoaded">Loading...</p>
-  <div class="home" v-else>
+  <div v-else class="home">
     <default-layout>
       <template v-slot:sidebar>
         <sidebar />

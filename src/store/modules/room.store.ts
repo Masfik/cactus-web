@@ -25,11 +25,18 @@ export const roomStore = {
   },
 
   getters: {
+    getRoomById: (state: any) => (id: string) => {
+      const foundRooms = state.rooms.filter((room: Room) => room.id == id);
+      return foundRooms ? foundRooms[0] : null;
+    },
+
     viewerCounter: (state: any) => state.currentRoom.members.length
   },
 
   mutations: {
     setRooms(state: any, rooms: Room[]) {
+      // Adding an empty array of messages to all rooms
+      rooms.map(room => (room.messageBlocks = []));
       state.rooms = rooms;
     },
 
@@ -64,8 +71,11 @@ export const roomStore = {
       commit("setRooms", rooms);
     },
 
-    async joinRoom({ commit }: any, room: Room) {
-      await roomRepository.joinRoom(room.id);
+    async joinRoom({ getters, commit }: any, id: Room) {
+      const room = getters.getRoomById(id);
+      if (!room) return;
+
+      //await roomRepository.joinRoom(room);
       commit("setCurrentRoom", room);
     },
 
