@@ -23,13 +23,17 @@
         <p v-if="usersFound.length === 0" style="text-align: center">
           No user found!
         </p>
-        <room-tile
-          v-else
-          v-for="user of usersFound"
-          :key="user.id"
-          :room="user"
-          @click.native="sendFriendRequest(user)"
-        />
+        <template v-else>
+          <div class="users-found-label">
+            Users found:
+          </div>
+          <room-tile
+            v-for="user of usersFound"
+            :key="user.id"
+            :room="user"
+            @click.native="sendFriendRequest(user)"
+          />
+        </template>
       </div>
     </div>
 
@@ -42,7 +46,6 @@
         <room-tile :room="room" />
       </router-link>
     </div>
-    <!--<room-tile v-for="(room, i) of rooms" :key="i" :room="room" />-->
   </div>
 </template>
 
@@ -177,5 +180,12 @@ export default {
       color: #ffffff;
     }
   }
+}
+
+.users-found-label {
+  padding: 10px $s-container-spacing;
+  background-color: var(--c-room-tile-hover);
+  font-size: smaller;
+  font-weight: bold;
 }
 </style>
