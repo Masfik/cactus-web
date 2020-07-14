@@ -1,6 +1,11 @@
 <template>
   <ul id="header-items">
     <li>
+      <a class="mobile-only" id="sidebar-toggle">
+        <font-awesome-icon icon="bars" @click="openSidebar()" />
+      </a>
+    </li>
+    <li>
       <a href="">
         <div class="notifications">
           <font-awesome-icon icon="bell" class="bell-icon" />
@@ -33,13 +38,29 @@ export default {
       fullName: computed(() => $store.getters["userStore/fullName"]),
       invitationsCount: computed(
         () => $store.getters["userStore/invitationsCount"]
-      )
+      ),
+      openSidebar() {
+        ctx.root.$emit("OPEN_SIDEBAR");
+      }
     };
   }
 };
 </script>
 
 <style lang="scss" scoped>
+#sidebar-toggle {
+  position: absolute;
+  left: 20px;
+  top: calc(#{$s-header-height/2} - .65em);
+  font-size: 1.3em;
+}
+
+@media (max-width: 768px) {
+  .username {
+    display: none;
+  }
+}
+
 ul#header-items {
   height: 100%;
   list-style-type: none;
