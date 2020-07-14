@@ -33,15 +33,30 @@ import ControlsPanel from "@/components/room/ControlsPanel.vue";
 export default {
   name: "RoomContent",
   components: { ControlsPanel, ContentWatchingCard, StartStreaming, Card },
-  setup(_: any, ctx: SetupContext) {
+  props: {
+    peerConnection: {
+      type: RTCPeerConnection,
+      required: true
+    }
+  },
+  setup(props: { peerConnection: RTCPeerConnection }, ctx: SetupContext) {
     const { $store } = ctx.root;
 
+    // The <video> element from the template ↑
     const videoEl = ref<HTMLVideoElement>(null);
 
     // Watching the changes applied to the Stream from the store
     const unwatchStream = $store.watch(
       state => state.streamStore.stream,
-      value => (videoEl.value!.srcObject = value)
+      (value: MediaStream | null) => {
+        // Setting the stream to the <video> element
+        videoEl.value!.srcObject = value;
+
+        if (!value) return;
+
+        // Adding the stream to the local peer connection
+        props.peerConnection.addStream(value);
+      }
     );
 
     onBeforeUnmount(() => {

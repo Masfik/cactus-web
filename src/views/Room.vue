@@ -1,7 +1,7 @@
 <template>
   <room-default-layout>
     <template v-slot:content>
-      <room-content />
+      <room-content :peer-connection="localPeerConnection" />
     </template>
 
     <template v-slot:chat>
@@ -24,18 +24,32 @@ export default {
     RoomDefaultLayout
   },
   setup(_: any, ctx: SetupContext) {
+    const { $store } = ctx.root;
+
     const route = computed(() => ctx.root.$route.params);
 
+    function joinRoom(route: { [key: string]: string }) {
+      $store.dispatch("roomStore/joinRoom", route.roomId);
+    }
+
     // TODO: find a cleaner way of doing this
-    setTimeout(
-      () => ctx.root.$store.dispatch("roomStore/joinRoom", route.value.roomId),
-      100
+    setTimeout(() => joinRoom(route.value), 100);
+
+    // Obtaining the localPeerConnection from the store
+    const localPeerConnection = computed(
+      () => $store.state.streamStore.localPeerConnection
     );
 
-    // Change room when the roomId changes from the URL path
+    // Watching the route parameters
     watch(route, route => {
-      ctx.root.$store.dispatch("roomStore/joinRoom", route.roomId);
+      // Run joinRoom() whenever the /:roomId changes from the URL path
+      joinRoom(route);
+
+      $store.dispatch("streamStore/createPeerConnection");
     });
+    return {
+      localPeerConnection
+    };
   }
 };
 </script>

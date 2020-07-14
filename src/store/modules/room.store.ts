@@ -71,11 +71,10 @@ export const roomStore = {
       commit("setRooms", rooms);
     },
 
-    async joinRoom({ getters, commit }: any, id: Room) {
+    async joinRoom({ getters, commit }: any, id: string) {
       const room = getters.getRoomById(id);
       if (!room) return;
 
-      //await roomRepository.joinRoom(room);
       commit("setCurrentRoom", room);
     },
 

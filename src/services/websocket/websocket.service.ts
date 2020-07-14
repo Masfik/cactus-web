@@ -22,6 +22,10 @@ export class WebSocketService {
     });
   }
 
+  closeConnection() {
+    this.instance.close();
+  }
+
   protected emit(event: Event, data: any) {
     this.handlers[event](data);
   }

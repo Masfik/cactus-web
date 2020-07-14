@@ -20,4 +20,14 @@ export class WebRTCStreamService implements StreamScreenService {
   endStream(): void {
     this.stream?.getTracks().forEach(track => track.stop());
   }
+
+  onConnectionIceEvent(event: RTCPeerConnectionIceEvent) {
+    const iceCandidate = event.candidate;
+
+    if (!iceCandidate) return;
+
+    const peerConnection = event.target;
+
+    console.log(iceCandidate);
+  }
 }

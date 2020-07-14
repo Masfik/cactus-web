@@ -22,6 +22,7 @@ export default {
 <style lang="scss" scoped>
 .message-bubble {
   display: table;
+  box-sizing: initial;
   max-width: 70%;
   margin-top: $s-message-spacing;
   padding: 10px;
