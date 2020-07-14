@@ -134,3 +134,24 @@ form.default-style-form {
     margin-right: $s-row-col-spacing;
   }
 }
+
+
+// Responsivity
+.tablet-only {
+  display: none;
+  @media (max-width: 980px) {
+    display: block;
+  }
+}
+.desktop-only {
+  display: block;
+  @media (max-width: 1140px) {
+    display: none;
+  }
+}
+.mobile-only {
+  display: none;
+  @media (max-width: 768px) {
+    display: block;
+  }
+}
