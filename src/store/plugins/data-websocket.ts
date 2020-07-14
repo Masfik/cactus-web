@@ -26,11 +26,69 @@ export const dataWebSocketPlugin = () => (store: Store<any>) => {
           store.commit("userStore/setConnectedToSocket", false)
         );
 
+        //|----------|//
+        //| RTCOffer |//
+        //|----------|//
+        ws.on("Offer", async payload => {
+          const sdp = payload?.data as string;
+
+          if (!sdp) return;
+
+          console.log(sdp);
+
+          // Setting the offer as local description
+          await store.state.streamStore.localPeerConnection?.setRemoteDescription(
+            {
+              type: "offer",
+              sdp
+            }
+          );
+
+          // Giving an answer to the offer
+          await store.dispatch("streamStore/createAnswer");
+        });
+
+        //|-----------|//
+        //| RTCAnswer |//
+        //|-----------|//
+        ws.on("Answer", async payload => {
+          const answer = payload?.data as RTCSessionDescriptionInit;
+          if (!answer) return;
+
+          await store.state.streamStore.localPeerConnection?.setRemoteDescription(
+            answer
+          );
+        });
+
+        //|-----------------|//
+        //| RTCIceCandidate |//
+        //|-----------------|//
+        ws.on("IceCandidate", async payload => {
+          const candidate = payload?.data as RTCIceCandidate;
+          if (!candidate) return;
+
+          await store.state.streamStore.localPeerConnection
+            .addIceCandidate(candidate)
+            .catch(console.error);
+        });
+
         // Listening to WebSocket events
         ws.listen();
         break;
       case "roomStore/setCurrentRoom":
-        //console.log(mutation.payload);
+        ws.joinRoom(mutation.payload);
+        break;
+      case "streamStore/setIceCandidate":
+        if (store.state.streamStore.isStreamer)
+          ws.sendIceCandidate(mutation.payload);
+        break;
+      case "streamStore/setOffer":
+        if (store.state.streamStore.isStreamer) ws.sendOffer(mutation.payload);
+        break;
+      case "streamStore/setAnswer":
+        if (!store.state.streamStore.isStreamer) {
+          ws.sendAnswer(mutation.payload);
+        }
         break;
     }
   });

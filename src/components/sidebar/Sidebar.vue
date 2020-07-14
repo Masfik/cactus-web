@@ -12,15 +12,15 @@
       />
     </div>
 
-    <div v-show="isSearching">
+    <div v-show="isSearching" style="text-align: center">
       <font-awesome-icon
         v-if="searchQuery.isLoading"
         icon="spinner"
+        size="2x"
         spin
-        style="text-align: center"
       />
       <div v-else>
-        <p v-if="usersFound.length === 0" style="text-align: center">
+        <p v-if="usersFound.length === 0">
           No user found!
         </p>
         <template v-else>
@@ -32,6 +32,7 @@
             :key="user.id"
             :room="user"
             @click.native="sendFriendRequest(user)"
+            style="text-align: left;"
           />
         </template>
       </div>
@@ -187,5 +188,6 @@ export default {
   background-color: var(--c-room-tile-hover);
   font-size: smaller;
   font-weight: bold;
+  text-align: left;
 }
 </style>

@@ -9,7 +9,6 @@
           ref="videoEl"
           autoplay
           playsinline
-          oncontextmenu=""
         />
       </div>
       <controls-panel />
@@ -48,14 +47,17 @@ export default {
     // Watching the changes applied to the Stream from the store
     const unwatchStream = $store.watch(
       state => state.streamStore.stream,
-      (value: MediaStream | null) => {
+      (stream: MediaStream | null) => {
         // Setting the stream to the <video> element
-        videoEl.value!.srcObject = value;
+        videoEl.value!.srcObject = stream;
 
-        if (!value) return;
+        if (!stream) return;
 
         // Adding the stream to the local peer connection
-        props.peerConnection.addStream(value);
+        if ($store.state.streamStore.isStreamer) {
+          props.peerConnection.addStream(stream);
+          $store.dispatch("streamStore/createOffer").catch(console.error);
+        }
       }
     );
 

@@ -76,6 +76,7 @@ export const roomStore = {
       if (!room) return;
 
       commit("setCurrentRoom", room);
+      // ↑ This mutation will trigger the joinRoom WebSocket event
     },
 
     addMessage({ state, commit }: any, message: Message) {
