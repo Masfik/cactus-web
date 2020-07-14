@@ -72,4 +72,20 @@ export default {
     font-weight: bold;
   }
 }
+
+@media (max-width: 750px) {
+  #controls {
+    > * {
+      justify-content: space-evenly;
+      flex-grow: 1;
+      display: flex;
+    }
+    button {
+      font-size: 0;
+      width: auto;
+    }
+    > .input-controls {
+    }
+  }
+}
 </style>

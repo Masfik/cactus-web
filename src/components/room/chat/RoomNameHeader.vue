@@ -1,7 +1,8 @@
 <template>
-  <div id="room-name-header" @click="switchThemeTest">
+  <div id="room-name-header" >
     <div id="room-name" class="container-x">
-      {{ roomName }}
+      <font-awesome-icon icon="times" @click="closeChat($event)" />
+      <span @click="switchThemeTest">{{ roomName }}</span>
     </div>
   </div>
 </template>
@@ -23,7 +24,14 @@ export default {
       else de.setAttribute("theme", "none");
     }
 
-    return { roomName, switchThemeTest: theme };
+    return {
+      roomName,
+      switchThemeTest: theme,
+      closeChat(event: Event) {
+        event.stopPropagation();
+        ctx.root.$emit("CLOSE_CHAT");
+      }
+    };
   }
 };
 </script>
@@ -45,6 +53,21 @@ export default {
     margin: auto;
     line-height: $s-header-height;
     text-transform: uppercase;
+    * { vertical-align: middle; }
+  }
+
+  .fa-times {
+    cursor: pointer;
+    width: 36px;
+    color: $caribbean-green-darker;
+    font-size: 1.6em;
+    display: none;
+  }
+
+  @media (max-width: 980px) {
+    .fa-times {
+      display: inline-block;
+    }
   }
 }
 </style>

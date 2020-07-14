@@ -72,6 +72,16 @@ export default {
         }
       }
     }
+
+    @media (max-width: 440px) {
+      & {
+        text-align: center;
+        min-width: unset;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+      }
+    }
   }
 }
 </style>

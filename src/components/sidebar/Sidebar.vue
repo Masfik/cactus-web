@@ -1,6 +1,6 @@
 <template>
   <div @scroll="onSidebarScroll" ref="sidebarEl" id="sidebar-content">
-    <div ref="logoEl"><Logo class="logo" /></div>
+    <div ref="logoEl"><Logo class="logo" /><Logo small class="logo small" /></div>
     <div class="container-x search-bar" :class="{ stuck: stickySearch }">
       <input
         type="text"
@@ -10,6 +10,7 @@
         v-model="searchQuery.query"
         ref="searchEl"
       />
+      <font-awesome-icon class="search-icon" icon="search"></font-awesome-icon>
     </div>
 
     <div v-show="isSearching" style="text-align: center">
@@ -157,6 +158,13 @@ export default {
 .logo {
   padding: 25px 40px 10px;
   width: 100%;
+
+  &.small {
+    display: none;
+    width: 250px;
+    margin-top: -10px;
+    padding-left: 17.5px;
+  }
 }
 
 .search-bar {
@@ -180,6 +188,31 @@ export default {
     &::placeholder {
       color: #ffffff;
     }
+  }
+
+  .search-icon {
+    position: absolute;
+    pointer-events: none;
+    display: none;
+    color: #fffd;
+    left: 30px;
+    top: 22px;
+  }
+}
+@media (max-width: 1140px) {
+  .search-bar {
+    .text-field::placeholder {
+      color: transparent;
+    }
+    .text-field:not(:placeholder-shown) + .search-icon {
+      display: none;
+    }
+  }
+  .logo {
+    display: none;
+  }
+  .search-bar .search-icon, .logo.small {
+    display: block;
   }
 }
 

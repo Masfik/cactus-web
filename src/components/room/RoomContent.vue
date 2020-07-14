@@ -84,6 +84,10 @@ export default {
   padding-top: 56.25%;
   position: relative;
 
+  @media (max-width: 768px) {
+    padding: 160px 0;
+  }
+
   > * {
     position: absolute;
     width: 100%;
