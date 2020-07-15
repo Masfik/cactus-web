@@ -74,9 +74,8 @@ export const streamStore = {
       };
 
       localPeerConnection.addEventListener("connectionstatechange", event => {
-        if (localPeerConnection.connectionState === "connected") {
+        if (localPeerConnection.connectionState === "connected")
           console.log("Connected!");
-        }
       });
 
       if (state.isStreamer) {

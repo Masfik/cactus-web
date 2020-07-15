@@ -1,13 +1,14 @@
 <template>
   <div v-if="isUserAuthenticated === false && !isDataLoaded" class="loading">
     <div>
-      <img src="/assets/img/undraw_clean_up_ucm0.svg">
+      <img src="/assets/img/undraw_clean_up_ucm0.svg" />
       <h2>Loading</h2>
       <small>
         Cleaning your screen...
       </small>
     </div>
   </div>
+
   <div v-else class="home">
     <default-layout>
       <template v-slot:sidebar>
@@ -78,21 +79,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .loading {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    text-align: center;
-    font-size: 1.4em;
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  font-size: 1.4em;
 
-    img {
-      width: 280px;
-    }
-    h2 {
-      font-size: 4vw;
-      margin: 35px 0 10px;
-    }
+  img {
+    width: 280px;
   }
+
+  h2 {
+    font-size: 4vw;
+    margin: 35px 0 10px;
+  }
+}
 </style>

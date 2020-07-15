@@ -34,9 +34,7 @@ export const dataWebSocketPlugin = () => (store: Store<any>) => {
 
           if (!sdp) return;
 
-          console.log(sdp);
-
-          // Setting the offer as local description
+          // Setting the offer as the remote description
           await store.state.streamStore.localPeerConnection?.setRemoteDescription(
             {
               type: "offer",
@@ -86,9 +84,8 @@ export const dataWebSocketPlugin = () => (store: Store<any>) => {
         if (store.state.streamStore.isStreamer) ws.sendOffer(mutation.payload);
         break;
       case "streamStore/setAnswer":
-        if (!store.state.streamStore.isStreamer) {
+        if (!store.state.streamStore.isStreamer)
           ws.sendAnswer(mutation.payload);
-        }
         break;
     }
   });

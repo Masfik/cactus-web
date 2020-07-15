@@ -48,16 +48,16 @@ export class WebSocketService {
     this.send("RoomJoin", room.id);
   }
 
-  sendIceCandidate(iceCandidate: RTCIceCandidate) {
-    this.send("IceCandidate", iceCandidate);
-  }
-
   sendOffer(offer: RTCSessionDescriptionInit) {
     if (offer.sdp) this.send("Offer", offer.sdp);
   }
 
   sendAnswer(answer: RTCSessionDescriptionInit) {
     this.send("Answer", answer);
+  }
+
+  sendIceCandidate(iceCandidate: RTCIceCandidate) {
+    this.send("IceCandidate", iceCandidate);
   }
 
   private send(event: Event, data: object | string) {

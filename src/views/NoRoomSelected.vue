@@ -1,12 +1,12 @@
 <template>
   <h2 id="no-room-selected">
     <div class="vcenter">
-      <img src="/assets/img/undraw_monitor_iqpq.svg">
-      <br>
+      <img src="/assets/img/undraw_monitor_iqpq.svg" />
+      <br />
       No room selected
-      <br>
+      <br />
       <small>
-        Choose one from the sidebar<br>
+        Choose one from the sidebar<br />
         or add some friends!
       </small>
     </div>
@@ -24,7 +24,6 @@ export default {
   margin: 0;
   text-align: center;
   color: var(--c-bubble-recipient);
-  line-height: calc(100vh - #{$s-header-height});
   user-select: none;
 }
 
