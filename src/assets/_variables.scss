@@ -74,7 +74,7 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
   --c-danger: #e85c63;
 
   // Shadow colour
-  --c-shadow-color: #0000001f;
+  --c-shadow-color: #0000001a;
 
   // Specific components
   --c-sidebar: var(--c-primary);
@@ -155,7 +155,7 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
 
 // include box-shadow property (optional $showRight parameter)
 @mixin shadow($showRight: false) {
-  $shadow: if($showRight, 15px, 0) 2px 15px -1px var(--c-shadow-color);
+  $shadow: if($showRight, 15px, 0) 2px 20px -4px var(--c-shadow-color);
   -webkit-box-shadow: $shadow;
   box-shadow: $shadow;
 }
