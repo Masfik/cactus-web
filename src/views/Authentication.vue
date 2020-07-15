@@ -43,6 +43,11 @@ export default {
     var(--c-sidebar) 100px
   );
 
+  h2 {
+    font-size: 2em;
+    margin: 10px 0;
+  }
+
   #login-box {
     @include overflow(y);
     @include shadow(true);
