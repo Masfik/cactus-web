@@ -116,6 +116,7 @@ $s-message-block-spacing: $s-message-spacing * 4; /* the series of consecutive m
   border: none;
   background: none;
   border-radius: $s-input-border-radius;
+  transition: background-color .2s ease;
   color: var(--c-text-on-bg);
 
   &:focus {

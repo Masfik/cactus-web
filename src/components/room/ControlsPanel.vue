@@ -59,6 +59,10 @@ export default {
   display: flex;
   flex-flow: row;
 
+  button {
+    border-radius: 16px;
+  }
+
   > .input-controls {
     flex-grow: 1;
   }
@@ -83,8 +87,6 @@ export default {
     button {
       font-size: 0;
       width: auto;
-    }
-    > .input-controls {
     }
   }
 }
