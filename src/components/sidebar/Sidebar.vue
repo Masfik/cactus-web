@@ -199,7 +199,7 @@ export default {
     top: 22px;
   }
 }
-@media (max-width: 1140px) {
+@media (max-width: 1140px) and (min-width: 768px) {
   .search-bar {
     .text-field::placeholder {
       color: transparent;
