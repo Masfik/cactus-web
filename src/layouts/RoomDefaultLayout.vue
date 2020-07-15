@@ -93,11 +93,11 @@ export default {
 @media (max-width: 980px) {
   #room-chat {
     position: fixed;
-    right: 15px;
-    bottom: 15px;
+    right: 10px;
+    bottom: 10px;
     border-radius: 24px;
     width: 240px;
-    height: calc(100% - #{$s-header-height} - 30px);
+    height: calc(100% - #{$s-header-height} - 20px);
     transition: transform .6s cubic-bezier(.61,.28,.24,1.19);
 
     #chat-content {
