@@ -1,6 +1,6 @@
 /**
- * A simple event handler class to listen and emit events.
- * Note that an event can only be listened once. If an event is listened
+ * A simple event handler class to emit and listen to events.
+ * Note that an event can only be listened once. If an event is listened to
  * multiple times, only the latest registered callback will be executed.
  *
  * Type T refers to the list of events accepted by the handler.

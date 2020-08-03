@@ -1,66 +1,114 @@
-import { Room } from "@/models/room";
+import { ConnectionHandler } from "@/services/websocket/event-handlers/connection-handler";
+import { EventHandler } from "@/utils/event-handler";
+import { WebSocketEventHandler } from "@/services/websocket/event-handlers/ws-event-handler";
 
-export type Event =
-  | "open"
-  | "close"
-  | "RoomJoin"
-  | "IceCandidate"
-  | "Offer"
-  | "Answer";
+export type Event = "Open" | "Close";
+export type Payload = { event: Event; data: object | string } | null;
 
-type Payload = { event: Event; data: object | string } | null;
-
-export class WebSocketService {
-  protected instance: WebSocket;
-  protected handlers: { [event: string]: (data: any) => void } = {};
+/**
+ * WebSocket service that supports clients extending the WebSocket interface.
+ * T1 refers to the WebSocket client being used.
+ * T2 refers to the list of events accepted by the event handlers.
+ */
+export abstract class WebSocketService<
+  T1 extends WebSocket,
+  T2 extends string // ← Events ("open" | "close")
+> {
+  protected instance?: T1;
+  protected handlers: EventHandler<any, any>[] = [];
+  // A handler for connection event ("open" and "close" events)
+  private connectionHandler: ConnectionHandler = new ConnectionHandler(this);
 
   constructor(
-    token: string,
-    endpoint: string = (process.env.NODE_ENV === "development"
+    protected endpoint: string = (process.env.NODE_ENV === "development"
       ? "ws://"
       : "wss://") + process.env.VUE_APP_API_URL
-  ) {
-    this.instance = new WebSocket(`${endpoint}/${token}`);
-  }
+  ) {}
 
-  listen() {
-    this.instance.addEventListener("open", () => this.emit("open", null));
-    this.instance.addEventListener("close", () => this.emit("close", null));
-    this.instance.addEventListener("message", ev => {
-      const payload = JSON.parse(ev.data);
+  /**
+   * Connect to the WebSocket with the specified token.
+   * The client should immediately start listening to all events.
+   *
+   * @param token
+   */
+  abstract connect(token: string): void;
+
+  /**
+   * Listen to the very basic "open", "close" and "message" events.
+   *
+   * @protected
+   */
+  protected listen() {
+    this.createHandler(ConnectionHandler);
+
+    this.instance!.addEventListener("open", () => this.emit("Open", null));
+    this.instance!.addEventListener("close", () => this.emit("Close", null));
+    this.instance!.addEventListener("message", ({ data }) => {
+      const payload = JSON.parse(data);
       if (payload.event) this.emit(payload.event, payload);
     });
   }
 
-  closeConnection() {
-    this.instance.close();
-  }
-
+  /**
+   * Emit events to all handlers.
+   * Some handlers will ignore the event because it's non-existent in their
+   * {@link EventHandler#events events } map.
+   *
+   * @param event
+   * @param payload
+   * @protected
+   */
   protected emit(event: Event, payload: Payload) {
-    this.handlers[event](payload);
+    this.handlers.forEach(handler => handler.emit(event, payload));
   }
 
-  on(event: Event, cb: (payload: Payload) => void) {
-    this.handlers[event] = cb;
+  /**
+   * Send any form of message to the socket.
+   * When sending an object, it will be automatically serialized.
+   *
+   * @param event - the event to be triggered
+   * @param data - the message to send (object or string)
+   */
+  send(event: T1, data: object | string) {
+    this.instance!.send(JSON.stringify({ event, data }));
   }
 
-  joinRoom(room: Room) {
-    this.send("RoomJoin", room.id);
+  /**
+   * Close the WebSocket connection.
+   * Nothing will happen if the connection is already closed or never
+   * instantiated.
+   */
+  closeConnection() {
+    this.instance?.close();
+    this.instance = undefined;
   }
 
-  sendOffer(offer: RTCSessionDescriptionInit) {
-    if (offer.sdp) this.send("Offer", offer.sdp);
+  /**
+   * Listen to the specified event and execute the given callback whenever
+   * the event is triggered.
+   * Valid events are "Open" and "Close".
+   *
+   * @param event
+   * @param callback
+   */
+  on(event: Event, callback: (payload: Payload) => void) {
+    this.connectionHandler.on(event, callback);
   }
 
-  sendAnswer(answer: RTCSessionDescriptionInit) {
-    this.send("Answer", answer);
-  }
-
-  sendIceCandidate(iceCandidate: RTCIceCandidate) {
-    this.send("IceCandidate", iceCandidate);
-  }
-
-  private send(event: Event, data: object | string) {
-    this.instance.send(JSON.stringify({ event, data }));
+  /**
+   * Create an event handler that encapsulates the WebSocketService.
+   * Usage: ws.createHandler(<EVENT_HANDLER_CLASS_NAME>)
+   *
+   * There is no need to instantiate the EventHandler and pass it to this
+   * method. It will automatically do so itself behind the scenes.
+   *
+   * @param handler
+   */
+  createHandler<T extends WebSocketEventHandler<any>>(handler: {
+    new (ws: WebSocketService<any, any>): T;
+  }): T {
+    const h = new handler(this);
+    this.handlers.push(h);
+    return h;
   }
 }
