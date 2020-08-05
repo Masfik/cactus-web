@@ -38,7 +38,7 @@ export const roomWebSocketPlugin = (ws: WebSocketService<any, any>) => (
     if (!sdp) return;
 
     // Setting the offer as the remote description
-    await store.state.streamStore.localPeerConnection?.setRemoteDescription({
+    await store.state.streamStore.localPeerConnection.setRemoteDescription({
       type: "offer",
       sdp
     });
@@ -52,7 +52,7 @@ export const roomWebSocketPlugin = (ws: WebSocketService<any, any>) => (
     const answer = payload?.data as RTCSessionDescriptionInit;
     if (!answer) return;
 
-    await store.state.streamStore.localPeerConnection?.setRemoteDescription(
+    await store.state.streamStore.localPeerConnection.setRemoteDescription(
       answer
     );
   });

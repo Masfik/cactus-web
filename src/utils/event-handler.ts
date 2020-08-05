@@ -3,12 +3,12 @@
  * Note that an event can only be listened once. If an event is listened to
  * multiple times, only the latest registered callback will be executed.
  *
- * Type T refers to the list of events accepted by the handler.
- * Type U refers to the callback.
+ * Type T1 refers to the list of events accepted by the handler.
+ * Type T2 refers to the callback.
  */
-export class EventHandler<T extends string, U extends Function> {
+export class EventHandler<T1 extends string, T2 extends Function> {
   private events: {
-    [event: string]: U;
+    [event: string]: T2;
   } = {};
 
   /**
@@ -18,7 +18,7 @@ export class EventHandler<T extends string, U extends Function> {
    * @param event
    * @param callback
    */
-  on(event: T, callback: U): void {
+  on(event: T1, callback: T2): void {
     this.events[event] = callback;
   }
 
@@ -28,7 +28,7 @@ export class EventHandler<T extends string, U extends Function> {
    * @param event
    * @param data
    */
-  emit(event: T, ...data: any): void {
+  emit(event: T1, ...data: any): void {
     if (this.events[event]) this.events[event](...data);
   }
 }

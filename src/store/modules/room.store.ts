@@ -26,8 +26,7 @@ export const roomStore = {
 
   getters: {
     getRoomById: (state: any) => (id: string) => {
-      const foundRooms = state.rooms.filter((room: Room) => room.id == id);
-      return foundRooms ? foundRooms[0] : null;
+      return state.rooms.find((room: Room) => room.id === id);
     },
 
     viewerCounter: (state: any) => state.currentRoom.members.length
@@ -71,12 +70,10 @@ export const roomStore = {
       commit("setRooms", rooms);
     },
 
-    async joinRoom({ getters, commit }: any, id: string) {
+    joinRoom({ getters, commit }: any, id: string) {
       const room = getters.getRoomById(id);
-      if (!room) return;
-
-      commit("setCurrentRoom", room);
-      // ↑ This mutation will trigger the joinRoom WebSocket event
+      // This mutation will trigger the JoinRoom WebSocket event
+      if (room) commit("setCurrentRoom", room);
     },
 
     addMessage({ state, commit }: any, message: Message) {

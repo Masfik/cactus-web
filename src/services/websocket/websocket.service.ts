@@ -7,23 +7,24 @@ export type Payload = { event: Event; data: object | string } | null;
 
 /**
  * WebSocket service that supports clients extending the WebSocket interface.
- * T1 refers to the WebSocket client being used.
- * T2 refers to the list of events accepted by the event handlers.
+ * Type T1 refers to the WebSocket client being used.
+ * Type T2 refers to the list of events accepted by the event handlers.
  */
 export abstract class WebSocketService<
-  T1 extends WebSocket,
+  T1 extends WebSocket, //  <- WebSocket client
   T2 extends string // ← Events ("open" | "close")
 > {
   protected instance?: T1;
   protected handlers: EventHandler<any, any>[] = [];
-  // A handler for connection event ("open" and "close" events)
-  private connectionHandler: ConnectionHandler = new ConnectionHandler(this);
 
   constructor(
     protected endpoint: string = (process.env.NODE_ENV === "development"
       ? "ws://"
       : "wss://") + process.env.VUE_APP_API_URL
-  ) {}
+  ) {
+    // Register a handler for connection events ("Open" and "Close")
+    this.createHandler(ConnectionHandler);
+  }
 
   /**
    * Connect to the WebSocket with the specified token.
@@ -39,8 +40,6 @@ export abstract class WebSocketService<
    * @protected
    */
   protected listen() {
-    this.createHandler(ConnectionHandler);
-
     this.instance!.addEventListener("open", () => this.emit("Open", null));
     this.instance!.addEventListener("close", () => this.emit("Close", null));
     this.instance!.addEventListener("message", ({ data }) => {
@@ -69,7 +68,7 @@ export abstract class WebSocketService<
    * @param event - the event to be triggered
    * @param data - the message to send (object or string)
    */
-  send(event: T1, data: object | string) {
+  send(event: T2, data: object | string) {
     this.instance!.send(JSON.stringify({ event, data }));
   }
 
@@ -92,12 +91,13 @@ export abstract class WebSocketService<
    * @param callback
    */
   on(event: Event, callback: (payload: Payload) => void) {
-    this.connectionHandler.on(event, callback);
+    // The first handler is the ConnectionHandler (open and close events)
+    this.handlers[0].on(event, callback);
   }
 
   /**
-   * Create an event handler that encapsulates the WebSocketService.
-   * Usage: ws.createHandler(<EVENT_HANDLER_CLASS_NAME>)
+   * Create an event handler that can make use of the WebSocketService.
+   * Usage: `ws.createHandler(<EVENT_HANDLER_CLASS_NAME>)`
    *
    * There is no need to instantiate the EventHandler and pass it to this
    * method. It will automatically do so itself behind the scenes.

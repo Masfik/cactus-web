@@ -49,33 +49,29 @@ export const streamStore = {
     },
 
     endStream({ state, commit }: any) {
-      commit("setStream", null);
       streamScreenService.endStream();
-      state.channel.close();
-      state.localPeerConnection.close();
+      /*state.channel.close();*/
+      /*state.localPeerConnection.close();*/
+      commit("setStream", null);
     },
 
-    createPeerConnection({ state, commit }: any) {
+    createPeerConnection({ state, getters, commit }: any) {
       commit("setLocalPeerConnection", new RTCPeerConnection());
       const localPeerConnection = state.localPeerConnection as RTCPeerConnection;
 
-      localPeerConnection.onicecandidate = event => {
-        console.log(event.candidate);
+      localPeerConnection.onicecandidate = ({ candidate }) => {
+        if (!candidate) return;
 
-        if (state.isStreamer) {
-          const iceCandidate = event.candidate;
-          if (!iceCandidate) return;
-
-          commit(
-            "setIceCandidate",
-            new RTCIceCandidate(iceCandidate as RTCIceCandidateInit)
-          );
-        }
+        // This mutation will trigger the IceCandidate WebSocket event
+        commit(
+          "setIceCandidate",
+          new RTCIceCandidate(candidate as RTCIceCandidateInit)
+        );
       };
 
       localPeerConnection.addEventListener("connectionstatechange", event => {
         if (localPeerConnection.connectionState === "connected")
-          console.log("Connected!");
+          console.info("Connected!");
       });
 
       if (state.isStreamer) {
@@ -90,7 +86,11 @@ export const streamStore = {
         state.channel.onclose = () => console.log("On close");
         state.channel.onerror = () => console.log("On error");
       } else {
-        localPeerConnection.ontrack = e => commit("setStream", e.streams[0]);
+        localPeerConnection.ontrack = ({ streams }) => {
+          console.log("Streaming: " + getters.isStreaming);
+          console.log(streams);
+          if (!getters.isStreaming) commit("setStream", streams[0]);
+        };
 
         localPeerConnection.ondatachannel = e => {
           commit("setChannel", e.channel);
@@ -108,6 +108,7 @@ export const streamStore = {
       });
 
       await localPeerConnection.setLocalDescription(offer);
+      // This mutation will trigger the Offer WebSocket event
       commit("setOffer", offer);
     },
 
@@ -116,6 +117,7 @@ export const streamStore = {
       const answer = await localPeerConnection.createAnswer();
 
       await localPeerConnection.setLocalDescription(answer);
+      // This mutation will trigger the Answer WebSocket event
       commit("setAnswer", answer);
     }
   }

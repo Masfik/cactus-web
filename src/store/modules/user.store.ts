@@ -11,7 +11,6 @@ export const userStore = {
 
   state: {
     user: {} as AuthUser,
-    isConnectedToSocket: false,
     usersFound: []
   },
 
@@ -23,9 +22,7 @@ export const userStore = {
 
   mutations: {
     setUser: (state: any, authUser: AuthUser) => (state.user = authUser),
-    setFoundUsers: (state: any, users: User[]) => (state.usersFound = users),
-    setConnectedToSocket: (state: any, status: boolean) =>
-      (state.isConnectedToSocket = status)
+    setFoundUsers: (state: any, users: User[]) => (state.usersFound = users)
   },
 
   actions: {
