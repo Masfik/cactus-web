@@ -55,7 +55,7 @@ export default {
 
         // Adding the stream to the local peer connection
         if ($store.state.streamStore.isStreamer) {
-          props.peerConnection.addStream(stream);
+          props.peerConnection.addTrack(stream.getTracks()[0], stream);
           $store.dispatch("streamStore/createOffer").catch(console.error);
         }
       }

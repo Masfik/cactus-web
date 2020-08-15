@@ -14,16 +14,19 @@
 </template>
 
 <script lang="ts">
-  import { ref, SetupContext } from "@vue/composition-api";
+import { ref, SetupContext } from "@vue/composition-api";
 
 export default {
   name: "DefaultLayout",
   setup(_: any, ctx: SetupContext) {
     const isSidebarOpen = ref(false);
+
     ctx.root.$on("OPEN_SIDEBAR", () => {
       isSidebarOpen.value = !isSidebarOpen.value;
     });
-    const closeSidebar = () => isSidebarOpen.value = false;
+
+    const closeSidebar = () => (isSidebarOpen.value = false);
+
     return {
       isSidebarOpen,
       closeSidebar

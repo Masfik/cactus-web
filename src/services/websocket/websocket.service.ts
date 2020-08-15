@@ -6,12 +6,13 @@ export type Event = "Open" | "Close";
 export type Payload = { event: Event; data: object | string } | null;
 
 /**
- * WebSocket service that supports clients extending the WebSocket interface.
- * Type T1 refers to the WebSocket client being used.
- * Type T2 refers to the list of events accepted by the event handlers.
+ * Generic and event-based WebSocket service.
+ *
+ * Type `T1` refers to the WebSocket client being used.
+ * Type `T2` refers to the list of events accepted by the event handlers.
  */
 export abstract class WebSocketService<
-  T1 extends WebSocket, //  <- WebSocket client
+  T1, // <- WebSocket client
   T2 extends string // ← Events ("open" | "close")
 > {
   protected instance?: T1;
@@ -35,18 +36,10 @@ export abstract class WebSocketService<
   abstract connect(token: string): void;
 
   /**
-   * Listen to the very basic "open", "close" and "message" events.
-   *
-   * @protected
+   * Start listening to the WebSocket events provided by default by the client
+   * being used (e.g. "open", "close", "message").
    */
-  protected listen() {
-    this.instance!.addEventListener("open", () => this.emit("Open", null));
-    this.instance!.addEventListener("close", () => this.emit("Close", null));
-    this.instance!.addEventListener("message", ({ data }) => {
-      const payload = JSON.parse(data);
-      if (payload.event) this.emit(payload.event, payload);
-    });
-  }
+  abstract listen(): void;
 
   /**
    * Emit events to all handlers.
@@ -68,19 +61,14 @@ export abstract class WebSocketService<
    * @param event - the event to be triggered
    * @param data - the message to send (object or string)
    */
-  send(event: T2, data: object | string) {
-    this.instance!.send(JSON.stringify({ event, data }));
-  }
+  abstract send(event: T2, data: object | string): void;
 
   /**
    * Close the WebSocket connection.
    * Nothing will happen if the connection is already closed or never
    * instantiated.
    */
-  closeConnection() {
-    this.instance?.close();
-    this.instance = undefined;
-  }
+  abstract closeConnection(): void;
 
   /**
    * Listen to the specified event and execute the given callback whenever
